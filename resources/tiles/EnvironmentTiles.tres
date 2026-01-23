@@ -1,0 +1,25 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://5ofd4hgkosgm"]
+
+[ext_resource type="Texture2D" uid="uid://ce1ke41k5ycdw" path="res://Assets/Environment/floor_mud.aseprite" id="1_7appe"]
+[ext_resource type="Texture2D" uid="uid://d304miyh06w5k" path="res://Assets/Environment/wall_rock.aseprite" id="2_opq3j"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ehr4"]
+resource_name = "MudFloor"
+texture = ExtResource("1_7appe")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = "MudFloor"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4tqav"]
+resource_name = "StoneWall"
+texture = ExtResource("2_opq3j")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = "StoneWall"
+
+[resource]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "Type"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_0ehr4")
+sources/1 = SubResource("TileSetAtlasSource_4tqav")
