@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="TowerDefenceGame"
+run/main_scene="uid://cb3omcx44vivi"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [aseprite_importers]
 
 aseprite_executable_path="D:/steam/steamapps/common/Aseprite/Aseprite.exe"
+
+[autoload]
+
+DevTools="*res://scenes/tools/devTools/DevTools.tscn"
 
 [dotnet]
 

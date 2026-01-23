@@ -11,11 +11,10 @@ public partial class MapManager : Node
 
 	private Dictionary<string, TileResource> _tileLookup = new Dictionary<string, TileResource>();
 
-
-	public override void _Ready()
+	public override void _EnterTree()
 	{
 		Instance = this;
-			
+		
 		foreach (var res in _allTileResources)
 		{
 			string key = res.Type.ToString();
@@ -26,6 +25,7 @@ public partial class MapManager : Node
 			}
 		}
 	}
+	
 	public override void _ExitTree()
 	{
 		if (Instance == this)

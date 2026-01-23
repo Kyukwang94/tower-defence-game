@@ -1,9 +1,53 @@
-[gd_scene format=3 uid="uid://cb3omcx44vivi"]
+[gd_scene load_steps=2 format=3 uid="uid://cb3omcx44vivi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcu20"]
+bg_color = Color(0.44956142, 0.5460958, 0.6989427, 1)
 
 [node name="DevTools" type="Node2D"]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 450.0
+offset_top = 37.0
+offset_right = 450.0
+offset_bottom = 37.0
+scale = Vector2(1.175423, 1.1801488)
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = -0.85075754
+offset_right = 199.14925
+offset_bottom = 270.0
+scale = Vector2(0.73999023, 0.75434655)
+theme_override_styles/panel = SubResource("StyleBoxFlat_bcu20")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PaintButton" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "paint
+"
+
+[node name="EraseButton" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Erase"
+
+[node name="LineEdit" type="LineEdit" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Search"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
