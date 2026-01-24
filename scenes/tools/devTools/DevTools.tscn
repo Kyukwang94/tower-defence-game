@@ -1,6 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb3omcx44vivi"]
+[gd_scene load_steps=9 format=3 uid="uid://cb3omcx44vivi"]
 
+[ext_resource type="Script" uid="uid://rtf3wpqrsdpv" path="res://scenes/tools/devTools/DevToolsController.cs" id="1_dlvne"]
 [ext_resource type="ButtonGroup" uid="uid://bhpmte3kskaqo" path="res://scenes/tools/devTools/DevToolsButton.tres" id="1_syxya"]
+[ext_resource type="Script" uid="uid://b3b1xmyyoxdd0" path="res://scenes/tools/devTools/DevToolsManager.cs" id="1_u1p2j"]
+[ext_resource type="Script" uid="uid://b38jh4ovummmr" path="res://components/DragGuiComponent.cs" id="2_j22wf"]
+[ext_resource type="Script" uid="uid://c22r5bvw68rac" path="res://components/PaintComponent.cs" id="2_u1p2j"]
+[ext_resource type="Script" uid="uid://btewshkxsh704" path="res://components/EraseComponent.cs" id="3_0pb43"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcu20"]
 bg_color = Color(0.44956142, 0.5460958, 0.6989427, 1)
@@ -8,18 +13,35 @@ bg_color = Color(0.44956142, 0.5460958, 0.6989427, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syxya"]
 bg_color = Color(0.11489678, 0.11489683, 0.11489671, 1)
 
-[node name="DevTools" type="Node2D"]
+[node name="DevTools" type="Node"]
 
-[node name="Control" type="Control" parent="."]
+[node name="DevToolsManager" type="Node" parent="." node_paths=PackedStringArray("PaintComponentNode", "EraseComponentNode")]
+script = ExtResource("1_u1p2j")
+PaintComponentNode = NodePath("PaintComponent")
+EraseComponentNode = NodePath("EraseComponent")
+
+[node name="PaintComponent" type="Node" parent="DevToolsManager"]
+script = ExtResource("2_u1p2j")
+
+[node name="EraseComponent" type="Node" parent="DevToolsManager"]
+script = ExtResource("3_0pb43")
+
+[node name="DevToolsController" type="CanvasLayer" parent="." node_paths=PackedStringArray("devToolsManager", "paintBtn", "eraseBtn")]
+script = ExtResource("1_dlvne")
+devToolsManager = NodePath("../DevToolsManager")
+paintBtn = NodePath("DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PaintButton")
+eraseBtn = NodePath("DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/EraseButton")
+
+[node name="DevToolsGUI" type="Control" parent="DevToolsController"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 450.0
-offset_top = 37.0
-offset_right = 450.0
-offset_bottom = 37.0
+offset_left = 514.0
+offset_top = 27.0
+offset_right = 514.0
+offset_bottom = 27.0
 scale = Vector2(1.175423, 1.1801488)
 
-[node name="PanelContainer" type="PanelContainer" parent="Control"]
+[node name="PanelContainer" type="PanelContainer" parent="DevToolsController/DevToolsGUI"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 0
 offset_left = -0.85075754
@@ -29,43 +51,53 @@ offset_bottom = 269.15265
 scale = Vector2(0.73999023, 0.75434655)
 theme_override_styles/panel = SubResource("StyleBoxFlat_bcu20")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="DevToolsController/DevToolsGUI/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_syxya")
 
-[node name="Title" type="Label" parent="Control/PanelContainer/VBoxContainer/PanelContainer"]
+[node name="Title" type="Label" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/PanelContainer" node_paths=PackedStringArray("TargetToMove")]
 layout_mode = 2
 text = "Dev Tool"
 horizontal_alignment = 1
+script = ExtResource("2_j22wf")
+TargetToMove = NodePath("../../../../..")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PaintButton" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="PaintButton" type="Button" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_syxya")
 text = "paint
 "
 
-[node name="EraseButton" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="EraseButton" type="Button" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_syxya")
-text = "Erase"
+text = "erase
+"
 
-[node name="LineEdit" type="LineEdit" parent="Control/PanelContainer/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Search"
+keep_editing_on_text_submit = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/PanelContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer/VBoxContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2

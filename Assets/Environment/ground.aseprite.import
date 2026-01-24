@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce1ke41k5ycdw"
-path="res://.godot/imported/floor_mud.aseprite-91a692d2877d0c192c604910195f2f02.ctex"
+uid="uid://bdgsc1hadms1v"
+path="res://.godot/imported/ground.aseprite-8e624d28b4fab28b7c9788f57712456a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Environment/floor_mud.aseprite"
-dest_files=["res://.godot/imported/floor_mud.aseprite-91a692d2877d0c192c604910195f2f02.ctex"]
+source_file="res://Assets/Environment/ground.aseprite"
+dest_files=["res://.godot/imported/ground.aseprite-8e624d28b4fab28b7c9788f57712456a.ctex"]
 
 [params]
 

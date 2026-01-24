@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=4 format=3 uid="uid://647gfjeg25a6"]
+
+[ext_resource type="Texture2D" uid="uid://bdgsc1hadms1v" path="res://Assets/Environment/ground.aseprite" id="1_0gkq0"]
+[ext_resource type="Script" uid="uid://idci0ghpgipx" path="res://resources/tiles/scripts/TileResource.cs" id="1_x5ghi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_outa7"]
+atlas = ExtResource("1_0gkq0")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1_x5ghi")
+Icon = SubResource("AtlasTexture_outa7")
+Type = 1
+IsWalkable = true
+metadata/_custom_type_script = "uid://idci0ghpgipx"
