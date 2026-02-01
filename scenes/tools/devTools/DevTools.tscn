@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cb3omcx44vivi"]
+[gd_scene load_steps=13 format=3 uid="uid://cb3omcx44vivi"]
 
 [ext_resource type="Script" uid="uid://rtf3wpqrsdpv" path="res://scenes/tools/devTools/DevToolsController.cs" id="1_dlvne"]
 [ext_resource type="ButtonGroup" uid="uid://bhpmte3kskaqo" path="res://scenes/tools/devTools/DevToolsButton.tres" id="1_syxya"]
 [ext_resource type="Script" uid="uid://b3b1xmyyoxdd0" path="res://scenes/tools/devTools/DevToolsManager.cs" id="1_u1p2j"]
-[ext_resource type="Script" uid="uid://b38jh4ovummmr" path="res://components/DragGuiComponent.cs" id="2_j22wf"]
-[ext_resource type="Script" uid="uid://c22r5bvw68rac" path="res://components/PaintComponent.cs" id="2_u1p2j"]
-[ext_resource type="Script" uid="uid://btewshkxsh704" path="res://components/EraseComponent.cs" id="3_0pb43"]
+[ext_resource type="Script" uid="uid://cxeycuwt86kp6" path="res://scenes/tools/devTools/DevToolsSystem.cs" id="1_u8btl"]
+[ext_resource type="Script" uid="uid://b38jh4ovummmr" path="res://scripts/components/DragGuiComponent.cs" id="2_j22wf"]
+[ext_resource type="Script" uid="uid://c22r5bvw68rac" path="res://scripts/components/PaintComponent.cs" id="2_u1p2j"]
+[ext_resource type="Script" uid="uid://btewshkxsh704" path="res://scripts/components/EraseComponent.cs" id="3_0pb43"]
+[ext_resource type="Texture2D" uid="uid://dkgcawt44olba" path="res://Assets/UI/Palette/erase.aseprite" id="5_l1ord"]
+[ext_resource type="Script" uid="uid://bnxvmmmw3n2dx" path="res://scenes/tools/devTools/DevToolsItemsContainerUI.cs" id="7_vqgub"]
+[ext_resource type="Resource" uid="uid://drly23lrncwhc" path="res://resources/database/tileDatabase.tres" id="8_dpg13"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcu20"]
 bg_color = Color(0.44956142, 0.5460958, 0.6989427, 1)
@@ -13,23 +17,24 @@ bg_color = Color(0.44956142, 0.5460958, 0.6989427, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syxya"]
 bg_color = Color(0.11489678, 0.11489683, 0.11489671, 1)
 
-[node name="DevTools" type="Node"]
+[node name="DevTools" type="Node" node_paths=PackedStringArray("devToolsManager", "devToolsController", "itemsContainerUI")]
+script = ExtResource("1_u8btl")
+devToolsManager = NodePath("DevToolsManager")
+devToolsController = NodePath("DevToolsController")
+itemsContainerUI = NodePath("DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer")
 
-[node name="DevToolsManager" type="Node" parent="." node_paths=PackedStringArray("PaintComponentNode", "EraseComponentNode")]
+[node name="DevToolsManager" type="Node2D" parent="."]
 script = ExtResource("1_u1p2j")
-PaintComponentNode = NodePath("PaintComponent")
-EraseComponentNode = NodePath("EraseComponent")
 
 [node name="PaintComponent" type="Node" parent="DevToolsManager"]
 script = ExtResource("2_u1p2j")
 
 [node name="EraseComponent" type="Node" parent="DevToolsManager"]
 script = ExtResource("3_0pb43")
+_iconForItemPreviewCursor = ExtResource("5_l1ord")
 
-[node name="DevToolsController" type="CanvasLayer" parent="." node_paths=PackedStringArray("devToolsManager", "paintBtn", "eraseBtn")]
+[node name="DevToolsController" type="CanvasLayer" parent="." node_paths=PackedStringArray("eraseBtn")]
 script = ExtResource("1_dlvne")
-devToolsManager = NodePath("../DevToolsManager")
-paintBtn = NodePath("DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PaintButton")
 eraseBtn = NodePath("DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/EraseButton")
 
 [node name="DevToolsGUI" type="Control" parent="DevToolsController"]
@@ -76,13 +81,6 @@ TargetToMove = NodePath("../../../../..")
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PaintButton" type="Button" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-toggle_mode = true
-button_group = ExtResource("1_syxya")
-text = "paint
-"
-
 [node name="EraseButton" type="Button" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
@@ -95,9 +93,23 @@ layout_mode = 2
 placeholder_text = "Search"
 keep_editing_on_text_submit = true
 
+[node name="OptionButton" type="OptionButton" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Tiles"
+popup/item_0/id = 0
+popup/item_1/text = "Units"
+popup/item_1/id = 1
+popup/item_2/text = "Buildings"
+popup/item_2/id = 2
+
 [node name="ScrollContainer" type="ScrollContainer" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="DevToolsController/DevToolsGUI/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer" node_paths=PackedStringArray("CategoryOptionBtn")]
 layout_mode = 2
+script = ExtResource("7_vqgub")
+CategoryOptionBtn = NodePath("../../OptionButton")
+TileDB = ExtResource("8_dpg13")

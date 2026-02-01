@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TileDatabase" load_steps=5 format=3 uid="uid://drly23lrncwhc"]
+
+[ext_resource type="Resource" uid="uid://8881v7ky0tcy" path="res://resources/tiles/grassGround.tres" id="1_gjrdt"]
+[ext_resource type="Script" uid="uid://r0cocfkhq3xy" path="res://resources/tiles/scripts/TileDatabase.cs" id="1_roo3n"]
+[ext_resource type="Resource" uid="uid://647gfjeg25a6" path="res://resources/tiles/mudGround.tres" id="2_h5f0f"]
+[ext_resource type="Resource" uid="uid://b21578apilraq" path="res://resources/tiles/stoneGround.tres" id="3_sbavj"]
+
+[resource]
+script = ExtResource("1_roo3n")
+AllTiles = Array[Object]([ExtResource("2_h5f0f"), ExtResource("1_gjrdt"), ExtResource("3_sbavj")])
+metadata/_custom_type_script = "uid://r0cocfkhq3xy"

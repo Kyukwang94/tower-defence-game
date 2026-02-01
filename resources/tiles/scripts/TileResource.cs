@@ -4,7 +4,7 @@ using System;
 
 
 [GlobalClass]
-public partial class TileResource : Resource
+public partial class TileResource : Resource , IResourceItem 
 {
 	public enum TileType
 	{
@@ -28,9 +28,11 @@ public partial class TileResource : Resource
 	[Export] public int SourceId {get; set;} = 0;
 	[Export] public Vector2I AtlasCoords {get; set;}
 
-	
-	
 	[ExportGroup("GamePlay Logic")]
 	[Export] public bool IsWalkable     {get; set;} = false;
 	[Export] public bool IsDestructible {get; set;} = false;
+
+	[ExportGroup("Provider")]
+	public Texture2D ItemIcon => Icon;
+	public string ItemName => Type.ToString();
 }

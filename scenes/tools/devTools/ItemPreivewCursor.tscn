@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cisvxaw22g2n2"]
+
+[ext_resource type="Script" uid="uid://xbwo6wwg3kbb" path="res://scenes/tools/devTools/ItemPreviewCursor.cs" id="1_bouk0"]
+
+[node name="ItemPreviewCursor" type="Node2D" node_paths=PackedStringArray("CursorSprite")]
+script = ExtResource("1_bouk0")
+CursorSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+offset = Vector2(16, 16)

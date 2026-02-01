@@ -9,7 +9,8 @@ region = Rect2(0, 0, 32, 32)
 
 [resource]
 script = ExtResource("1_x5ghi")
-Icon = SubResource("AtlasTexture_outa7")
 Type = 1
+Icon = SubResource("AtlasTexture_outa7")
+AtlasCoords = Vector2i(0, 1)
 IsWalkable = true
 metadata/_custom_type_script = "uid://idci0ghpgipx"
