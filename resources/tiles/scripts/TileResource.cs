@@ -1,22 +1,11 @@
 using Godot;
 using System;
-
+using Game.Enums;
 
 
 [GlobalClass]
 public partial class TileResource : Resource , IResourceItem 
 {
-	public enum TileType
-	{
-		GrassGround,
-		MudGround,
-		StoneGround,
-
-		StoneWall,
-
-		Water,
-		Lava,
-	}
 	[ExportGroup ("NAME")]
 	[Export] public TileType Type {get; set;}
 
@@ -31,6 +20,9 @@ public partial class TileResource : Resource , IResourceItem
 	[ExportGroup("GamePlay Logic")]
 	[Export] public bool IsWalkable     {get; set;} = false;
 	[Export] public bool IsDestructible {get; set;} = false;
+	
+	[ExportGroup("Deployable Terrain Rule")]
+	[Export] public DeployableFlags CanDeployOn {get; set;}
 
 	[ExportGroup("Provider")]
 	public Texture2D ItemIcon => Icon;

@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cb3omcx44vivi"]
+[gd_scene load_steps=14 format=3 uid="uid://cb3omcx44vivi"]
 
 [ext_resource type="Script" uid="uid://rtf3wpqrsdpv" path="res://scenes/tools/devTools/DevToolsController.cs" id="1_dlvne"]
 [ext_resource type="ButtonGroup" uid="uid://bhpmte3kskaqo" path="res://scenes/tools/devTools/DevToolsButton.tres" id="1_syxya"]
 [ext_resource type="Script" uid="uid://b3b1xmyyoxdd0" path="res://scenes/tools/devTools/DevToolsManager.cs" id="1_u1p2j"]
 [ext_resource type="Script" uid="uid://cxeycuwt86kp6" path="res://scenes/tools/devTools/DevToolsSystem.cs" id="1_u8btl"]
 [ext_resource type="Script" uid="uid://b38jh4ovummmr" path="res://scripts/components/DragGuiComponent.cs" id="2_j22wf"]
-[ext_resource type="Script" uid="uid://c22r5bvw68rac" path="res://scripts/components/PaintComponent.cs" id="2_u1p2j"]
 [ext_resource type="Script" uid="uid://btewshkxsh704" path="res://scripts/components/EraseComponent.cs" id="3_0pb43"]
+[ext_resource type="Script" uid="uid://bwipp2od5cstk" path="res://scenes/tools/devTools/PaintTool.cs" id="3_gwpww"]
+[ext_resource type="Script" uid="uid://bbhxivuj7enmw" path="res://scripts/components/DeployComponent.cs" id="3_l1ord"]
 [ext_resource type="Texture2D" uid="uid://dkgcawt44olba" path="res://Assets/UI/Palette/erase.aseprite" id="5_l1ord"]
 [ext_resource type="Script" uid="uid://bnxvmmmw3n2dx" path="res://scenes/tools/devTools/DevToolsItemsContainerUI.cs" id="7_vqgub"]
 [ext_resource type="Resource" uid="uid://drly23lrncwhc" path="res://resources/database/tileDatabase.tres" id="8_dpg13"]
@@ -26,8 +27,12 @@ itemsContainerUI = NodePath("DevToolsController/DevToolsGUI/PanelContainer/Margi
 [node name="DevToolsManager" type="Node2D" parent="."]
 script = ExtResource("1_u1p2j")
 
-[node name="PaintComponent" type="Node" parent="DevToolsManager"]
-script = ExtResource("2_u1p2j")
+[node name="PaintTool" type="Node" parent="DevToolsManager" node_paths=PackedStringArray("deployer")]
+script = ExtResource("3_gwpww")
+deployer = NodePath("DeployComponent")
+
+[node name="DeployComponent" type="Node" parent="DevToolsManager/PaintTool"]
+script = ExtResource("3_l1ord")
 
 [node name="EraseComponent" type="Node" parent="DevToolsManager"]
 script = ExtResource("3_0pb43")

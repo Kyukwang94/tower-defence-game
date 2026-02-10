@@ -35,9 +35,9 @@ public partial class MapManager : Node
 	}
 
 
-	public TileResource GetTileResourceAt(Vector2I gridPos)
+	public TileResource GetTileResourceAt(Vector2I cellPos , TileMapLayer targetLayer)
 	{
-		TileData godotTileData = _tileMapLayer.GetCellTileData(gridPos);
+		TileData godotTileData = targetLayer.GetCellTileData(cellPos);
 
 		if(godotTileData == null) return null;
 

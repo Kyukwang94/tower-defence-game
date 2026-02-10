@@ -12,4 +12,5 @@ script = ExtResource("1_ir7cb")
 Icon = SubResource("AtlasTexture_cb0l8")
 AtlasCoords = Vector2i(2, 1)
 IsWalkable = true
+CanDeployOn = 2
 metadata/_custom_type_script = "uid://idci0ghpgipx"

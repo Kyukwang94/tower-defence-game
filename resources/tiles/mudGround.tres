@@ -13,4 +13,5 @@ Type = 1
 Icon = SubResource("AtlasTexture_outa7")
 AtlasCoords = Vector2i(0, 1)
 IsWalkable = true
+CanDeployOn = 4
 metadata/_custom_type_script = "uid://idci0ghpgipx"
