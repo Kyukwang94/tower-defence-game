@@ -5,24 +5,29 @@ using System;
 namespace Game.Enums
 {
 	[Flags]
-	public enum DeployableFlags
+	public enum GroundProperties
 	{
-		GrassGround = 1 << 0,
-		MudGround   = 1 << 1,
-		StoneGround = 1 << 2,
-		LavaGround  = 1 << 4,
+		None        = 1 << 0,
+		Plantable   = 1 << 1,	
+		Buildable   = 1 << 2,		
+		Walkable    = 1 << 3,
+		Liquid      = 1 << 4,
+		Hazard      = 1 << 5,
 	}
-
-	public enum TileType
+	public enum GroundElement
 	{
-		GrassGround,
-		MudGround,
-		StoneGround,
-
-		StoneWall,
-
+		Fire,
 		Water,
-		Lava,
+		Nature,
+		Tech,
 	}
-	
+
+	[Flags]
+	public enum TileLayers
+	{
+		Ground,
+		Decoration,
+		Object,
+		Unit,
+	}	
 }

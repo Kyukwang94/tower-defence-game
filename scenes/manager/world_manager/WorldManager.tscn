@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqakfvwhcy3sp"]
+
+[ext_resource type="Script" uid="uid://tbxcvwcyarac" path="res://scenes/manager/world_manager/WorldManager.cs" id="1_0ykh8"]
+[ext_resource type="Script" uid="uid://crlrohrdn3aam" path="res://scenes/manager/world_manager/GroundManager.cs" id="2_q80j7"]
+
+[node name="WorldManager" type="Node" node_paths=PackedStringArray("groundManager")]
+script = ExtResource("1_0ykh8")
+groundManager = NodePath("GroundManager")
+
+[node name="GroundManager" type="Node" parent="."]
+script = ExtResource("2_q80j7")

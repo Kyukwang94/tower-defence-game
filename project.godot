@@ -21,7 +21,7 @@ aseprite_executable_path="D:/steam/steamapps/common/Aseprite/Aseprite.exe"
 
 [autoload]
 
-DevTools="*res://scenes/tools/devTools/DevTools.tscn"
+DevTools="*res://scenes/tools/dev_tools/DevTools.tscn"
 
 [dotnet]
 
@@ -34,10 +34,12 @@ enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://Assets/": "orange",
+"res://Tech/": "purple",
+"res://assets/": "orange",
 "res://resources/": "green",
 "res://scenes/": "blue",
-"res://scripts/": "yellow"
+"res://scripts/": "yellow",
+"res://tech/": "purple"
 }
 
 [input]

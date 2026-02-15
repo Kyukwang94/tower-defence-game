@@ -24,6 +24,7 @@ public partial class DeployComponent : Node
 
 	public void TryDeploy(Resource item , Vector2 mouseGlobalPosition)
 	{
+		//MEMO : validator에게 item , cellPos를 넘겨줘야함.
 		Type itemType = item.GetType();
 
 		if (_strategies.ContainsKey(itemType))

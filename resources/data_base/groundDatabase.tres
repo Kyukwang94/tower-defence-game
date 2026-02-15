@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GroundDatabase" load_steps=5 format=3 uid="uid://c26h2fpyk4q51"]
+
+[ext_resource type="Resource" uid="uid://8881v7ky0tcy" path="res://resources/tiles/grounds/grassGround.tres" id="1_a4y8l"]
+[ext_resource type="Script" uid="uid://biv8qw0hb6xoh" path="res://resources/tiles/grounds/scripts/GroundDatabase.cs" id="1_u5xst"]
+[ext_resource type="Resource" uid="uid://647gfjeg25a6" path="res://resources/tiles/grounds/mudGround.tres" id="2_aobn8"]
+[ext_resource type="Resource" uid="uid://b21578apilraq" path="res://resources/tiles/grounds/stoneGround.tres" id="3_4qdsh"]
+
+[resource]
+script = ExtResource("1_u5xst")
+AllGroundResources = Array[Object]([ExtResource("1_a4y8l"), ExtResource("2_aobn8"), ExtResource("3_4qdsh")])
+metadata/_custom_type_script = "uid://biv8qw0hb6xoh"

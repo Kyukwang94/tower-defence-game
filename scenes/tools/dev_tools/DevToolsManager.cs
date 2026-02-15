@@ -1,10 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 //Handle User Input nad routes it to the active tool 
-
 public partial class DevToolsManager : Node2D
 {	
 	[Signal] public delegate void ActiveItemChangedEventHandler(Texture2D icon);
@@ -18,7 +16,7 @@ public partial class DevToolsManager : Node2D
 
 	public override void _Ready()
 	{
-		foreach (Node child in GetChildren().Cast<Node>())
+		foreach (Node child in GetChildren())
 		{
 			if (child is IDevToolComponent tool)
 			{
