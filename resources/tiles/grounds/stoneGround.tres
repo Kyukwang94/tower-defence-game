@@ -9,7 +9,7 @@ region = Rect2(32, 0, 32, 32)
 
 [resource]
 script = ExtResource("2_1drbr")
-RequiredGroundProperties = 1
+Properties = 2
 IsDestructible = true
 AtlasCoords = Vector2i(1, 1)
 Name = "Stone"

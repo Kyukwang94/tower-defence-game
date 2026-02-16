@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using Game.Enums;
 
 
@@ -8,10 +7,10 @@ using Game.Enums;
 public partial class GroundResource : TileEntityResource
 {
 	[ExportGroup("Ground Info")]
-	[Export] public GroundProperties GroundProperties {get; set;}
-	[Export] public GroundElement GroundElement{get; set;}
+	[Export] public GroundProperties Properties {get; set;}
+	[Export] public GroundElement 	 Element{get; set;}
 
 	
 	[ExportGroup("Deploy Rule")]
-	[Export] public GroundProperties RequiredGroundProperties{get; set;}	
+	[Export] public GroundProperties RequiredProperties{get; set;}	
 }

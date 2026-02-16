@@ -7,12 +7,11 @@ namespace Game.Enums
 	[Flags]
 	public enum GroundProperties
 	{
-		None        = 1 << 0,
-		Plantable   = 1 << 1,	
-		Buildable   = 1 << 2,		
-		Walkable    = 1 << 3,
-		Liquid      = 1 << 4,
-		Hazard      = 1 << 5,
+		None        = 0,
+		Plantable   = 1 << 0,	
+		Buildable   = 1 << 1,		
+		Liquid      = 1 << 2,
+		Hazard      = 1 << 3,
 	}
 	public enum GroundElement
 	{

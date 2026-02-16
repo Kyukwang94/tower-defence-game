@@ -9,7 +9,8 @@ region = Rect2(64, 0, 32, 32)
 
 [resource]
 script = ExtResource("2_plc7v")
-RequiredGroundProperties = 2
+Properties = 2
+RequiredProperties = 1
 IsWalkable = true
 AtlasCoords = Vector2i(2, 1)
 Name = "Grass"
