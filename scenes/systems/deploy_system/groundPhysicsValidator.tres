@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GroundPhysicsValidator" load_steps=2 format=3 uid="uid://yjgp3kggplj3"]
+
+[ext_resource type="Script" uid="uid://ci2wml4fnol3a" path="res://scenes/systems/deploy_system/scripts/GroundPhysicsValidator.cs" id="1_6bpr5"]
+
+[resource]
+script = ExtResource("1_6bpr5")
+metadata/_custom_type_script = "uid://ci2wml4fnol3a"

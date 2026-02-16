@@ -35,7 +35,7 @@ public partial class GroundManager : Node
 
 		if(godotTileData == null) return null;
 
-		string typeKey = (string)godotTileData.GetCustomData("Type");
+		string typeKey = (string)godotTileData.GetCustomData("Name");
 
 		if(typeKey != null && _groundTileLookup.ContainsKey(typeKey))
 		{

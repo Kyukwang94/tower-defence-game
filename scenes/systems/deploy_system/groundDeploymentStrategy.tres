@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="GroundDeploymentStrategy" load_steps=3 format=3 uid="uid://cm6mjlywxlc4r"]
 
-[ext_resource type="Script" uid="uid://d1kwdfxjj6sri" path="res://scenes/systems/deploy_system/scripts/GroundDeploymentStrategy.cs" id="1_2vrop"]
-[ext_resource type="Resource" uid="uid://yjgp3kggplj3" path="res://scenes/systems/deploy_system/physicsValidator.tres" id="1_q5st1"]
+[ext_resource type="Resource" uid="uid://yjgp3kggplj3" path="res://scenes/systems/deploy_system/groundPhysicsValidator.tres" id="1_tdbtj"]
+[ext_resource type="Script" uid="uid://d1kwdfxjj6sri" path="res://scenes/systems/deploy_system/scripts/GroundDeploymentStrategy.cs" id="2_3mhv0"]
 
 [resource]
-script = ExtResource("1_2vrop")
-Validators = Array[Object]([ExtResource("1_q5st1")])
+script = ExtResource("2_3mhv0")
+Validators = Array[Object]([ExtResource("1_tdbtj")])
 metadata/_custom_type_script = "uid://d1kwdfxjj6sri"

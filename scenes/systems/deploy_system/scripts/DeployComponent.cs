@@ -12,7 +12,7 @@ public partial class DeployComponent : Node
 
 	public override void _Ready()
 	{
-		_strategies = new Dictionary<Type, IDeploymentStrategy>();
+		_strategies = [];
 
 		if(GroundStrategy != null)
 		{
@@ -24,14 +24,13 @@ public partial class DeployComponent : Node
 
 	public void TryDeploy(Resource item , Vector2 mouseGlobalPosition)
 	{
-		//MEMO : validator에게 item , cellPos를 넘겨줘야함.
 		Type itemType = item.GetType();
 
 		if (_strategies.ContainsKey(itemType))
 		{
 			var strategy = _strategies[itemType];
 
-			if(strategy.CheckValidation())
+			if(strategy.CheckValidation(item , mouseGlobalPosition))
 			{
 				strategy.Deploy(item, mouseGlobalPosition);
 			}

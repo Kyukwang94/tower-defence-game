@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="DeploymentPhysicsValidator" load_steps=2 format=3 uid="uid://yjgp3kggplj3"]
-
-[ext_resource type="Script" uid="uid://ci2wml4fnol3a" path="res://scenes/systems/deploy_system/scripts/PhysicsValidator.cs" id="1_mdr13"]
-
-[resource]
-script = ExtResource("1_mdr13")
-metadata/_custom_type_script = "uid://ci2wml4fnol3a"

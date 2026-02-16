@@ -14,14 +14,14 @@ texture_region_size = Vector2i(32, 32)
 2:0/0 = 0
 2:0/0/custom_data_0 = "GrassGround"
 0:1/0 = 0
-0:1/0/custom_data_0 = "MudGround"
+0:1/0/custom_data_0 = "Mud"
 2:1/0 = 0
-2:1/0/custom_data_0 = "GrassGround"
+2:1/0/custom_data_0 = "Grass"
 1:1/0 = 0
-1:1/0/custom_data_0 = "StoneGround"
+1:1/0/custom_data_0 = "Stone"
 
 [resource]
 tile_size = Vector2i(32, 32)
-custom_data_layer_0/name = "Type"
+custom_data_layer_0/name = "Name"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_2qogm")

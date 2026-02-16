@@ -1,18 +1,16 @@
-[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b21578apilraq"]
+[gd_resource type="Resource" script_class="GroundResource" load_steps=4 format=3 uid="uid://b21578apilraq"]
 
-[ext_resource type="Texture2D" uid="uid://bdgsc1hadms1v" path="res://assets/enviroment/ground.aseprite" id="1_toick"]
+[ext_resource type="Texture2D" uid="uid://bdgsc1hadms1v" path="res://assets/enviroment/ground.aseprite" id="1_1drbr"]
 [ext_resource type="Script" uid="uid://dqb8t7am0vke3" path="res://resources/tiles/grounds/scripts/GroundResource.cs" id="2_1drbr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vl5lk"]
-atlas = ExtResource("1_toick")
+atlas = ExtResource("1_1drbr")
 region = Rect2(32, 0, 32, 32)
 
 [resource]
 script = ExtResource("2_1drbr")
-Name = "Stone"
-TileProperties = 6
-TileElement = 2
-Icon = SubResource("AtlasTexture_vl5lk")
-AtlasCoords = Vector2i(1, 1)
-IsDestructible = true
 RequiredGroundProperties = 1
+IsDestructible = true
+AtlasCoords = Vector2i(1, 1)
+Name = "Stone"
+Icon = SubResource("AtlasTexture_vl5lk")
