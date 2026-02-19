@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cb3omcx44vivi"]
+[gd_scene load_steps=15 format=3 uid="uid://cb3omcx44vivi"]
 
 [ext_resource type="Script" uid="uid://rtf3wpqrsdpv" path="res://scenes/tools/dev_tools/DevToolsController.cs" id="1_dlvne"]
 [ext_resource type="ButtonGroup" uid="uid://bhpmte3kskaqo" path="res://scenes/tools/dev_tools/DevToolsButton.tres" id="1_syxya"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dkgcawt44olba" path="res://assets/ui/cursor/erase.aseprite" id="5_l1ord"]
 [ext_resource type="Script" uid="uid://d145utqjxdcw6" path="res://scenes/tools/dev_tools/EraseTool.cs" id="5_qebn6"]
 [ext_resource type="Script" uid="uid://bnxvmmmw3n2dx" path="res://scenes/tools/dev_tools/DevToolsItemsContainerUI.cs" id="7_vqgub"]
+[ext_resource type="PackedScene" uid="uid://b1i14dtkoqv5u" path="res://scenes/tools/dev_tools/DevModeToggleButton.tscn" id="12_71iif"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcu20"]
 bg_color = Color(0.44956142, 0.5460958, 0.6989427, 1)
@@ -119,3 +120,9 @@ layout_mode = 2
 layout_mode = 2
 script = ExtResource("7_vqgub")
 CategoryOptionBtn = NodePath("../../OptionButton")
+
+[node name="ToggleButton" parent="DevToolsController" instance=ExtResource("12_71iif")]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 154.0
+offset_bottom = 63.0

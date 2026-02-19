@@ -22,6 +22,7 @@ aseprite_executable_path="D:/steam/steamapps/common/Aseprite/Aseprite.exe"
 [autoload]
 
 DevTools="*res://scenes/tools/dev_tools/DevTools.tscn"
+GameModeManager="*res://scenes/globals/GameModeManager.tscn"
 
 [dotnet]
 

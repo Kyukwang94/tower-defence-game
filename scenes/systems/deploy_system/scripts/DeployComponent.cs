@@ -21,10 +21,15 @@ public partial class DeployComponent : Node
 		
 	}
 
-
 	public void TryDeploy(Resource item , Vector2 mouseGlobalPosition)
 	{
 		Type itemType = item.GetType();
+
+		if(_strategies == null)
+		{
+			GD.PushError("Strategies dictionary is null !");
+			return;
+		}
 
 		if (_strategies.ContainsKey(itemType))
 		{
@@ -36,7 +41,7 @@ public partial class DeployComponent : Node
 			}
 			else
 			{
-				GD.Print("Deploy Failed");
+				GD.Print("Deploy Validation Failed");
 			}
 		}
 	}

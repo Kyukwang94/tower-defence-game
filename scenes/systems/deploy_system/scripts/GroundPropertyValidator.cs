@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Game.Enums;
+
 [GlobalClass]
 public partial class GroundPropertyValidator : DeploymentValidator
 {
@@ -21,5 +22,6 @@ public partial class GroundPropertyValidator : DeploymentValidator
 		if(!hasRequirement) return false;
 		
 		return true;
+		
 	}
 }
