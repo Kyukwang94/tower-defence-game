@@ -1,0 +1,40 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgd1no2y5od2"]
+
+[ext_resource type="Script" uid="uid://rtf3wpqrsdpv" path="res://scenes/tools/dev_tools/DevToolsController.cs" id="1_dlvne"]
+[ext_resource type="Script" uid="uid://b3b1xmyyoxdd0" path="res://scenes/tools/dev_tools/DevToolsManager.cs" id="1_u1p2j"]
+[ext_resource type="Script" uid="uid://cxeycuwt86kp6" path="res://scenes/systems/inventories/building/BuildingInventoryController.cs" id="1_u8btl"]
+[ext_resource type="Script" uid="uid://btewshkxsh704" path="res://scripts/components/EraseComponent.cs" id="3_0pb43"]
+[ext_resource type="Script" uid="uid://bwipp2od5cstk" path="res://scenes/tools/dev_tools/PaintTool.cs" id="3_gwpww"]
+[ext_resource type="PackedScene" uid="uid://c5qv7m3jkljb3" path="res://scenes/systems/deploy_system/DeployComponent.tscn" id="4_gwpww"]
+[ext_resource type="Texture2D" uid="uid://dkgcawt44olba" path="res://assets/ui/cursor/erase.aseprite" id="5_l1ord"]
+[ext_resource type="Script" uid="uid://d145utqjxdcw6" path="res://scenes/tools/dev_tools/EraseTool.cs" id="5_qebn6"]
+[ext_resource type="PackedScene" uid="uid://b1i14dtkoqv5u" path="res://scenes/tools/dev_tools/DevModeToggleButton.tscn" id="12_71iif"]
+
+[node name="DevTools" type="Node" node_paths=PackedStringArray("devToolsManager")]
+script = ExtResource("1_u8btl")
+devToolsManager = NodePath("DevToolsManager")
+
+[node name="DevToolsManager" type="Node2D" parent="."]
+script = ExtResource("1_u1p2j")
+
+[node name="PaintTool" type="Node" parent="DevToolsManager" node_paths=PackedStringArray("deployer")]
+script = ExtResource("3_gwpww")
+deployer = NodePath("DeployComponent")
+
+[node name="DeployComponent" parent="DevToolsManager/PaintTool" instance=ExtResource("4_gwpww")]
+
+[node name="EraseTool" type="Node" parent="DevToolsManager"]
+script = ExtResource("5_qebn6")
+
+[node name="EraseComponent" type="Node" parent="DevToolsManager/EraseTool"]
+script = ExtResource("3_0pb43")
+_iconForItemPreviewCursor = ExtResource("5_l1ord")
+
+[node name="DevToolsController" type="CanvasLayer" parent="."]
+script = ExtResource("1_dlvne")
+
+[node name="ToggleButton" parent="DevToolsController" instance=ExtResource("12_71iif")]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 154.0
+offset_bottom = 63.0

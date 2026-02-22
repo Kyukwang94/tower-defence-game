@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class EraseComponent : Node, IDevToolComponent, ICursorChangingTool
+public partial class EraseComponent : Node, IToolComponent, ICursorChangingTool
 {
 	public DevToolsManager.ToolType TypeId => DevToolsManager.ToolType.Erase;
 

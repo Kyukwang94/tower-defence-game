@@ -3,22 +3,22 @@ using System;
 using System.Collections.Generic;
 
 //Handle User Input and routes it to the active tool 
-public partial class DevToolsManager : Node2D
+public partial class BuildingToolsManager : Node2D
 {	
 	[Signal] public delegate void ActiveItemChangedEventHandler(Texture2D icon);
 	[Signal] public delegate void CursorPreviewRequestedEventHandler(Texture2D icon);
 	public enum ToolType {Paint , Erase}
 
-	private Dictionary<ToolType, IDevToolComponent> _tools = [];
+	private Dictionary<ToolType, IToolComponent> _tools = [];
 
-	private IDevToolComponent _currentTool;
+	private IToolComponent _currentTool;
 	private Resource _currentItem;
 
 	public override void _Ready()
 	{ 
 		foreach (Node child in GetChildren())
 		{
-			if (child is IDevToolComponent tool)
+			if (child is IToolComponent tool)
 			{
 				RegisterTool(tool);
 			}
@@ -42,8 +42,7 @@ public partial class DevToolsManager : Node2D
 	}
 
 	public void ActivateTool(ToolType type)
-	{
-		
+	{	
 		if(_tools.TryGetValue(type, out var newTool))
 		{
 			if(_currentTool != null && _currentTool != newTool)
@@ -80,7 +79,7 @@ public partial class DevToolsManager : Node2D
 		ActivateTool(ToolType.Paint);	
 	}
 	//Query
-	private void RegisterTool(IDevToolComponent tool)
+	private void RegisterTool(IToolComponent tool)
 	{
 		_tools[tool.TypeId] = tool;
 

@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial interface IDevToolComponent
+public partial interface IToolComponent
 {
-	DevToolsManager.ToolType TypeId {get;}
+	BuildingToolsManager.ToolType TypeId {get;}
 
 
 	void UseTool(Resource item, Vector2 globalPosition);

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PaintTool : Node, IDevToolComponent
+public partial class PaintTool : Node, IToolComponent
 {
 	public DevToolsManager.ToolType TypeId => DevToolsManager.ToolType.Paint;
 	[Export] public DeployComponent deployer;

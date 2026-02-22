@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cxeycuwt86kp6" path="res://scenes/systems/inventories/building/BuildingInventoryController.cs" id="1_yo2sm"]
 [ext_resource type="Script" uid="uid://dvivx1r6ya6y2" path="res://scenes/tools/dev_tools/DevModeToggleButton.cs" id="2_0uekq"]
 [ext_resource type="Resource" uid="uid://cm6mjlywxlc4r" path="res://scenes/systems/deploy_system/groundDeploymentStrategy_dev.tres" id="2_8kjog"]
-[ext_resource type="Script" uid="uid://b3b1xmyyoxdd0" path="res://scenes/tools/dev_tools/DevToolsManager.cs" id="2_gk3ro"]
+[ext_resource type="Script" path="res://scenes/tools/dev_tools/DevToolsManager.cs" id="2_gk3ro"]
 [ext_resource type="Script" uid="uid://bwipp2od5cstk" path="res://scenes/tools/dev_tools/PaintTool.cs" id="3_0uekq"]
 [ext_resource type="Script" uid="uid://drht8ojca455p" path="res://scenes/systems/inventories/building/BuildingItemsContainer.cs" id="7_rxhmf"]
 [ext_resource type="Script" uid="uid://dje1npc4dfpxs" path="res://scenes/systems/inventories/building/GroundButton.cs" id="8_0uekq"]
@@ -12,18 +12,18 @@
 
 [node name="BuildingInventory" type="Node" node_paths=PackedStringArray("devToolsManager", "itemsContainerUI", "groundButton")]
 script = ExtResource("1_yo2sm")
-devToolsManager = NodePath("DevToolsManager")
+devToolsManager = NodePath("BuildingToolsManager")
 itemsContainerUI = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/BuildingItemContainer")
 groundButton = NodePath("CanvasLayer/Panel/VBoxContainer/MarginContainer/BuildingCategory/GroundButton")
 
-[node name="DevToolsManager" type="Node2D" parent="."]
+[node name="BuildingToolsManager" type="Node2D" parent="."]
 script = ExtResource("2_gk3ro")
 
-[node name="PaintTool" type="Node" parent="DevToolsManager" node_paths=PackedStringArray("deployer")]
+[node name="PaintTool" type="Node" parent="BuildingToolsManager" node_paths=PackedStringArray("deployer")]
 script = ExtResource("3_0uekq")
 deployer = NodePath("DeployComponent")
 
-[node name="DeployComponent" type="Node" parent="DevToolsManager/PaintTool"]
+[node name="DeployComponent" type="Node" parent="BuildingToolsManager/PaintTool"]
 script = ExtResource("1_nuhjw")
 GroundStrategy = ExtResource("2_8kjog")
 

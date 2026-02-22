@@ -3,7 +3,7 @@ using Godot;
 public partial class BuildingInventoryController : Node
 {
 	[ExportGroup ("Core Features")]
-	[Export] public DevToolsManager devToolsManager;
+	[Export] public BuildingToolsManager devToolsManager;
 	[Export] public BuildingItemsContainer itemsContainerUI;
 	[Export] public GroundButton groundButton;
 
