@@ -2,20 +2,20 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-//Handle User Input nad routes it to the active tool 
+//Handle User Input and routes it to the active tool 
 public partial class DevToolsManager : Node2D
 {	
 	[Signal] public delegate void ActiveItemChangedEventHandler(Texture2D icon);
 	[Signal] public delegate void CursorPreviewRequestedEventHandler(Texture2D icon);
 	public enum ToolType {Paint , Erase}
 
-	private Dictionary<ToolType, IDevToolComponent> _tools = new();
+	private Dictionary<ToolType, IDevToolComponent> _tools = [];
 
 	private IDevToolComponent _currentTool;
 	private Resource _currentItem;
 
 	public override void _Ready()
-	{
+	{ 
 		foreach (Node child in GetChildren())
 		{
 			if (child is IDevToolComponent tool)
@@ -40,9 +40,10 @@ public partial class DevToolsManager : Node2D
 			CancelTool();
 		}
 	}
-	
+
 	public void ActivateTool(ToolType type)
 	{
+		
 		if(_tools.TryGetValue(type, out var newTool))
 		{
 			if(_currentTool != null && _currentTool != newTool)
@@ -58,6 +59,19 @@ public partial class DevToolsManager : Node2D
 			CancelTool();
 		}		
 	}
+	
+	private void CancelTool()
+	{
+		_currentTool?.Deactivate();
+		_currentTool = null;
+
+		EmitSignal(SignalName.ActiveItemChanged, (Texture2D)null);
+	
+		GD.Print("Tool Canceled");
+	}
+	
+	//Query
+	//itemsContainerUI.OnItemSelected
 	public void LoadItem(Resource item)
 	{
 		_currentItem = item;
@@ -65,17 +79,7 @@ public partial class DevToolsManager : Node2D
 
 		ActivateTool(ToolType.Paint);	
 	}
-
-	private void CancelTool()
-	{
-		_currentTool?.Deactivate();
-		_currentTool = null;
-
-		EmitSignal(SignalName.ActiveItemChanged, (Texture2D)null);
-
-		GD.Print("Tool Canceled");
-	}
-
+	//Query
 	private void RegisterTool(IDevToolComponent tool)
 	{
 		_tools[tool.TypeId] = tool;
@@ -90,6 +94,7 @@ public partial class DevToolsManager : Node2D
 
 		GD.Print($"DevTool Registered: {tool.TypeId}");
 	}
+
 	//helper
 	private string GetItemName (Resource item)
 	{

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://83q7q6s1q714"]
+
+[node name="MainActionPanel" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BuildingButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 54.0
+scale = Vector2(1, 1.0051332)
+text = "Building"

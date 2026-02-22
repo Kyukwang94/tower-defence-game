@@ -6,7 +6,7 @@ public partial class WorldManager : Node
 {
 	public static WorldManager Instance;
 
-	private readonly Dictionary<TileLayers,TileMapLayer> _allLayers = [];
+	private readonly Dictionary<ItemType,TileMapLayer> _allLayers = [];
 
 	[Export] private GroundManager groundManager;
 
@@ -14,7 +14,7 @@ public partial class WorldManager : Node
 	{
 		Instance = this;
 
-		_allLayers.Add(TileLayers.Ground,groundManager.groundTileMapLayer);
+		_allLayers.Add(ItemType.Ground,groundManager.groundTileMapLayer);
 	}
 
 	public override void _ExitTree()
@@ -25,12 +25,12 @@ public partial class WorldManager : Node
 		}
 	}
 
-	public Dictionary<TileLayers,TileMapLayer> GetAllTileMapLayers()
+	public Dictionary<ItemType,TileMapLayer> GetAllTileMapLayers()
 	{
 		return _allLayers;
 	}
-
-	public TileMapLayer GetTileMapLayer(TileLayers key)
+	 	
+	public TileMapLayer GetTileMapLayer(ItemType key)
 	{
 		_allLayers.TryGetValue(key , out var value);
 

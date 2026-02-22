@@ -22,7 +22,7 @@ namespace Game.Enums
 	}
 
 	[Flags]
-	public enum TileLayers
+	public enum ItemType
 	{
 		Ground,
 		Decoration,

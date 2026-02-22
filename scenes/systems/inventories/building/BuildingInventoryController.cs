@@ -1,21 +1,17 @@
 using Godot;
-using System;
 
-
-
-public partial class DevToolsSystem : Node
+public partial class BuildingInventoryController : Node
 {
 	[ExportGroup ("Core Features")]
 	[Export] public DevToolsManager devToolsManager;
-	[Export] public DevToolsController devToolsController;
-	[Export] public DevToolsItemsContainerUI itemsContainerUI;
+	[Export] public BuildingItemsContainer itemsContainerUI;
+	[Export] public GroundButton groundButton;
 
 	public override void _Ready()
 	{
 		if(!CheckConnection()) return;
 
 		//Events 
-		devToolsController.eraseBtn.Pressed += () => devToolsManager.ActivateTool(DevToolsManager.ToolType.Erase);
 		devToolsManager.CursorPreviewRequested += (icon) =>
 		{
 			if(ItemPreviewCursor.Instance != null)
@@ -26,7 +22,7 @@ public partial class DevToolsSystem : Node
 					ItemPreviewCursor.Instance.Reset();
 			}
 		};
-		
+		groundButton.GroundButtonPressed += (itemType) => itemsContainerUI.ShowItemsInGridContainer(itemType);
 		itemsContainerUI.OnItemSelected += devToolsManager.LoadItem;
 		itemsContainerUI.OnItemSelected += (itemData) => ItemPreviewCursor.Instance?.SetPreview(itemData);
 	}
@@ -39,12 +35,6 @@ public partial class DevToolsSystem : Node
 			GD.PrintErr("DevToolsManager가 연결되지 않았습니다.");
 			isValid = false;
 		}
-			
-		if (devToolsController == null)
-		{
-			GD.PrintErr("DevToolsController가 연결되지 않았습니다");
-			isValid = false;
-		}
 
 		if (itemsContainerUI == null)
 		{
@@ -52,7 +42,6 @@ public partial class DevToolsSystem : Node
 			isValid = false;
 		}
 			
-		
 		return isValid;
 	}
 }

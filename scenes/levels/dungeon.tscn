@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://crlnp2khlxkt7"]
+[gd_scene load_steps=8 format=4 uid="uid://crlnp2khlxkt7"]
 
 [ext_resource type="TileSet" uid="uid://5ofd4hgkosgm" path="res://resources/tiles/grounds/environmentTiles.tres" id="1_0pvy1"]
 [ext_resource type="Script" uid="uid://crlrohrdn3aam" path="res://scenes/manager/world_manager/GroundManager.cs" id="2_srduu"]
 [ext_resource type="Script" uid="uid://tbxcvwcyarac" path="res://scenes/manager/world_manager/WorldManager.cs" id="4_7f72c"]
-[ext_resource type="Resource" uid="uid://c26h2fpyk4q51" path="res://resources/data_base/groundDatabase.tres" id="6_pbld3"]
+[ext_resource type="Resource" uid="uid://c26h2fpyk4q51" path="res://resources/data_base/ground_database.tres" id="6_pbld3"]
 [ext_resource type="PackedScene" uid="uid://cisvxaw22g2n2" path="res://scenes/tools/dev_tools/ItemPreivewCursor.tscn" id="6_w0mg0"]
+[ext_resource type="PackedScene" uid="uid://83q7q6s1q714" path="res://scenes/ui/MainActionContainerUi.tscn" id="6_wyxho"]
+[ext_resource type="PackedScene" uid="uid://cadiu4t4xxd7w" path="res://scenes/systems/inventories/building/BuildingItemContainerUi.tscn" id="7_pbld3"]
 
 [node name="Dungeon" type="Node2D"]
 
@@ -24,3 +26,30 @@ groundManager = NodePath("GroundManager")
 script = ExtResource("2_srduu")
 _groundDataBase = ExtResource("6_pbld3")
 groundTileMapLayer = NodePath("../../TileMapLayersContainer/GroundTiles")
+
+[node name="MainActionContainer" parent="." instance=ExtResource("6_wyxho")]
+
+[node name="Control" parent="MainActionContainer/CanvasLayer" index="0"]
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="BuildingButton" parent="MainActionContainer/CanvasLayer/Control" index="0"]
+texture_filter = 2
+layout_direction = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -598.0
+offset_top = 609.0
+offset_right = -526.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BuildingItemContainerUi" parent="." instance=ExtResource("7_pbld3")]
+
+[editable path="MainActionContainer"]
+[editable path="BuildingItemContainerUi"]

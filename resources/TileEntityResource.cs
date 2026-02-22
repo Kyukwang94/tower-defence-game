@@ -4,7 +4,7 @@ using Game.Enums;
 
 public abstract partial class TileEntityResource : GameEntityResource
 {
-	[Export] public TileLayers TargetLayer {get; set;}	
+	[Export] public ItemType TargetLayer {get; set;}	
 
 	[ExportGroup("GamePlay Logic")]
 	[Export] public bool IsWalkable     {get; set;} = false;

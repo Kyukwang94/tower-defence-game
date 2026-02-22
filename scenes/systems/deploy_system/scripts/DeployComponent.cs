@@ -38,6 +38,7 @@ public partial class DeployComponent : Node
 			if(strategy.CheckValidation(item , mouseGlobalPosition))
 			{
 				strategy.Deploy(item, mouseGlobalPosition);
+				GD.Print("Deployed");
 			}
 			else
 			{
