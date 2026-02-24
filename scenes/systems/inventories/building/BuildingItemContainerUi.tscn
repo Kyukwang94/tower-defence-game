@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cxeycuwt86kp6" path="res://scenes/systems/inventories/building/BuildingInventoryController.cs" id="1_yo2sm"]
 [ext_resource type="Script" uid="uid://dvivx1r6ya6y2" path="res://scenes/tools/dev_tools/DevModeToggleButton.cs" id="2_0uekq"]
 [ext_resource type="Resource" uid="uid://cm6mjlywxlc4r" path="res://scenes/systems/deploy_system/groundDeploymentStrategy_dev.tres" id="2_8kjog"]
-[ext_resource type="Script" path="res://scenes/tools/dev_tools/DevToolsManager.cs" id="2_gk3ro"]
+[ext_resource type="Script" uid="uid://cgcsj0rhkguwp" path="res://scenes/tools/dev_tools/BuildingToolsManager.cs" id="2_gk3ro"]
 [ext_resource type="Script" uid="uid://bwipp2od5cstk" path="res://scenes/tools/dev_tools/PaintTool.cs" id="3_0uekq"]
 [ext_resource type="Script" uid="uid://drht8ojca455p" path="res://scenes/systems/inventories/building/BuildingItemsContainer.cs" id="7_rxhmf"]
 [ext_resource type="Script" uid="uid://dje1npc4dfpxs" path="res://scenes/systems/inventories/building/GroundButton.cs" id="8_0uekq"]

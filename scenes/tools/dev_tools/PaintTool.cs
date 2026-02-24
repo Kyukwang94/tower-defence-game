@@ -3,7 +3,7 @@ using System;
 
 public partial class PaintTool : Node, IToolComponent
 {
-	public DevToolsManager.ToolType TypeId => DevToolsManager.ToolType.Paint;
+	public BuildingToolsManager.ToolType TypeId => BuildingToolsManager.ToolType.Paint;
 	[Export] public DeployComponent deployer;
 
 	public void Activate()
@@ -15,7 +15,6 @@ public partial class PaintTool : Node, IToolComponent
 	{
 		ItemPreviewCursor.Instance.Reset();
 	}
-
 	public void UseTool(Resource item, Vector2 mouseGlobalPosition)
 	{
 		if(deployer != null)

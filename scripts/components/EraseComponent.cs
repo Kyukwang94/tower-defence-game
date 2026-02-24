@@ -3,7 +3,7 @@ using System;
 
 public partial class EraseComponent : Node, IToolComponent, ICursorChangingTool
 {
-	public DevToolsManager.ToolType TypeId => DevToolsManager.ToolType.Erase;
+	public BuildingToolsManager.ToolType TypeId => BuildingToolsManager.ToolType.Erase;
 
 	public event Action<Texture2D> OnCursorChangeRequested;
 

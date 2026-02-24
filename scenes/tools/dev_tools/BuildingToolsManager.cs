@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-//Handle User Input and routes it to the active tool 
+//TODO ToolsManager 다이어그램으로 정리해놓기 
 public partial class BuildingToolsManager : Node2D
 {	
 	[Signal] public delegate void ActiveItemChangedEventHandler(Texture2D icon);
