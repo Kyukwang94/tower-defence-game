@@ -5,14 +5,20 @@ using Game.Enums;
 //아이템이 선택되었을때 선택된 아이템을 저장 및 현재 선택된 아이템의 Tool 사용.
 public partial class BuildingToolsManager : Node2D
 {	
+
+	[Export] private TileMapLayer _gridLayer;
+
 	[Signal] public delegate void ActiveItemChangedEventHandler(Texture2D icon);
 	[Signal] public delegate void CursorPreviewRequestedEventHandler(Texture2D icon);
 	
 
 	private readonly Dictionary<ToolType, IToolComponent> _tools = [];
-
 	private IToolComponent _currentTool;
 	private Resource _currentItem;
+
+	private bool     _isDragging;
+    private Vector2I _dragStartCell;
+    private Vector2I _dragEndCell;
 
 	public override void _Ready()
 	{ 
@@ -27,18 +33,47 @@ public partial class BuildingToolsManager : Node2D
 	
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if(_currentTool == null) return;
-		
-		if (@event.IsActionPressed("click"))
-		{
-			_currentTool.UseTool(_currentItem,GetGlobalMousePosition());
-			GetViewport().SetInputAsHandled();
-		}
+		if(_currentTool == null || _currentItem == null) return;
 
-		if (@event.IsActionPressed("cancel"))
-		{
-			CancelTool();
-		}
+		 if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left)
+        {
+            if (mb.Pressed)
+            {
+                _isDragging = true;
+                _dragStartCell = GetMouseCell();
+                _dragEndCell = _dragStartCell;
+                GetViewport().SetInputAsHandled();
+                return;
+            }
+
+            if (!mb.Pressed && _isDragging)
+            {
+                _isDragging = false;
+                _dragEndCell = GetMouseCell();
+
+                IGridSelection selection = new GridSelection(_dragStartCell, _dragEndCell);
+                UseSelection(selection);
+
+                GetViewport().SetInputAsHandled();
+                return;
+            }
+        }
+
+    	// 드래그 중 현재 끝점 갱신
+        if (@event is InputEventMouseMotion && _isDragging)
+        {
+            _dragEndCell = GetMouseCell();
+            GetViewport().SetInputAsHandled();
+            return;
+        }
+
+        // 취소
+        if (@event.IsActionPressed("cancel"))
+        {
+            _isDragging = false;
+            CancelTool();
+            GetViewport().SetInputAsHandled();
+        }
 	}
 
 	public void ActivateTool(ToolType type)
@@ -58,7 +93,20 @@ public partial class BuildingToolsManager : Node2D
 			CancelTool();
 		}		
 	}
-	
+	private Vector2I GetMouseCell()
+	{
+		Vector2 mouseWorld = GetGlobalMousePosition();
+		Vector2 mouseLocal = _gridLayer.ToLocal(mouseWorld);
+		
+		return _gridLayer.LocalToMap(mouseLocal);
+	}
+	private void UseSelection(IGridSelection selection)
+	{
+		foreach (var cell in selection.Cells())
+		{
+			_currentTool.UseTool(_currentItem, cell);
+		}
+	}
 	private void CancelTool()
 	{
 		_currentTool?.Deactivate();

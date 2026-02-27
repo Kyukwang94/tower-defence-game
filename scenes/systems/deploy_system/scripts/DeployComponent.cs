@@ -24,8 +24,9 @@ public partial class DeployComponent : Node
 		}
 	}
 	
-	public void TryDeploy(Resource item , Vector2 mouseGlobalPosition)
+	public void TryDeploy(Resource item , Vector2I cellPos)
 	{
+
 		Type itemType = item.GetType();
 
 		if(_strategies == null)
@@ -38,9 +39,9 @@ public partial class DeployComponent : Node
 		{
 			var strategy = _strategies[itemType];
 
-			if(strategy.CheckValidation(item , mouseGlobalPosition))
+			if(strategy.CheckValidation(item , cellPos))
 			{
-				strategy.Deploy(item, mouseGlobalPosition);
+				strategy.Deploy(item, cellPos);
 				GD.Print("Deployed");
 			}
 			else

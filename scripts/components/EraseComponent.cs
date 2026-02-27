@@ -9,7 +9,7 @@ public partial class EraseComponent : Node, IToolComponent, ICursorChangingTool
 
 	[Export] private Texture2D _iconForItemPreviewCursor;
 
-	public void UseTool(Resource item, Vector2 globalPosition)
+	public void UseTool(Resource item, Vector2I globalPosition)
 	{
 		GD.Print($"Erase: {globalPosition} Clicked");
 	}

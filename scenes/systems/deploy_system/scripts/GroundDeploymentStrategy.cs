@@ -13,16 +13,14 @@ public partial class GroundDeploymentStrategy : Resource , IDeploymentStrategy
 	public Type TargetStrategyType => typeof(GroundResource);
 
 
-	public void Deploy (Resource item,Vector2 clickedCellPos)
+	public void Deploy (Resource item,Vector2I cellPos)
 	{	
 		if(item is not GroundResource tileItemRes) return;
 	
 		TileMapLayer targetLayer = WorldManager.Instance.GetTileMapLayer(tileItemRes.TargetLayer);
-		Vector2  localPos = targetLayer.ToLocal(clickedCellPos);
-		Vector2I gridPos  = targetLayer.LocalToMap(localPos);
 		
 		targetLayer.SetCell(
-			gridPos,
+			cellPos,
 			tileItemRes.SourceId, 
 			tileItemRes.AtlasCoords,
 			tileItemRes.AlternativeTileId
@@ -31,21 +29,21 @@ public partial class GroundDeploymentStrategy : Resource , IDeploymentStrategy
 		GD.Print($"{tileItemRes.Name} Deployed");
 	}
 
-	public bool CheckValidation(Resource item , Vector2 clickedCellPos)
+	public bool CheckValidation(Resource item , Vector2I cellPos)
 	{
-		
 		if(item is not GroundResource tileItemRes) return false;
 
-		TileMapLayer targetLayer = WorldManager.Instance.GetTileMapLayer(tileItemRes.TargetLayer);
-		Vector2  localPos = targetLayer.ToLocal(clickedCellPos);
-		Vector2I gridPos  = targetLayer.LocalToMap(localPos);
+		
+		TileMapLayer targetLayer = WorldManager.Instance.GetTileMapLayer(tileItemRes.TargetLayer);		
+		int sourceId = targetLayer.GetCellSourceId(cellPos);
+    	GD.Print($"[GroundValidator] layer={targetLayer.Name}, pos={cellPos}, sourceId={sourceId}");
 
 		bool isDevMode = GameModeManager.Instance.IsDevMode;
 		var currentValidator = isDevMode ? Validators_DEV : Validators;
 
 		foreach(var validator in currentValidator)
 		{
-			bool result = validator.CheckValidation(item, gridPos);
+			bool result = validator.CheckValidation(item, cellPos);
 
 			if(!result )
 				return false;

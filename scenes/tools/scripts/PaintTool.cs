@@ -17,11 +17,11 @@ public partial class PaintTool : Node, IToolComponent
 		ItemPreviewCursor.Instance.Reset();
 	}
 	
-	public void UseTool(Resource item, Vector2 mouseGlobalPosition)
+	public void UseTool(Resource item, Vector2I cellPos)
 	{
 		if(deployer != null)
 		{
-			deployer.TryDeploy(item, mouseGlobalPosition);
+			deployer.TryDeploy(item, cellPos);
 		}
 		else
 		{

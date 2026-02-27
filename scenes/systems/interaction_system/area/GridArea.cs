@@ -12,7 +12,7 @@ public sealed class GridArea
 		_start = start;
 		_end = end;
 	}
-	public IReadOnlyCollection<Vector2I> Cells(Vector2I cell)
+	public IReadOnlyCollection<Vector2I> Cells()
 	{
 		int minX = Math.Min(_start.X, _end.X);
     	int maxX = Math.Max(_start.X, _end.X);

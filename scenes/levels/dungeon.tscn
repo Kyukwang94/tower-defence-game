@@ -54,6 +54,9 @@ buildingInventoryUI = NodePath("../../../../BuildingInventory/Control/BuildingIn
 
 [node name="BuildingInventory" parent="." instance=ExtResource("7_pbld3")]
 
+[node name="BuildingToolsManager" parent="BuildingInventory" index="0" node_paths=PackedStringArray("_gridLayer")]
+_gridLayer = NodePath("../../TileMapLayersContainer/GroundTiles")
+
 [node name="Control" parent="BuildingInventory" index="1"]
 anchors_preset = 15
 anchor_right = 1.0

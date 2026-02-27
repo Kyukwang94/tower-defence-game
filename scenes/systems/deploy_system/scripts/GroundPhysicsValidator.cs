@@ -13,6 +13,7 @@ public partial class GroundPhysicsValidator : DeploymentValidator
 		//땅이있는지 체크
 		if(targetLayer.GetCellSourceId(pos) == -1 )
 		{
+			GD.Print($"{targetLayer.Name},{pos},{targetLayer.GetCellSourceId(pos)}");
 			GD.Print("Ground Is Not Valid");
 			return false;
 		}
