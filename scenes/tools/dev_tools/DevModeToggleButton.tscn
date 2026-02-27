@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1i14dtkoqv5u"]
 
-[ext_resource type="Script" uid="uid://dvivx1r6ya6y2" path="res://scenes/tools/dev_tools/DevModeToggleButton.cs" id="1_6gjij"]
+[ext_resource type="Script" uid="uid://dvivx1r6ya6y2" path="res://scenes/tools/scripts/DevModeToggleButton.cs" id="1_6gjij"]
 
 [node name="ToggleButton" type="CheckButton"]
 text = "DevMode"

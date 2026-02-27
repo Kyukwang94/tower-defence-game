@@ -1,9 +1,9 @@
 using Godot;
 using System;
-
+using Game.Enums;
 public partial class EraseComponent : Node, IToolComponent, ICursorChangingTool
 {
-	public BuildingToolsManager.ToolType TypeId => BuildingToolsManager.ToolType.Erase;
+	public ToolType TypeId => ToolType.Erase;
 
 	public event Action<Texture2D> OnCursorChangeRequested;
 

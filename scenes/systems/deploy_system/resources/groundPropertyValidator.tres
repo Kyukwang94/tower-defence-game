@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GroundPropertyValidator" load_steps=2 format=3 uid="uid://uuo6fxkhl01m"]
+
+[ext_resource type="Script" uid="uid://d0j3r0bm6uqdr" path="res://scenes/systems/deploy_system/scripts/GroundPropertyValidator.cs" id="1_h7rc4"]
+
+[resource]
+script = ExtResource("1_h7rc4")
+metadata/_custom_type_script = "uid://d0j3r0bm6uqdr"

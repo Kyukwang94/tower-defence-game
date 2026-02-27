@@ -1,26 +1,29 @@
 using Godot;
 using System;
-using System.Collections.Generic;
+using Godot.Collections;
 
-
-
+//
 public partial class DeployComponent : Node
 {
-	[Export] public GroundDeploymentStrategy GroundStrategy {get; set;}
+	[Export] public Array<Resource> Strategies {get; set;}
 
-	private Dictionary<Type, IDeploymentStrategy> _strategies;
+	private System.Collections.Generic.Dictionary<Type, IDeploymentStrategy> _strategies;
 
 	public override void _Ready()
 	{
 		_strategies = [];
-
-		if(GroundStrategy != null)
-		{
-			_strategies.Add(typeof(GroundResource), GroundStrategy);
-		}
 		
-	}
+		if (Strategies == null) return;
 
+		foreach (var strategyRes in Strategies)
+		{
+			if (strategyRes is IDeploymentStrategy strategy)
+			{
+				_strategies[strategy.TargetStrategyType] = strategy;
+			}
+		}
+	}
+	
 	public void TryDeploy(Resource item , Vector2 mouseGlobalPosition)
 	{
 		Type itemType = item.GetType();
@@ -47,4 +50,3 @@ public partial class DeployComponent : Node
 		}
 	}
 }
-

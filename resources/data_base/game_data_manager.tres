@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="GameDataManager" load_steps=3 format=3 uid="uid://cyah16xvbf1wd"]
-
-[ext_resource type="Resource" uid="uid://c26h2fpyk4q51" path="res://resources/data_base/ground_database.tres" id="1_3ax2i"]
-[ext_resource type="Script" uid="uid://0j1b2ar4oov8" path="res://resources/data_base/GameDataManager.cs" id="2_pe3a3"]
-
-[resource]
-script = ExtResource("2_pe3a3")
-GroundDataBase = ExtResource("1_3ax2i")
-metadata/_custom_type_script = "uid://0j1b2ar4oov8"

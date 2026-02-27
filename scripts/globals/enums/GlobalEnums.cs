@@ -28,5 +28,15 @@ namespace Game.Enums
 		Decoration,
 		Object,
 		Unit,
+	}
+	public enum ToolType
+	{
+		Paint,
+		Erase,
 	}	
+	//TODO : 고찰해보기.
+	public enum Interaction
+	{
+		
+	}
 }

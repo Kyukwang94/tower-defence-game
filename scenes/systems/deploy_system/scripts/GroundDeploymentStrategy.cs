@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -5,8 +6,12 @@ using Godot.Collections;
 [GlobalClass]
 public partial class GroundDeploymentStrategy : Resource , IDeploymentStrategy
 {
+	
 	[Export] public Array<DeploymentValidator> Validators_DEV {get; set;}
 	[Export] public Array<DeploymentValidator> Validators {get; set;}
+
+	public Type TargetStrategyType => typeof(GroundResource);
+
 
 	public void Deploy (Resource item,Vector2 clickedCellPos)
 	{	

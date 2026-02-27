@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="TowerDefenceGame"
+run/main_scene="uid://crlnp2khlxkt7"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,7 +21,6 @@ aseprite_executable_path="D:/steam/steamapps/common/Aseprite/Aseprite.exe"
 
 [autoload]
 
-DevTools="*res://scenes/tools/dev_tools/DevTools.tscn"
 GameModeManager="*res://scenes/globals/GameModeManager.tscn"
 
 [display]
@@ -40,10 +40,10 @@ enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 folder_colors={
 "res://Tech/": "purple",
 "res://assets/": "orange",
-"res://resources/": "green",
+"res://data/": "green",
+"res://documents/": "purple",
 "res://scenes/": "blue",
-"res://scripts/": "yellow",
-"res://tech/": "purple"
+"res://scripts/": "yellow"
 }
 
 [input]
