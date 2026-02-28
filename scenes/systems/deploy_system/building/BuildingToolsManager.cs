@@ -2,7 +2,7 @@ using Godot;
 using System.Collections.Generic;
 using Game.Enums;
 
-//아이템이 선택되었을때 선택된 아이템을 저장 및 현재 선택된 아이템의 Tool 사용.
+//TODO : <<Elegant Objects>>책 방식으로 Refactoring 해보기.
 public partial class BuildingToolsManager : Node2D
 {	
 
