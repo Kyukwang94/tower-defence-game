@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using Game.Enums;
-public partial class EraseComponent : Node, IToolComponent, ICursorChangingTool
+public partial class EraseComponent : IToolComponent, ICursorChangingTool
 {
 	public ToolType TypeId => ToolType.Erase;
 

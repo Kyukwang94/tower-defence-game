@@ -12,7 +12,16 @@ public sealed class GridArea
 		_start = start;
 		_end = end;
 	}
-	public IReadOnlyCollection<Vector2I> Cells()
+
+	public void ApplyTo(IGridCellAction action)
+	{
+		foreach (var cell in CalculateCells())
+		{
+			action.OnCell(cell);
+		}
+	}
+
+	private IEnumerable<Vector2I> CalculateCells()
 	{
 		int minX = Math.Min(_start.X, _end.X);
     	int maxX = Math.Max(_start.X, _end.X);
@@ -23,7 +32,7 @@ public sealed class GridArea
 
     	for (int x = minX; x <= maxX; x++)
     	for (int y = minY; y <= maxY; y++)
-    	    cells.Add(new Vector2I(x, y));
+    		cells.Add(new Vector2I(x, y));
 
     	return cells;
 	}

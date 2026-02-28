@@ -5,7 +5,7 @@ using Game.Enums;
 //TODO : <<Elegant Objects>>책 방식으로 Refactoring 해보기.
 public partial class BuildingToolsManager : Node2D
 {	
-
+	//자체판단으로 맡겨야함.
 	[Export] private TileMapLayer _gridLayer;
 
 	[Signal] public delegate void ActiveItemChangedEventHandler(Texture2D icon);
@@ -37,25 +37,23 @@ public partial class BuildingToolsManager : Node2D
 
 		 if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left)
         {
-            if (mb.Pressed)
-            {
-                _isDragging = true;
-                _dragStartCell = GetMouseCell();
-                _dragEndCell = _dragStartCell;
-                GetViewport().SetInputAsHandled();
-                return;
-            }
+			if (mb.Pressed)
+				{
+				    _isDragging = true;
+				    _dragStartCell = GetMouseCell();
+				    _dragEndCell = _dragStartCell;
+				    GetViewport().SetInputAsHandled();
+				    return;
+				}
 
             if (!mb.Pressed && _isDragging)
             {
-                _isDragging = false;
-                _dragEndCell = GetMouseCell();
-
-                IGridSelection selection = new GridSelection(_dragStartCell, _dragEndCell);
-                UseSelection(selection);
-
-                GetViewport().SetInputAsHandled();
-                return;
+				_isDragging = false;
+				_dragEndCell = GetMouseCell();
+				IGridSelection selection = new GridSelection(new GridArea(_dragStartCell, _dragEndCell));
+				UseSelection(selection);
+				GetViewport().SetInputAsHandled();
+				return;
             }
         }
 
@@ -100,12 +98,10 @@ public partial class BuildingToolsManager : Node2D
 		
 		return _gridLayer.LocalToMap(mouseLocal);
 	}
+	//STUDY 
 	private void UseSelection(IGridSelection selection)
 	{
-		foreach (var cell in selection.Cells())
-		{
-			_currentTool.UseTool(_currentItem, cell);
-		}
+		selection.ApplyTo(new ToolUseAction(_currentTool, _currentItem));
 	}
 	private void CancelTool()
 	{

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using Game.Enums;
-public partial interface IToolComponent
+public interface IToolComponent
 {
 	ToolType TypeId {get;}
 
