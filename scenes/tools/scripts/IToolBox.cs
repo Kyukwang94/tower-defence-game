@@ -1,11 +1,11 @@
 using Godot;
 using System;
 using Game.Enums;
-public interface IToolComponent
+public interface IToolBox
 {
 	ToolType TypeId {get;}
 
-	void UseTool(Resource item, Vector2I globalPosition);
+	IGridCellAction MakeAction(IPlaceable item, ILayerProvider map);
 	void Activate();
 	void Deactivate();
 }

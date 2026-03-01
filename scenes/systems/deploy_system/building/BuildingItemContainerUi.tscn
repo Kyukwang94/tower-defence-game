@@ -1,11 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cadiu4t4xxd7w"]
+[gd_scene load_steps=7 format=3 uid="uid://cadiu4t4xxd7w"]
 
-[ext_resource type="Script" uid="uid://bbhxivuj7enmw" path="res://scenes/systems/deploy_system/scripts/DeployComponent.cs" id="1_nuhjw"]
 [ext_resource type="Script" uid="uid://cxeycuwt86kp6" path="res://scenes/systems/deploy_system/building/BuildingInventoryController.cs" id="1_yo2sm"]
 [ext_resource type="Script" uid="uid://dvivx1r6ya6y2" path="res://scenes/tools/scripts/DevModeToggleButton.cs" id="2_0uekq"]
-[ext_resource type="Resource" uid="uid://cm6mjlywxlc4r" path="res://scenes/systems/deploy_system/resources/groundDeploymentStrategy_dev.tres" id="2_8kjog"]
 [ext_resource type="Script" uid="uid://cgcsj0rhkguwp" path="res://scenes/systems/deploy_system/building/BuildingToolsManager.cs" id="2_gk3ro"]
-[ext_resource type="Script" uid="uid://bwipp2od5cstk" path="res://scenes/tools/scripts/PaintTool.cs" id="3_0uekq"]
 [ext_resource type="Script" uid="uid://drht8ojca455p" path="res://scenes/systems/deploy_system/building/BuildingItemsContainer.cs" id="7_rxhmf"]
 [ext_resource type="Script" uid="uid://dje1npc4dfpxs" path="res://scenes/systems/deploy_system/scripts/GroundButton.cs" id="8_0uekq"]
 [ext_resource type="Resource" uid="uid://cyah16xvbf1wd" path="res://data/data_base/game_data_manager.tres" id="8_rxhmf"]
@@ -19,14 +16,6 @@ groundButton = NodePath("Control/BuildingInventoryUI/Panel/VBoxContainer/MarginC
 [node name="BuildingToolsManager" type="Node2D" parent="."]
 position = Vector2(2, 0)
 script = ExtResource("2_gk3ro")
-
-[node name="PaintTool" type="Node" parent="BuildingToolsManager" node_paths=PackedStringArray("deployer")]
-script = ExtResource("3_0uekq")
-deployer = NodePath("DeployComponent")
-
-[node name="DeployComponent" type="Node" parent="BuildingToolsManager/PaintTool"]
-script = ExtResource("1_nuhjw")
-Strategies = Array[Resource]([ExtResource("2_8kjog")])
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

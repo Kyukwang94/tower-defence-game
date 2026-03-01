@@ -2,12 +2,13 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public sealed class GridArea
+
+public sealed class GridRectangleArea : IGridArea
 {
 	private readonly Vector2I _start;
 	private readonly Vector2I _end;
 
-	public GridArea(Vector2I start, Vector2I end)
+	public GridRectangleArea(Vector2I start, Vector2I end)
 	{
 		_start = start;
 		_end = end;
@@ -21,7 +22,7 @@ public sealed class GridArea
 		}
 	}
 
-	private IEnumerable<Vector2I> CalculateCells()
+	public IEnumerable<Vector2I> CalculateCells()
 	{
 		int minX = Math.Min(_start.X, _end.X);
     	int maxX = Math.Max(_start.X, _end.X);

@@ -12,28 +12,32 @@ public partial class BuildingToolsManager : Node2D
 	[Signal] public delegate void CursorPreviewRequestedEventHandler(Texture2D icon);
 	
 
-	private readonly Dictionary<ToolType, IToolComponent> _tools = [];
-	private IToolComponent _currentTool;
-	private Resource _currentItem;
+	private readonly Dictionary<ToolType, IToolBox> _tools = [];
+	private IToolBox _currentToolBox;
+	private IPlaceable _currentItem;
 
 	private bool     _isDragging;
     private Vector2I _dragStartCell;
     private Vector2I _dragEndCell;
 
+	[Export] LayerRegistry registry;
+	private ILayerProvider _worldLayers;
 	public override void _Ready()
 	{ 
 		foreach (Node child in GetChildren())
 		{
-			if (child is IToolComponent tool)
+			if (child is IToolBox tool)
 			{
 				RegisterTool(tool);
 			}
 		}
+
+		_worldLayers = registry.CreateProvider();
 	}
 	
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if(_currentTool == null || _currentItem == null) return;
+		if(_currentToolBox == null || _currentItem == null) return;
 
 		 if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left)
         {
@@ -50,8 +54,11 @@ public partial class BuildingToolsManager : Node2D
             {
 				_isDragging = false;
 				_dragEndCell = GetMouseCell();
-				IGridSelection selection = new GridSelection(new GridArea(_dragStartCell, _dragEndCell));
-				UseSelection(selection);
+				
+				IGridCellAction tool = _currentToolBox.MakeAction(_currentItem, _worldLayers);
+				IGridCellAction safeAction = _currentItem.Validated(tool, _worldLayers, false);
+				IGridSelection  selection = new GridSelection(new GridRectangleArea(_dragStartCell, _dragEndCell));
+				selection.ApplyTo(safeAction);
 				GetViewport().SetInputAsHandled();
 				return;
             }
@@ -73,18 +80,18 @@ public partial class BuildingToolsManager : Node2D
             GetViewport().SetInputAsHandled();
         }
 	}
-
+// 이거 고쳐야함.
 	public void ActivateTool(ToolType type)
 	{	
 		if(_tools.TryGetValue(type, out var newTool))
 		{
-			if(_currentTool != null && _currentTool != newTool)
+			if(_currentToolBox != null && _currentToolBox != newTool)
 			{
-				_currentTool.Deactivate();
+				_currentToolBox.Deactivate();
 			}
 			
-			_currentTool = newTool;
-			_currentTool.Activate();
+			_currentToolBox = newTool;
+			_currentToolBox.Activate();
 		}
 		else
 		{
@@ -98,15 +105,12 @@ public partial class BuildingToolsManager : Node2D
 		
 		return _gridLayer.LocalToMap(mouseLocal);
 	}
-	//STUDY 
-	private void UseSelection(IGridSelection selection)
-	{
-		selection.ApplyTo(new ToolUseAction(_currentTool, _currentItem));
-	}
+	
+	
 	private void CancelTool()
 	{
-		_currentTool?.Deactivate();
-		_currentTool = null;
+		_currentToolBox?.Deactivate();
+		_currentToolBox = null;
 
 		EmitSignal(SignalName.ActiveItemChanged, (Texture2D)null);
 	
@@ -116,9 +120,10 @@ public partial class BuildingToolsManager : Node2D
 	//currentItem 할당
 	public void LoadItem(Resource item)
 	{
-		_currentItem = item;
+		if(item is not IPlaceable placeableItem) return;
+		_currentItem = placeableItem;
 		
-		if(item is IResourceItem toolableItem)
+		if(placeableItem is IResourceItem toolableItem)
 		{
 			GD.Print($"Selected Item : {toolableItem.ItemName} - Switching to {toolableItem.TargetToolType}");	
 			ActivateTool(toolableItem.TargetToolType);	
@@ -131,7 +136,7 @@ public partial class BuildingToolsManager : Node2D
 		}
 	}
 
-	private void RegisterTool(IToolComponent tool)
+	private void RegisterTool(IToolBox tool)
 	{
 		_tools[tool.TypeId] = tool;
 
