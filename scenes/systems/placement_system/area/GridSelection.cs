@@ -14,6 +14,8 @@ public sealed class GridSelection : IGridSelection
 		_area = area;
 	}
 
+	//사실 Selection이지금 하는건 없음 선택된 얘들을 한번더 필터링 하는 역할을 해야하는데 .. 음 .. 
+	//
 	public void ApplyTo(IGridCellAction action)
 	{
 		_area.ApplyTo(action);

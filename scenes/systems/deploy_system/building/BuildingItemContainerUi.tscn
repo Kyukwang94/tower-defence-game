@@ -2,20 +2,19 @@
 
 [ext_resource type="Script" uid="uid://cxeycuwt86kp6" path="res://scenes/systems/deploy_system/building/BuildingInventoryController.cs" id="1_yo2sm"]
 [ext_resource type="Script" uid="uid://dvivx1r6ya6y2" path="res://scenes/tools/scripts/DevModeToggleButton.cs" id="2_0uekq"]
-[ext_resource type="Script" uid="uid://cgcsj0rhkguwp" path="res://scenes/systems/deploy_system/building/BuildingToolsManager.cs" id="2_gk3ro"]
+[ext_resource type="Script" uid="uid://n8xko2xfnhdd" path="res://scenes/systems/deploy_system/building/PlayerHand.cs" id="2_80gw3"]
 [ext_resource type="Script" uid="uid://drht8ojca455p" path="res://scenes/systems/deploy_system/building/BuildingItemsContainer.cs" id="7_rxhmf"]
 [ext_resource type="Script" uid="uid://dje1npc4dfpxs" path="res://scenes/systems/deploy_system/scripts/GroundButton.cs" id="8_0uekq"]
 [ext_resource type="Resource" uid="uid://cyah16xvbf1wd" path="res://data/data_base/game_data_manager.tres" id="8_rxhmf"]
 
-[node name="BuildingInventory" type="Node" node_paths=PackedStringArray("buildingToolsManager", "itemsContainerUI", "groundButton")]
+[node name="BuildingInventory" type="Node" node_paths=PackedStringArray("itemsContainerUI", "groundButton")]
 script = ExtResource("1_yo2sm")
-buildingToolsManager = NodePath("BuildingToolsManager")
 itemsContainerUI = NodePath("Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/BuildingItemContainer")
 groundButton = NodePath("Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer/BuildingCategory/GroundButton")
 
-[node name="BuildingToolsManager" type="Node2D" parent="."]
+[node name="PlayerHand" type="Node2D" parent="."]
 position = Vector2(2, 0)
-script = ExtResource("2_gk3ro")
+script = ExtResource("2_80gw3")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

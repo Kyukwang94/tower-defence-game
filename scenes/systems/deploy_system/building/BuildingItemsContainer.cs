@@ -1,13 +1,15 @@
 using Godot;
 using Game.Enums;
 using System.Linq;
+using System;
 
 public partial class BuildingItemsContainer : Node
 {   
 	[Export] GameDataManager DataManager;
 
     // 선택된 아이템을 매니저에게 알리는 신호
-    [Signal] public delegate void OnItemSelectedEventHandler(Resource itemData);
+    public event Action<IPlaceable> ItemSelected;
+	public event Action<Texture2D>  ItemIconSelected;
 
     public override void _Ready()
     {        
@@ -25,43 +27,29 @@ public partial class BuildingItemsContainer : Node
         {
 			child.QueueFree();	   
         }
-		
-        foreach (var itemData in itemDataList)
-        {
-            Texture2D icon = null;
-			string itemName = "";
-        
-			if (itemData is GameEntityResource gameItem)
-			{
-				
-				icon = gameItem.Icon;	
-				itemName = gameItem.Name.ToString();
-				
-			}
-			
-            if (icon == null) continue;
-
-
+		foreach (var itemData in itemDataList)
+		{
+			if (itemData is not GameEntityResource gameItem) continue;
 			Button btn = new Button
 			{
-				Icon = icon,
-
-				//스타일 설정
+				Icon = gameItem.Icon,
 				ExpandIcon = true,
 				Alignment = HorizontalAlignment.Left,
-				CustomMinimumSize = new Vector2(40, 40)
+				CustomMinimumSize = new Vector2(40,40),
 			};
 
-			btn.AddThemeFontSizeOverride("font_size", 8);
-			btn.ClipText = true;
-	
-		
-            // 클릭 시 해당 리소스(item)를 실어서 신호 발송
-            btn.Pressed += () => EmitSignal(SignalName.OnItemSelected, itemData);
-            
-            this.AddChild(btn);
+			if(itemData is IPlaceable placeableItem)
+			{
+				btn.Pressed += () =>
+				{
+					ItemSelected?.Invoke(placeableItem);
+					ItemIconSelected?.Invoke(gameItem.Icon);
+				}
+				;
+			}
+			this.AddChild(btn);
         }
-    }
+	}       
 
 	private void InitUI()
     {

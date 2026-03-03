@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://crlnp2khlxkt7"]
+[gd_scene load_steps=15 format=4 uid="uid://crlnp2khlxkt7"]
 
 [ext_resource type="TileSet" uid="uid://5ofd4hgkosgm" path="res://data/tiles/grounds/environmentTiles.tres" id="1_0pvy1"]
 [ext_resource type="Script" uid="uid://crlrohrdn3aam" path="res://scenes/manager/world_manager/GroundManager.cs" id="2_srduu"]
@@ -7,9 +7,13 @@
 [ext_resource type="Resource" uid="uid://c26h2fpyk4q51" path="res://data/tiles/grounds/ground_database.tres" id="6_pbld3"]
 [ext_resource type="PackedScene" uid="uid://cisvxaw22g2n2" path="res://scenes/systems/deploy_system/ItemPreivewCursor.tscn" id="6_w0mg0"]
 [ext_resource type="PackedScene" uid="uid://dbr67fyeam4oa" path="res://scenes/systems/deploy_system/MainActionContainerUi.tscn" id="6_wyxho"]
-[ext_resource type="PackedScene" uid="uid://cadiu4t4xxd7w" path="res://scenes/systems/deploy_system/building/BuildingItemContainerUi.tscn" id="7_pbld3"]
 [ext_resource type="Script" uid="uid://dftv15cdwbbxd" path="res://scenes/systems/deploy_system/building/BuildingButton.cs" id="7_wyxho"]
-[ext_resource type="Script" uid="uid://dsoylmw5on8s8" path="res://scenes/tools/scripts/BrushBox.cs" id="10_06kf8"]
+[ext_resource type="Script" uid="uid://de0tj81a4pl13" path="res://scenes/systems/deploy_system/building/BuildingMenu.cs" id="9_cygrb"]
+[ext_resource type="Script" uid="uid://n8xko2xfnhdd" path="res://scenes/systems/deploy_system/building/PlayerHand.cs" id="10_06kf8"]
+[ext_resource type="Script" uid="uid://dvivx1r6ya6y2" path="res://scenes/tools/scripts/DevModeToggleButton.cs" id="11_cxvmb"]
+[ext_resource type="Script" uid="uid://drht8ojca455p" path="res://scenes/systems/deploy_system/building/BuildingItemsContainer.cs" id="12_qw2yk"]
+[ext_resource type="Resource" uid="uid://cyah16xvbf1wd" path="res://data/data_base/game_data_manager.tres" id="13_45kae"]
+[ext_resource type="Script" uid="uid://dje1npc4dfpxs" path="res://scenes/systems/deploy_system/scripts/GroundButton.cs" id="14_eijdf"]
 
 [node name="Dungeon" type="Node2D"]
 
@@ -58,26 +62,33 @@ grow_vertical = 0
 script = ExtResource("7_wyxho")
 buildingInventoryUI = NodePath("../../../../BuildingInventory/Control/BuildingInventoryUI")
 
-[node name="BuildingInventory" parent="." instance=ExtResource("7_pbld3")]
+[node name="BuildingInventory" type="Node" parent="." node_paths=PackedStringArray("_playerHand", "itemsContainerUI", "groundButton", "_previewCursor")]
+script = ExtResource("9_cygrb")
+_playerHand = NodePath("PlayerHand")
+itemsContainerUI = NodePath("Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/BuildingItemContainer")
+groundButton = NodePath("Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer/BuildingCategory/GroundButton")
+_previewCursor = NodePath("../ItemPreviewCursor")
 
-[node name="BuildingToolsManager" parent="BuildingInventory" index="0" node_paths=PackedStringArray("_gridLayer", "registry")]
-_gridLayer = NodePath("../../TileMapLayersContainer/GroundTiles")
-registry = NodePath("../../LayerRegistry")
-
-[node name="BrushBox" type="Node" parent="BuildingInventory/BuildingToolsManager" index="0"]
+[node name="PlayerHand" type="Node2D" parent="BuildingInventory" node_paths=PackedStringArray("_gridLayer", "layerRegistry")]
+position = Vector2(2, 0)
 script = ExtResource("10_06kf8")
+_gridLayer = NodePath("../../TileMapLayersContainer/GroundTiles")
+layerRegistry = NodePath("../../LayerRegistry")
 
-[node name="Control" parent="BuildingInventory" index="1"]
+[node name="Control" type="Control" parent="BuildingInventory"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="BuildingInventoryUI" parent="BuildingInventory/Control" index="0"]
+[node name="BuildingInventoryUI" type="CanvasLayer" parent="BuildingInventory/Control"]
 visible = false
 
-[node name="Panel" parent="BuildingInventory/Control/BuildingInventoryUI" index="0"]
+[node name="Panel" type="PanelContainer" parent="BuildingInventory/Control/BuildingInventoryUI"]
+custom_minimum_size = Vector2(350, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -89,6 +100,87 @@ offset_right = 128.0
 offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.1923143, 1.1923143)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel"]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+text = "dev mode"
+script = ExtResource("11_cxvmb")
+
+[node name="LineEdit" type="LineEdit" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer3/HBoxContainer/CheckButton"]
+custom_minimum_size = Vector2(38.57, 0)
+layout_mode = 0
+offset_left = 246.25
+offset_top = 5.0
+offset_right = 345.0
+offset_bottom = 25.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/minimum_character_width = 12
+theme_override_font_sizes/font_size = 8
+placeholder_text = "Search"
+
+[node name="MarginContainer2" type="MarginContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2/ScrollContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_bottom = 8
+
+[node name="BuildingItemContainer" type="HBoxContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 4
+script = ExtResource("12_qw2yk")
+DataManager = ExtResource("13_45kae")
+
+[node name="MarginContainer" type="MarginContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="BuildingCategory" type="HBoxContainer" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="GroundButton" type="Button" parent="BuildingInventory/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer/BuildingCategory"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 10
+text = "ground
+"
+script = ExtResource("14_eijdf")
 
 [editable path="MainActionContainer"]
-[editable path="BuildingInventory"]

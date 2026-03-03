@@ -34,9 +34,4 @@ namespace Game.Enums
 		Paint,
 		Erase,
 	}	
-	//TODO : 고찰해보기.
-	public enum Interaction
-	{
-		
-	}
 }
