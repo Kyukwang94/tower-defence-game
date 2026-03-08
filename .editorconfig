@@ -2,3 +2,13 @@ root = true
 
 [*]
 charset = utf-8
+
+[*.cs]
+# CA1859: Use concrete types when possible for better performance
+# Elegant Objects 원칙에 따라 인터페이스와 데코레이터를 사용하므로 이 경고를 끕니다.
+dotnet_diagnostic.CA1859.severity = none
+
+# IDE0290: Use primary constructor
+csharp_style_prefer_primary_constructors = false
+
+

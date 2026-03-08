@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dsp5qcituvwci"]
+
+[node name="PlacementPreveiwAction" type="Node2D"]

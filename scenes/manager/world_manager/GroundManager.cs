@@ -6,7 +6,7 @@ using Game.Enums;
 public partial class GroundManager : Node
 {
 
-	[Export] private GroundDatabase _groundDataBase;
+	[Export] private GroundSection _groundDataBase;
 	[Export] public  TileMapLayer   groundTileMapLayer;
 	
 	
@@ -19,15 +19,8 @@ public partial class GroundManager : Node
             GD.PrintErr("GroundManager: GroundDatabase reference is missing!");
             return;
         }
-		
-		LoadResources();
 	}
 	
-
-	public Resource[] GetAllGroundResources()
-	{
-		return _groundDataBase.AllGroundResources;
-	}
 
 	public GroundResource GetGroundResourceAt(Vector2I cellPos , TileMapLayer targetLayer)
 	{
@@ -43,18 +36,5 @@ public partial class GroundManager : Node
 		}
 
 		return null;
-	}
-
-	private void LoadResources()
-	{	
-		foreach (var res in _groundDataBase.AllGroundResources)
-		{
-			string key = res.Name.ToString();
-
-			if (!_groundTileLookup.ContainsKey(key))
-			{
-				_groundTileLookup.Add(key, res);
-			}
-		}	
 	}
 }

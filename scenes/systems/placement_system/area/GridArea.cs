@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 
 
-public sealed class GridRectangleArea : IGridArea
+public sealed class GridArea : IGridArea
 {
 	private readonly Vector2I _start;
 	private readonly Vector2I _end;
 
-	public GridRectangleArea(Vector2I start, Vector2I end)
+	public GridArea(Vector2I start, Vector2I end)
 	{
 		_start = start;
 		_end = end;

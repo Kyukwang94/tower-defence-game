@@ -30,24 +30,25 @@ public partial class ItemPreviewCursor : Node2D
 
 	public void SetPreview(Resource itemData)
     {
-        Texture2D previewIcon = null;
+        // Texture2D previewIcon = null;
 
-        // IResourceItem 인터페이스인지 확인하고 아이콘 추출
-        if (itemData is IResourceItem resourceItem)
-        {
-            previewIcon = resourceItem.ItemIcon;
-        }
+        // // IResourceItem 인터페이스인지 확인하고 아이콘 추출
+        // if (itemData is IResourceItem resourceItem)
+        // {
+        //     previewIcon = resourceItem.ItemIcon;
+        // }
 
-        // 아이콘 유무에 따라 설정 혹은 리셋
-        if (previewIcon != null)
-        {
-            SetPreviewSprite(previewIcon);
-        }
-        else
-        {
-            Reset();
-        }
+        // // 아이콘 유무에 따라 설정 혹은 리셋
+        // if (previewIcon != null)
+        // {
+        //     SetPreviewSprite(previewIcon);
+        // }
+        // else
+        // {
+        //     Reset();
+        // }
     }
+	
 	public void SetPreviewSprite(Texture2D texture)
 	{
 		Start();

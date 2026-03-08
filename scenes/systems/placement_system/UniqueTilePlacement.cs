@@ -17,6 +17,12 @@ public sealed class UniqueTilePlacement : IGridCellAction
 		_targetSourceId = heldSourceId;
 		_targetCoords 	= heldCoords;
 	}
+
+	public bool CanOnCell(Vector2I cell)
+	{
+		return CanOverlap(cell) && _origin.CanOnCell(cell);
+	}
+
 	public void OnCell(Vector2I cell)
 	{
 		if(CanOverlap(cell))

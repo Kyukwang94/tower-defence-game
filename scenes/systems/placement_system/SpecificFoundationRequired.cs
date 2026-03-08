@@ -15,10 +15,16 @@ public sealed class SpecificFoundationRequired : IGridCellAction
 		_map = map;
 		_requiredCoords =	requiredCoords;
 	}
-	
+
+	public bool CanOnCell(Vector2I cell)
+	{
+		return _map.GetCellAtlasCoords(cell) == _requiredCoords && _origin.CanOnCell(cell);
+	}
+
+
 	public void OnCell(Vector2I cell)
 	{
-		if(_map.GetCellAtlasCoords(cell) == _requiredCoords)
+		if(CanOnCell(cell))
 		{
 			_origin.OnCell(cell);
 		}

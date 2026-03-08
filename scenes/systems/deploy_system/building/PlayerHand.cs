@@ -1,17 +1,13 @@
 using Godot;
-using System.Collections.Generic;
-using Game.Enums;
 
-//TODO : naming 바꾸기.
 public partial class PlayerHand : Node2D
 {	
 	//자체판단으로 맡겨야함.
-	[Export] private TileMapLayer _gridLayer;
-
-	[Signal] public delegate void ActiveItemChangedEventHandler(Texture2D icon);
-	[Signal] public delegate void CursorPreviewRequestedEventHandler(Texture2D icon);
+	[Export] private TileMapLayer _groundLayer;
+	[Export] private TileMapLayer _placementPreviewLayer;
 	
-	private IPlaceable _itemInHand;
+	private IPlaceable   _itemInHand;
+	[Export]private HandCursor _handCursor;
 
 	private bool     _isDragging;
     private Vector2I _dragStartCell;
@@ -28,8 +24,7 @@ public partial class PlayerHand : Node2D
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		if(_itemInHand == null) return;
-
-		 if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left)
+		if (@event is InputEventMouseButton mb && mb.ButtonIndex == MouseButton.Left)
         {
 			if (mb.Pressed)
 				{
@@ -43,11 +38,13 @@ public partial class PlayerHand : Node2D
             if (!mb.Pressed && _isDragging)
             {
 				_isDragging = false;
+				_placementPreviewLayer.Clear();
+
 				_dragEndCell = GetMouseCell();
-				
-				IGridSelection  selection = new GridSelection(new GridRectangleArea(_dragStartCell, _dragEndCell));				
-				IGridCellAction placementAction   = _itemInHand.PlacementAction(_worldLayers, false);
-				selection.ApplyTo(placementAction);
+				IGridArea area = new GridArea(_dragStartCell, _dragEndCell);				
+				IGridCellAction placementAction = _itemInHand.PlacementAction(_worldLayers, false);
+
+				area.ApplyTo(placementAction);
 
 				GetViewport().SetInputAsHandled();
 				return;
@@ -55,8 +52,17 @@ public partial class PlayerHand : Node2D
         }
 
         if (@event is InputEventMouseMotion && _isDragging)
-        {
+        { 
             _dragEndCell = GetMouseCell();
+
+			_placementPreviewLayer.Clear();
+
+			IGridArea area = new GridArea(_dragStartCell , _dragEndCell);
+			IGridCellAction placementAction = _itemInHand.PlacementAction(_worldLayers, false);
+			IGridCellAction previewAction = new PlacementPreviewAction(placementAction, _placementPreviewLayer);
+
+	        area.ApplyTo(previewAction);
+
             GetViewport().SetInputAsHandled();
             return;
         }
@@ -65,6 +71,7 @@ public partial class PlayerHand : Node2D
         if (@event.IsActionPressed("cancel"))
         {
             _isDragging = false;
+			_placementPreviewLayer.Clear();
             CancelTool();
             GetViewport().SetInputAsHandled();
         }
@@ -72,10 +79,10 @@ public partial class PlayerHand : Node2D
 
 	private Vector2I GetMouseCell()
 	{
-		Vector2 mouseWorld = GetGlobalMousePosition();
-		Vector2 mouseLocal = _gridLayer.ToLocal(mouseWorld);
+	Vector2 mouseWorld = GetGlobalMousePosition();
+		Vector2 mouseLocal = _groundLayer.ToLocal(mouseWorld);
 		
-		return _gridLayer.LocalToMap(mouseLocal);
+		return _groundLayer.LocalToMap(mouseLocal);
 	}
 	
 	private void CancelTool()
@@ -83,9 +90,12 @@ public partial class PlayerHand : Node2D
 		GD.Print("Tool Canceled");
 	}
 	
-	// 이부분 리팩토링
+	
 	public void Grasp(IPlaceable item)
 	{
-		_itemInHand = item;
+		_itemInHand  = item;	
+		ICursorDesign design = item.CursorDesign();
+		_handCursor.ChangeDesign(design);
+
 	}
 }

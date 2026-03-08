@@ -4,38 +4,31 @@ using Game.Action.Validation;
 
 
 [GlobalClass]
-public partial class GroundResource : TileEntityResource , IPlaceable
-{	
+public partial class GroundResource : Resource 
+{
+	[ExportGroup ("Entity")]
+	[Export] public string Name {get; set;}
+
 	[ExportGroup("Ground Info")]
 	[Export] public GroundProperties Properties {get; set;}
 	[Export] public GroundElement 	 Element{get; set;}
+	[Export] public ItemType TargetLayer {get; set;}	
 
-	[ExportGroup("Deploy Rule")]
+
+	[ExportGroup ("Visuals")]
+	[Export] public Texture2D Icon {get; set;}
+	[Export] public int SourceId {get; set;} = 0;
+	[Export] public Vector2I AtlasCoords {get; set;}
+	[Export] public int AlternativeTileId {get; set;} = 0;
+
+	[ExportGroup("Physical")]
+	[Export] public bool IsWalkable     {get; set;} = false;
+	[Export] public bool IsDestructible {get; set;} = false;
+
+
+	[ExportGroup("Placement")]
 	[Export] public Godot.Collections.Array<FoundationRuleResource> SpecificRules { get; set; }
 	public int deployArea = 1;
 
-
-	public IGridCellAction PlacementAction(ILayerProvider mapProvider, bool isDevmode)
-	{
-		TileMapLayer mapLayer = mapProvider.GetLayer(this.TargetLayer);
-		
-		IGridCellAction action = new TilePaint(mapLayer, this.SourceId , this.AtlasCoords);
-
-		if (isDevmode) return action;
-		
-		//Variant Rules
-		if(SpecificRules != null)
-		{
-			foreach (var rule in SpecificRules)
-			{
-				action = rule.Wrap(action, mapLayer);
-			}
-		}
-
-		//Universal Laws
-		action = new ExistingFoundationTile(action , mapLayer);
-		action = new UniqueTilePlacement(action , mapLayer, this.SourceId , this.AtlasCoords);
-			
-		return action;
-	}
-}
+	
+} 

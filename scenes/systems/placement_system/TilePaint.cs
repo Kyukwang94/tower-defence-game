@@ -13,9 +13,15 @@ public sealed class TilePaint : IGridCellAction
 		_sourceId = sourceId;
 		_atlasCoords = atlasCoords;
 	}
+
+	public bool CanOnCell(Vector2I cell)
+	{
+		return true;	
+	}
+
 	public void OnCell(Vector2I cell)
 	{
-		GD.Print($"[TilePaint] 칠하기 시도! ➡️ 좌표: {cell}, SourceID: {_sourceId}, Coords: {_atlasCoords}");
-		_mapLayer.SetCell(cell , _sourceId, _atlasCoords);
+		if(CanOnCell(cell))
+			_mapLayer.SetCell(cell , _sourceId, _atlasCoords);
 	}
 }
