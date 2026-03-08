@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2ur2ni488hmv"]
+
+[ext_resource type="Script" uid="uid://wuv82y0jx0dp" path="res://scenes/systems/placement/ui/cursor/HandCursor.cs" id="1_je7cs"]
+
+[node name="CursorLayer" type="CanvasLayer"]
+
+[node name="HandCursor" type="Node2D" parent="." node_paths=PackedStringArray("design")]
+script = ExtResource("1_je7cs")
+design = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="HandCursor"]

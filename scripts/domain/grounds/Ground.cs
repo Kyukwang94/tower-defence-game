@@ -22,12 +22,10 @@ public sealed class Ground : IDisplayable , IButtonInfo , IPlaceable
 	{
 		hand.Grasp(this);
 	}
-	
 	public ICursorDesign CursorDesign()
 	{
 		return new PlayerHandDesign (_groundResource.Icon);
 	}
-
 	public IGridCellAction PlacementAction(ILayerProvider mapProvider, bool isDevmode)
 	{
 		TileMapLayer mapLayer = mapProvider.GetLayer(_groundResource.TargetLayer);

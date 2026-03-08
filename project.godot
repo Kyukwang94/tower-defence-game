@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 aseprite_executable_path="D:/steam/steamapps/common/Aseprite/Aseprite.exe"
 
-[autoload]
-
-GameModeManager="*res://scenes/globals/GameModeManager.tscn"
-
 [display]
 
 window/stretch/mode="canvas_items"
@@ -39,11 +35,12 @@ enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 folder_colors={
 "res://Tech/": "purple",
+"res://[99] archived/": "gray",
 "res://assets/": "orange",
 "res://data/": "green",
-"res://documents/": "purple",
 "res://scenes/": "blue",
-"res://scripts/": "yellow"
+"res://scripts/": "yellow",
+"res://undefined/": "gray"
 }
 
 [input]

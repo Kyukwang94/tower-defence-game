@@ -5,7 +5,7 @@ public sealed class PlayerHandDesign : ICursorDesign
 {
 	private readonly Texture2D _itemTexture;
 	
-	public PlayerHandDesign(Texture2D itemTexture) 	
+	public PlayerHandDesign(Texture2D itemTexture) 
 	{
 		_itemTexture = itemTexture;
 	}

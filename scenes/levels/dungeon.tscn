@@ -1,197 +1,33 @@
-[gd_scene load_steps=16 format=4 uid="uid://crlnp2khlxkt7"]
+[gd_scene load_steps=4 format=3 uid="uid://crlnp2khlxkt7"]
 
-[ext_resource type="TileSet" uid="uid://5ofd4hgkosgm" path="res://data/tiles/grounds/environmentTiles.tres" id="1_0pvy1"]
-[ext_resource type="TileSet" uid="uid://6se7yv0i3tct" path="res://assets/ui/placementValidation.tres" id="3_b4io3"]
-[ext_resource type="Script" uid="uid://bam1qdc2o0pvb" path="res://scenes/levels/LayerRegistry.cs" id="3_q0ye3"]
-[ext_resource type="PackedScene" uid="uid://cisvxaw22g2n2" path="res://scenes/systems/deploy_system/ItemPreivewCursor.tscn" id="6_w0mg0"]
-[ext_resource type="PackedScene" uid="uid://dbr67fyeam4oa" path="res://scenes/systems/deploy_system/MainActionContainerUi.tscn" id="6_wyxho"]
-[ext_resource type="Script" uid="uid://dftv15cdwbbxd" path="res://scenes/systems/deploy_system/building/BuildingButton.cs" id="7_wyxho"]
-[ext_resource type="Script" uid="uid://de0tj81a4pl13" path="res://scenes/systems/deploy_system/building/BuildingMenu.cs" id="9_cygrb"]
-[ext_resource type="Script" uid="uid://n8xko2xfnhdd" path="res://scenes/systems/deploy_system/building/PlayerHand.cs" id="10_06kf8"]
-[ext_resource type="Resource" uid="uid://78hk1ajeg4lf" path="res://scenes/systems/deploy_system/building/ground_section.tres" id="10_cxvmb"]
-[ext_resource type="Script" uid="uid://dvivx1r6ya6y2" path="res://scenes/tools/scripts/DevModeToggleButton.cs" id="11_cxvmb"]
-[ext_resource type="Script" uid="uid://wuv82y0jx0dp" path="res://scenes/levels/HandCursor.cs" id="11_cygrb"]
-[ext_resource type="Script" uid="uid://bi5dhf3d1u1xp" path="res://data/data_base/GameLibrary.cs" id="11_qw2yk"]
-[ext_resource type="Script" uid="uid://yyjcxvlfjtr0" path="res://scenes/systems/deploy_system/building/BuildingItemsGallery.cs" id="14_cxvmb"]
-[ext_resource type="Script" uid="uid://d35rpbqgvtbsk" path="res://scenes/systems/deploy_system/scripts/GroundGalleryBtn.cs" id="15_cxvmb"]
-
-[sub_resource type="Resource" id="Resource_45kae"]
-script = ExtResource("11_qw2yk")
-_groundSection = ExtResource("10_cxvmb")
-metadata/_custom_type_script = "uid://bi5dhf3d1u1xp"
+[ext_resource type="PackedScene" uid="uid://evt0via71j6y" path="res://scenes/levels/DungeonLayers.tscn" id="2_567yd"]
+[ext_resource type="PackedScene" uid="uid://dru83uuknb5g0" path="res://scenes/bridge_structure/layers/LayerRegistry.tscn" id="3_mppok"]
+[ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://scenes/systems/placement/core/interaction/BuildingMenu.tscn" id="5_mppok"]
 
 [node name="Dungeon" type="Node2D"]
 
-[node name="ItemPreviewCursor" parent="." instance=ExtResource("6_w0mg0")]
+[node name="Layers" parent="." instance=ExtResource("2_567yd")]
 
-[node name="TileMapLayersContainer" type="Node" parent="."]
+[node name="LayerRegistry" parent="." node_paths=PackedStringArray("GroundLayer") instance=ExtResource("3_mppok")]
+GroundLayer = NodePath("../Layers/GroundLayer")
 
-[node name="PlacementPreviewLayer" type="TileMapLayer" parent="TileMapLayersContainer"]
-z_index = 10
-position = Vector2(0, 2)
-tile_set = ExtResource("3_b4io3")
-
-[node name="GroundLayer" type="TileMapLayer" parent="TileMapLayersContainer"]
-position = Vector2(0, 1)
-tile_map_data = PackedByteArray("AAAMAAUAAAABAAEAAAANAAUAAAABAAEAAAAOAAUAAAABAAEAAAAMAAYAAAABAAEAAAAMAAcAAAABAAEAAAAMAAgAAAABAAEAAAAMAAkAAAABAAEAAAAMAAoAAAABAAEAAAAMAAsAAAABAAEAAAAMAAwAAAABAAEAAAAMAA0AAAABAAEAAAAMAA4AAAABAAEAAAANAAYAAAABAAEAAAANAAcAAAABAAEAAAANAAgAAAABAAEAAAANAAkAAAABAAEAAAANAAoAAAABAAEAAAANAAsAAAABAAEAAAANAAwAAAABAAEAAAANAA0AAAABAAEAAAANAA4AAAABAAEAAAAOAAYAAAABAAEAAAAOAAcAAAABAAEAAAAOAAgAAAABAAEAAAAOAAkAAAABAAEAAAAOAAoAAAABAAEAAAAOAAsAAAABAAEAAAAOAAwAAAABAAEAAAAOAA0AAAABAAEAAAAOAA4AAAABAAEAAAAPAAUAAAABAAEAAAAPAAYAAAABAAEAAAAPAAcAAAABAAEAAAAPAAgAAAABAAEAAAAPAAkAAAABAAEAAAAPAAoAAAABAAEAAAAPAAsAAAABAAEAAAAPAAwAAAABAAEAAAAPAA0AAAABAAEAAAAPAA4AAAABAAEAAAAQAAUAAAABAAEAAAAQAAYAAAABAAEAAAAQAAcAAAABAAEAAAAQAAgAAAABAAEAAAAQAAkAAAABAAEAAAAQAAoAAAABAAEAAAAQAAsAAAABAAEAAAAQAAwAAAABAAEAAAAQAA0AAAABAAEAAAAQAA4AAAABAAEAAAARAAUAAAABAAEAAAARAAYAAAABAAEAAAARAAcAAAABAAEAAAARAAgAAAABAAEAAAARAAkAAAABAAEAAAARAAoAAAABAAEAAAARAAsAAAABAAEAAAARAAwAAAABAAEAAAARAA0AAAABAAEAAAARAA4AAAABAAEAAAASAAUAAAABAAEAAAASAAYAAAABAAEAAAASAAcAAAABAAEAAAASAAgAAAABAAEAAAASAAkAAAABAAEAAAASAAoAAAABAAEAAAASAAsAAAABAAEAAAASAAwAAAABAAEAAAASAA0AAAABAAEAAAASAA4AAAABAAEAAAATAAUAAAABAAEAAAATAAYAAAABAAEAAAATAAcAAAABAAEAAAATAAgAAAABAAEAAAATAAkAAAABAAEAAAATAAoAAAABAAEAAAATAAsAAAABAAEAAAATAAwAAAABAAEAAAATAA0AAAABAAEAAAATAA4AAAABAAEAAAAUAAUAAAABAAEAAAAUAAYAAAABAAEAAAAUAAcAAAABAAEAAAAUAAgAAAABAAEAAAAUAAkAAAABAAEAAAAUAAoAAAABAAEAAAAUAAsAAAABAAEAAAAUAAwAAAABAAEAAAAUAA0AAAABAAEAAAAUAA4AAAABAAEAAAAVAAUAAAABAAEAAAAVAAYAAAABAAEAAAAVAAcAAAABAAEAAAAVAAgAAAABAAEAAAAVAAkAAAABAAEAAAAVAAoAAAABAAEAAAAVAAsAAAABAAEAAAAVAAwAAAABAAEAAAAVAA0AAAABAAEAAAAVAA4AAAABAAEAAAAWAAUAAAABAAEAAAAWAAYAAAABAAEAAAAWAAcAAAABAAEAAAAWAAgAAAABAAEAAAAWAAkAAAABAAEAAAAWAAoAAAABAAEAAAAWAAsAAAABAAEAAAAWAAwAAAABAAEAAAAWAA0AAAABAAEAAAAWAA4AAAABAAEAAAAMAAMAAAABAAEAAAAMAAQAAAABAAEAAAANAAMAAAABAAEAAAANAAQAAAABAAEAAAAOAAMAAAABAAEAAAAOAAQAAAABAAEAAAAPAAMAAAABAAEAAAAPAAQAAAABAAEAAAAQAAMAAAABAAEAAAAQAAQAAAABAAEAAAARAAMAAAABAAEAAAARAAQAAAABAAEAAAASAAMAAAABAAEAAAASAAQAAAABAAEAAAATAAMAAAABAAEAAAATAAQAAAABAAEAAAAUAAMAAAABAAEAAAAUAAQAAAABAAEAAAAVAAMAAAABAAEAAAAVAAQAAAABAAEAAAAWAAMAAAABAAEAAAAWAAQAAAABAAEAAAAXAAMAAAABAAEAAAAXAAQAAAABAAEAAAAXAAUAAAABAAEAAAAXAAYAAAABAAEAAAAXAAcAAAABAAEAAAAXAAgAAAABAAEAAAAXAAkAAAABAAEAAAAXAAoAAAABAAEAAAAXAAsAAAABAAEAAAAXAAwAAAABAAEAAAAXAA0AAAABAAEAAAAXAA4AAAABAAEAAAAYAAMAAAABAAEAAAAYAAQAAAABAAEAAAAYAAUAAAABAAEAAAAYAAYAAAABAAEAAAAYAAcAAAABAAEAAAAYAAgAAAABAAEAAAAYAAkAAAABAAEAAAAYAAoAAAABAAEAAAAYAAsAAAABAAEAAAAYAAwAAAABAAEAAAAYAA0AAAABAAEAAAAYAA4AAAABAAEAAAAKAAMAAAABAAEAAAAKAAQAAAABAAEAAAAKAAUAAAABAAEAAAAKAAYAAAABAAEAAAAKAAcAAAABAAEAAAAKAAgAAAABAAEAAAAKAAkAAAABAAEAAAAKAAoAAAABAAEAAAAKAAsAAAABAAEAAAAKAAwAAAABAAEAAAAKAA0AAAABAAEAAAAKAA4AAAABAAEAAAALAAMAAAABAAEAAAALAAQAAAABAAEAAAALAAUAAAABAAEAAAALAAYAAAABAAEAAAALAAcAAAABAAEAAAALAAgAAAABAAEAAAALAAkAAAABAAEAAAALAAoAAAABAAEAAAALAAsAAAABAAEAAAALAAwAAAABAAEAAAALAA0AAAABAAEAAAALAA4AAAABAAEAAAAKAA8AAAABAAEAAAAKABAAAAABAAEAAAALAA8AAAABAAEAAAALABAAAAABAAEAAAAMAA8AAAABAAEAAAAMABAAAAABAAEAAAANAA8AAAABAAEAAAANABAAAAABAAEAAAAOAA8AAAABAAEAAAAOABAAAAABAAEAAAAPAA8AAAABAAEAAAAPABAAAAABAAEAAAAQAA8AAAABAAEAAAAQABAAAAABAAEAAAARAA8AAAABAAEAAAARABAAAAABAAEAAAASAA8AAAABAAEAAAASABAAAAABAAEAAAATAA8AAAABAAEAAAATABAAAAABAAEAAAAUAA8AAAABAAEAAAAUABAAAAABAAEAAAAVAA8AAAABAAEAAAAVABAAAAABAAEAAAAWAA8AAAABAAEAAAAWABAAAAABAAEAAAAXAA8AAAABAAEAAAAXABAAAAABAAEAAAAYAA8AAAABAAEAAAAYABAAAAABAAEAAAA=")
-tile_set = ExtResource("1_0pvy1")
-
-[node name="LayerRegistry" type="Node" parent="." node_paths=PackedStringArray("GroundLayer")]
-script = ExtResource("3_q0ye3")
-GroundLayer = NodePath("../TileMapLayersContainer/GroundLayer")
-
-[node name="MainActionContainer" parent="." instance=ExtResource("6_wyxho")]
-
-[node name="Control" parent="MainActionContainer/CanvasLayer" index="0"]
-offset_right = 0.0
-offset_bottom = 0.0
-mouse_filter = 2
-
-[node name="BuildingButton" parent="MainActionContainer/CanvasLayer/Control" index="0" node_paths=PackedStringArray("buildingInventoryUI")]
-texture_filter = 2
-layout_direction = 3
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -598.0
-offset_top = 609.0
-offset_right = -526.0
-offset_bottom = 640.0
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("7_wyxho")
-buildingInventoryUI = NodePath("../../../../BuildingMenu/Control/BuildingInventoryUI")
-
-[node name="BuildingMenu" type="Node" parent="." node_paths=PackedStringArray("_playerHand", "_buildingItemsGallery", "_groundGalleryButton", "_previewCursor")]
-script = ExtResource("9_cygrb")
+[node name="BuildingMenu" parent="." node_paths=PackedStringArray("_playerHand", "_buildingItemsGallery", "_groundGalleryButton") instance=ExtResource("5_mppok")]
 _playerHand = NodePath("PlayerHand")
-_buildingItemsGallery = NodePath("Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/BuildingItemContainer")
-_groundGalleryButton = NodePath("Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer/BuildingCategory/GroundButton")
-_previewCursor = NodePath("../ItemPreviewCursor")
-_gameLibrary = SubResource("Resource_45kae")
+_buildingItemsGallery = NodePath("BuildingUI/BuildingExhibition/Panel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/BuildingItemsGallery")
+_groundGalleryButton = NodePath("BuildingUI/BuildingExhibition/Panel/VBoxContainer/MarginContainer/BuildingCategory/GroundGalleryBtn")
 
-[node name="PlayerHand" type="Node2D" parent="BuildingMenu" node_paths=PackedStringArray("_groundLayer", "_placementPreviewLayer", "_handCursor", "layerRegistry")]
-position = Vector2(2, 0)
-script = ExtResource("10_06kf8")
-_groundLayer = NodePath("../../TileMapLayersContainer/GroundLayer")
-_placementPreviewLayer = NodePath("../../TileMapLayersContainer/PlacementPreviewLayer")
-_handCursor = NodePath("../HandCursor")
+[node name="PlayerHand" parent="BuildingMenu" index="0" node_paths=PackedStringArray("_groundLayer", "_placementPreviewLayer", "_handCursor", "layerRegistry")]
+_groundLayer = NodePath("../../Layers/GroundLayer")
+_placementPreviewLayer = NodePath("../../Layers/PlacementPreviewLayer")
+_handCursor = NodePath("../CursorLayer/HandCursor")
 layerRegistry = NodePath("../../LayerRegistry")
 
-[node name="HandCursor" type="Node2D" parent="BuildingMenu" node_paths=PackedStringArray("design")]
-script = ExtResource("11_cygrb")
-design = NodePath("Sprite2D")
-
-[node name="Sprite2D" type="Sprite2D" parent="BuildingMenu/HandCursor"]
-
-[node name="Control" type="Control" parent="BuildingMenu"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="BuildingInventoryUI" type="CanvasLayer" parent="BuildingMenu/Control"]
-
-[node name="Panel" type="PanelContainer" parent="BuildingMenu/Control/BuildingInventoryUI"]
-custom_minimum_size = Vector2(350, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -221.99997
-offset_top = 106.0
-offset_right = 128.0
-offset_bottom = 228.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.1923143, 1.1923143)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel"]
-clip_contents = true
-layout_mode = 2
-mouse_filter = 2
-
-[node name="MarginContainer3" type="MarginContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer3"]
-layout_mode = 2
-
-[node name="CheckButton" type="CheckButton" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer3/HBoxContainer"]
-layout_mode = 2
-text = "dev mode"
-script = ExtResource("11_cxvmb")
-
-[node name="LineEdit" type="LineEdit" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer3/HBoxContainer/CheckButton"]
-custom_minimum_size = Vector2(38.57, 0)
-layout_mode = 0
-offset_left = 246.25
-offset_top = 5.0
-offset_right = 345.0
-offset_bottom = 25.0
-size_flags_horizontal = 8
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_constants/minimum_character_width = 12
-theme_override_font_sizes/font_size = 8
-placeholder_text = "Search"
-
-[node name="MarginContainer2" type="MarginContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2"]
-clip_contents = false
-layout_mode = 2
-mouse_filter = 2
-horizontal_scroll_mode = 2
-vertical_scroll_mode = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2/ScrollContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_bottom = 8
-
-[node name="BuildingItemContainer" type="HBoxContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" node_paths=PackedStringArray("playerHand")]
-layout_mode = 2
-size_flags_vertical = 4
-mouse_filter = 2
-theme_override_constants/separation = 4
-script = ExtResource("14_cxvmb")
+[node name="BuildingItemsGallery" parent="BuildingMenu/BuildingUI/BuildingExhibition/Panel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" index="0" node_paths=PackedStringArray("playerHand")]
 playerHand = NodePath("../../../../../../../../PlayerHand")
 
-[node name="MarginContainer" type="MarginContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="BuildingCategory" type="HBoxContainer" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="GroundButton" type="Button" parent="BuildingMenu/Control/BuildingInventoryUI/Panel/VBoxContainer/MarginContainer/BuildingCategory"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/font_size = 10
-text = "ground
-"
-script = ExtResource("15_cxvmb")
-
-[editable path="MainActionContainer"]
+[editable path="Layers"]
+[editable path="LayerRegistry"]
+[editable path="BuildingMenu"]
+[editable path="BuildingMenu/PlayerHand"]
+[editable path="BuildingMenu/CursorLayer/HandCursor"]
+[editable path="BuildingMenu/BuildingUI/BuildingExhibition"]
