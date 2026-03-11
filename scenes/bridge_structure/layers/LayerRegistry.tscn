@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dru83uuknb5g0"]
-
-[ext_resource type="Script" uid="uid://bam1qdc2o0pvb" path="res://scenes/bridge_structure/layers/LayerRegistry.cs" id="1_g8ttl"]
-
-[node name="LayerRegistry" type="Node"]
-script = ExtResource("1_g8ttl")

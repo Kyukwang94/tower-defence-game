@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://bcm2tmp2f728i"]
+
+[ext_resource type="Script" uid="uid://de0tj81a4pl13" path="res://scenes/systems/placement/interaction/BuildingMenu.cs" id="1_q3x8h"]
+[ext_resource type="Resource" uid="uid://78hk1ajeg4lf" path="res://data/data_base/ground_section.tres" id="2_r15qc"]
+[ext_resource type="Script" uid="uid://cjer844td55ua" path="res://shared/infrastructure/libraries/GameLibrary.cs" id="3_bo3hh"]
+[ext_resource type="PackedScene" uid="uid://bvi4srsx0qjoy" path="res://scenes/systems/placement/interaction/PlayerHand.tscn" id="4_8xnts"]
+[ext_resource type="PackedScene" uid="uid://cu5bxj6p7ygoj" path="res://scenes/systems/placement/visual/cursor/HandCursor.tscn" id="5_yahhj"]
+[ext_resource type="PackedScene" uid="uid://de61stqlen5tr" path="res://scenes/systems/exhibitions_galleries/exhibitions/building/BuildingExhibition.tscn" id="6_6lf7j"]
+
+[sub_resource type="Resource" id="Resource_45kae"]
+script = ExtResource("3_bo3hh")
+_groundSection = ExtResource("2_r15qc")
+metadata/_custom_type_script = "uid://bi5dhf3d1u1xp"
+
+[node name="BuildingMenu" type="Node"]
+script = ExtResource("1_q3x8h")
+_gameLibrary = SubResource("Resource_45kae")
+
+[node name="PlayerHand" parent="." instance=ExtResource("4_8xnts")]
+position = Vector2(2, 0)
+
+[node name="CursorLayer" type="CanvasLayer" parent="."]
+
+[node name="HandCursor" parent="CursorLayer" instance=ExtResource("5_yahhj")]
+
+[node name="BuildingUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BuildingExhibition" parent="BuildingUI" instance=ExtResource("6_6lf7j")]

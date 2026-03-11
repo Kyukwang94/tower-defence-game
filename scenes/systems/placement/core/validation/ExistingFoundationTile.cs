@@ -14,14 +14,14 @@ public sealed class ExistingFoundationTile : IGridCellAction
 		_map = map;	
 	}
 
-	public bool CanOnCell(Vector2I cell)
+	public bool TryOnCell(Vector2I cell)
 	{
-		return _map.GetCellSourceId(cell) != -1 && _origin.CanOnCell(cell) ;
+		return _map.GetCellSourceId(cell) != -1 && _origin.TryOnCell(cell) ;
 	}
 
 	public void OnCell(Vector2I cell)
 	{
-		if(CanOnCell(cell))
+		if(TryOnCell(cell))
 		{
 			_origin.OnCell(cell);
 		}
