@@ -1,11 +1,14 @@
+using Game.Enums;
 using Godot;
 using System.Collections.Generic;
 
+namespace Game.Placement.NullObject;
 
-public partial class NoPlaceable : IPlaceable
+public partial class NoPlaceable : IHandItem
 {
-	public static readonly IPlaceable Empty = new NoPlaceable();
-	
+	public ItemType Type => ItemType.None;
+	public static readonly NoPlaceable Instance = new();
+
 	public ICursorDesign CursorDesign()
 	{
 		return new DefaultPlayerHandDesign();
@@ -21,8 +24,18 @@ public partial class NoPlaceable : IPlaceable
 		return [];
 	}
 
-	public IGridCellAction PlacementAction(ILayerProvider mapProvider)
+	public IGridCellAction PlacementAction()
 	{
 		return new NoPlacementAction();
+	}
+
+	public IGridCellAction PreviewAction()
+	{
+		return new NoPreviewAction();
+	}
+
+	public void DisplayOn(IGallery gallery)
+	{
+		
 	}
 }

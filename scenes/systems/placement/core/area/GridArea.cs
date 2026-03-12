@@ -15,11 +15,11 @@ public sealed class GridArea : IGridArea
 		_end = end;
 	}
 
-	public void ApplyTo(IGridCellAction action)
+	public void ApplyTo(TileMapLayer layer, IGridCellAction action)
 	{
 		foreach (var cell in CalculateCells())
 		{
-			action.OnCell(cell);
+			action.OnCell(layer, cell);
 		}
 	}
 

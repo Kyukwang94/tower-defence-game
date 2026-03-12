@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class HandCursor : Node2D
+public partial class HandCursor : Node2D , ICursorCanvas
 {
-	[Export] private Sprite2D design;
+	[Export] private Sprite2D _visual;
 
 	
 	public override void _Process(double delta)
@@ -11,8 +11,14 @@ public partial class HandCursor : Node2D
 		GlobalPosition = GetViewport().GetMousePosition();
 	}
 
-	public void ChangeDesign(ICursorDesign cursorDesign)
+	public void SetTexture(Texture2D texture)
 	{
-		cursorDesign.Apply(design);		
+		_visual.Texture = texture;
 	}
+
+	public void SetColor(Color color)
+	{
+		_visual.Modulate = color;
+	}
+
 }

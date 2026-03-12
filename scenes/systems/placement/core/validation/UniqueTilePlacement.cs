@@ -6,34 +6,32 @@ namespace Game.Action.Validation;
 public sealed class UniqueTilePlacement : IGridCellAction
 {
 	private readonly IGridCellAction _origin;
-	private readonly TileMapLayer _map;
 	private readonly int _targetSourceId;
 	private readonly Vector2I _targetCoords;
 
-	public UniqueTilePlacement(IGridCellAction origin, TileMapLayer map , int heldSourceId ,Vector2I heldCoords)
+	public UniqueTilePlacement(IGridCellAction origin, int heldSourceId ,Vector2I heldCoords)
 	{
 		_origin 		= origin;
-		_map    		= map;
 		_targetSourceId = heldSourceId;
 		_targetCoords 	= heldCoords;
 	}
 
-	public bool TryOnCell(Vector2I cell)
+	public bool TryOnCell(TileMapLayer layer, Vector2I cell)
 	{
-		return CanOverlap(cell) && _origin.TryOnCell(cell);
+		return CanOverlap(layer, cell) && _origin.TryOnCell(layer, cell);
 	}
 
-	public void OnCell(Vector2I cell)
+	public void OnCell(TileMapLayer layer, Vector2I cell)
 	{
-		if(CanOverlap(cell))
+		if(CanOverlap(layer, cell))
 		{
-			_origin.OnCell(cell);
+			_origin.OnCell(layer, cell);
 		}
 	}
-	private bool CanOverlap(Vector2I cell)
+	private bool CanOverlap(TileMapLayer layer, Vector2I cell)
 	{
-		int existingSourceId =    _map.GetCellSourceId(cell);
-		Vector2I existingCoords = _map.GetCellAtlasCoords(cell);
+		int existingSourceId =    layer.GetCellSourceId(cell);
+		Vector2I existingCoords = layer.GetCellAtlasCoords(cell);
 
 		if(existingSourceId == _targetSourceId && existingCoords == _targetCoords)
 		{

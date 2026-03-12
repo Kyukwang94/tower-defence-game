@@ -3,11 +3,9 @@ using System;
 
 public sealed class DefaultPlayerHandDesign : ICursorDesign
 {
-	public void Apply(Sprite2D cursorVisual)
+	public void Apply(ICursorCanvas canvas)
 	{
-		cursorVisual.Texture  = default;
-		cursorVisual.Modulate = default;
-		cursorVisual.Centered = default;
+		canvas.SetTexture(null);
+		canvas.SetColor	 (default);
 	}
-
 }

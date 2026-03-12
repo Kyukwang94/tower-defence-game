@@ -1,12 +1,14 @@
 using Godot;
 using System.Collections.Generic;
+using Game.Enums;
+
 public interface IPlaceable
 {
-	IGridCellAction PlacementAction(ILayerProvider mapProvider);
-
-	ICursorDesign   CursorDesign();	
-
+	ItemType Type {get;}
+	
+	IGridCellAction PlacementAction();
+	IGridCellAction PreviewAction  ();
+	IGridArea Area(Vector2I start, Vector2I end);
 	IEnumerable<Vector2I> OccupiedOffsets();
 
-	public IGridArea Area(Vector2I start, Vector2I end);
 }

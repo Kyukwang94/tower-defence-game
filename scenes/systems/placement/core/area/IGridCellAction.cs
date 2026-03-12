@@ -3,7 +3,7 @@ using System;
 
 public interface  IGridCellAction
 {
-	void OnCell(Vector2I cell);
+	void OnCell(TileMapLayer layer ,Vector2I cell);
 
-	bool TryOnCell(Vector2I cell);
+	bool TryOnCell(TileMapLayer layer ,Vector2I cell);
 }

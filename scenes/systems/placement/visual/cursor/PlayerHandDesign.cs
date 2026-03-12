@@ -10,11 +10,10 @@ public sealed class PlayerHandDesign : ICursorDesign
 		_itemTexture = itemTexture;
 	}
 
-	public void Apply(Sprite2D cursorVisual)
+	public void Apply(ICursorCanvas cursorCanvas)
 	{
-		cursorVisual.Texture  = _itemTexture;
-		cursorVisual.Modulate = new Color(1, 1, 1, 0.7f);
-		cursorVisual.Centered = true;
+		cursorCanvas.SetColor(new Color(1,1,1,0.7f));
+		cursorCanvas.SetTexture(_itemTexture);
 	}
-	
+
 }

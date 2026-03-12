@@ -3,12 +3,13 @@ using System;
 using Game.Action.Validation;
 using System.Collections.Generic;
 using Game.Placement.Core.Area;
-
-public sealed class GroundTile : IDisplayable , IButtonInfo , IPlaceable
+using Game.Enums;
+public sealed class GroundTile : IButtonInfo , IHandItem
 {
 	// Ground 받아야함 Resource 를
 	private readonly GroundResource _groundResource;
 	
+	public ItemType Type => ItemType.Ground;
 	public Texture2D Icon => _groundResource.Icon;
 	public string Label => _groundResource.Name;
 
@@ -28,14 +29,12 @@ public sealed class GroundTile : IDisplayable , IButtonInfo , IPlaceable
 	{
 		return new PlayerHandDesign (_groundResource.Icon);
 	}
-	
 
 	//어디에 속해야 할지를 여기서처리하기 때문에 추후 Building , Unit모두 범용 가능함.
-	public IGridCellAction PlacementAction(ILayerProvider mapProvider)
-	{
-		TileMapLayer mapLayer = mapProvider.GetLayer(_groundResource.TargetLayer);
-		
-		IGridCellAction action = new TilePaint(mapLayer, _groundResource.SourceId , _groundResource.AtlasCoords);
+	public IGridCellAction PlacementAction()
+	{	
+
+		IGridCellAction action = new TilePaint(_groundResource.SourceId , _groundResource.AtlasCoords);
 
 		
 		//Variant Rules
@@ -43,15 +42,16 @@ public sealed class GroundTile : IDisplayable , IButtonInfo , IPlaceable
 		{
 			foreach (var rule in _groundResource.SpecificRules)
 			{
-				action = rule.Wrap(action, mapLayer);
+				action = rule.Wrap(action);
 			}
 		}
-		//Universal Laws
-		action = new ExistingFoundationTile (action , mapLayer);
-		action = new UniqueTilePlacement    (action , mapLayer, _groundResource.SourceId , _groundResource.AtlasCoords);
 		
-
+		//Universal Laws
+		action = new ExistingFoundationTile (action);
+		action = new UniqueTilePlacement    (action ,_groundResource.SourceId , _groundResource.AtlasCoords);
+		
 		GD.Print(_groundResource.Name);
+		
 		return action;
 	}
 
@@ -69,4 +69,14 @@ public sealed class GroundTile : IDisplayable , IButtonInfo , IPlaceable
 		//Dragging 되는 모든 영역 가능.
 		return new GridArea(start, end);
 	}
+
+	public IGridCellAction PreviewAction()
+	{
+		IGridCellAction action = new PlacementPreviewAction(
+			PlacementAction()
+		);
+
+		return action;
+	}
+
 }

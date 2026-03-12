@@ -7,11 +7,13 @@ public partial class EmprtyArea : IGridArea
 	public static readonly EmprtyArea Instance = new EmprtyArea();
 
 	private EmprtyArea() { }
-	
-	public void ApplyTo(IGridCellAction action)
+
+
+	public void ApplyTo(TileMapLayer layer, IGridCellAction action)
 	{
-	
+		
 	}
+
 
 	public IEnumerable<Vector2I> CalculateCells()
 	{

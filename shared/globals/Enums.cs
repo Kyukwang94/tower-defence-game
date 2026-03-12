@@ -28,6 +28,7 @@ namespace Game.Enums
 		Decoration,
 		Object,
 		Unit,
+		None,
 	}
 	public enum ToolType
 	{
