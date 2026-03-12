@@ -17,11 +17,11 @@ _playerHand = NodePath("PlayerHand")
 _buildingItemsGallery = NodePath("BuildingUI/BuildingExhibition/BuildingExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/BuildingItemsGallery")
 _groundGalleryButton = NodePath("BuildingUI/BuildingExhibition/BuildingExhibitionPanel/VBoxContainer/MarginContainer/BuildingCategory/GroundGalleryBtn")
 
-[node name="PlayerHand" parent="BuildingMenu" index="0" node_paths=PackedStringArray("_groundLayer", "_placementPreviewLayer", "_handCursor", "_world")]
+[node name="PlayerHand" parent="BuildingMenu" index="0" node_paths=PackedStringArray("_groundLayer", "_placementPreviewLayer", "_handCursor", "_stage")]
 _groundLayer = NodePath("../../Layers/GroundLayer")
 _placementPreviewLayer = NodePath("../../Layers/PlacementPreviewLayer")
 _handCursor = NodePath("../CursorLayer/HandCursor")
-_world = NodePath("../../Stage")
+_stage = NodePath("../../Stage")
 
 [node name="HandCursor" parent="BuildingMenu/CursorLayer" index="0" node_paths=PackedStringArray("_visual")]
 _visual = NodePath("Sprite2D")
@@ -30,6 +30,7 @@ _visual = NodePath("Sprite2D")
 playerHand = NodePath("../../../../../../../../PlayerHand")
 
 [editable path="Layers"]
+[editable path="Stage"]
 [editable path="BuildingMenu"]
 [editable path="BuildingMenu/PlayerHand"]
 [editable path="BuildingMenu/CursorLayer/HandCursor"]
