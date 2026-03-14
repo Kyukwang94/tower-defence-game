@@ -4,5 +4,5 @@ using System;
 
 public interface ILayerProvider
 {
-	TileMapLayer GetLayer(ItemType itemType);
+	Godot.TileMapLayer GetLayer(ItemType itemType);
 }

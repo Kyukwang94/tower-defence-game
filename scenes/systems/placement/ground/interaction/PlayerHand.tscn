@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvi4srsx0qjoy"]
+
+[ext_resource type="Script" uid="uid://n8xko2xfnhdd" path="res://scenes/systems/placement/ground/interaction/PlayerHand.cs" id="1_oel26"]
+
+[node name="PlayerHand" type="Node2D" node_paths=PackedStringArray("_groundLayer", "_placementPreviewLayer", "_handCursor", "layerRegistry")]
+script = ExtResource("1_oel26")
+_groundLayer = NodePath("")
+_placementPreviewLayer = NodePath("")
+_handCursor = NodePath("")
+layerRegistry = NodePath("")

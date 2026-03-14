@@ -84,3 +84,6 @@ theme_override_font_sizes/font_size = 10
 text = "ground
 "
 script = ExtResource("2_t03qn")
+
+[node name="BuildingGalleryBtn" type="Button" parent="BuildingExhibitionPanel/VBoxContainer/MarginContainer/BuildingCategory"]
+layout_mode = 2

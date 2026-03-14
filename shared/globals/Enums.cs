@@ -4,6 +4,8 @@ using System;
 
 namespace Game.Enums
 {
+
+	//SpecificGroundRequired
 	[Flags]
 	public enum GroundProperties
 	{
@@ -13,6 +15,8 @@ namespace Game.Enums
 		Liquid      = 1 << 2,
 		Hazard      = 1 << 3,
 	}
+	
+	
 	public enum GroundElement
 	{
 		Fire,
@@ -20,19 +24,25 @@ namespace Game.Enums
 		Nature,
 		Tech,
 	}
+	
 
-	[Flags]
 	public enum ItemType
 	{
 		Ground,
 		Decoration,
-		Object,
+		Building,
 		Unit,
 		None,
 	}
-	public enum ToolType
+
+	[Flags]
+	public enum OccupancyType
 	{
-		Paint,
-		Erase,
-	}	
+		None     = 0,
+		Building = 1 << 0,
+		Unit     = 1 << 1,
+		Terrain  = 1 << 2,
+		Obstacle = 1 << 3
+	}
+	
 }

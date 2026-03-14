@@ -1,36 +1,65 @@
-[gd_scene load_steps=4 format=3 uid="uid://crlnp2khlxkt7"]
+[gd_scene load_steps=8 format=3 uid="uid://crlnp2khlxkt7"]
 
+[ext_resource type="PackedScene" uid="uid://busk4cy401gdp" path="res://scenes/bridges/layers/Board.tscn" id="2_7fm4t"]
 [ext_resource type="PackedScene" uid="uid://evt0via71j6y" path="res://scenes/levels/DungeonLayers.tscn" id="2_567yd"]
-[ext_resource type="PackedScene" uid="uid://dru83uuknb5g0" path="res://scenes/bridges/layers/Stage.tscn" id="3_mppok"]
-[ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://scenes/systems/placement/interaction/BuildingMenu.tscn" id="5_mppok"]
+[ext_resource type="Texture2D" uid="uid://c2rjmi5hm402q" path="res://assets/ui/validation/occupancy.aseprite" id="2_mppok"]
+[ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://scenes/systems/placement/ground/interaction/BuildingMenu.tscn" id="5_mppok"]
+
+[sub_resource type="TileSet" id="TileSet_567yd"]
+tile_size = Vector2i(32, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rmst"]
+resource_name = "Occupancy"
+texture = ExtResource("2_mppok")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7fm4t"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_4rmst")
 
 [node name="Dungeon" type="Node2D"]
 
 [node name="Layers" parent="." instance=ExtResource("2_567yd")]
 
-[node name="Stage" parent="." node_paths=PackedStringArray("_groundLayer", "_previewLayer") instance=ExtResource("3_mppok")]
+[node name="GroundLayer" parent="Layers" index="1"]
+position = Vector2(0, 0)
+
+[node name="BuildingLayer" type="TileMapLayer" parent="Layers"]
+
+[node name="InteractionLayer" type="TileMapLayer" parent="Layers"]
+tile_set = SubResource("TileSet_567yd")
+
+[node name="OccupancyLayer" type="TileMapLayer" parent="Layers"]
+tile_set = SubResource("TileSet_7fm4t")
+
+[node name="Board" parent="." node_paths=PackedStringArray("_groundLayer", "_buildingLayer", "_previewLayer", "_interactionLayer", "_occupancyLayer") instance=ExtResource("2_7fm4t")]
 _groundLayer = NodePath("../Layers/GroundLayer")
+_buildingLayer = NodePath("../Layers/BuildingLayer")
 _previewLayer = NodePath("../Layers/PlacementPreviewLayer")
+_interactionLayer = NodePath("../Layers/InteractionLayer")
+_occupancyLayer = NodePath("../Layers/OccupancyLayer")
 
 [node name="BuildingMenu" parent="." node_paths=PackedStringArray("_playerHand", "_buildingItemsGallery", "_groundGalleryButton") instance=ExtResource("5_mppok")]
 _playerHand = NodePath("PlayerHand")
 _buildingItemsGallery = NodePath("BuildingUI/BuildingExhibition/BuildingExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/BuildingItemsGallery")
 _groundGalleryButton = NodePath("BuildingUI/BuildingExhibition/BuildingExhibitionPanel/VBoxContainer/MarginContainer/BuildingCategory/GroundGalleryBtn")
 
-[node name="PlayerHand" parent="BuildingMenu" index="0" node_paths=PackedStringArray("_groundLayer", "_placementPreviewLayer", "_handCursor", "_stage")]
-_groundLayer = NodePath("../../Layers/GroundLayer")
-_placementPreviewLayer = NodePath("../../Layers/PlacementPreviewLayer")
+[node name="PlayerHand" parent="BuildingMenu" index="0" node_paths=PackedStringArray("_board", "_handCursor")]
+_board = NodePath("../../Board")
 _handCursor = NodePath("../CursorLayer/HandCursor")
-_stage = NodePath("../../Stage")
 
-[node name="HandCursor" parent="BuildingMenu/CursorLayer" index="0" node_paths=PackedStringArray("_visual")]
-_visual = NodePath("Sprite2D")
+[node name="BuildingUI" parent="BuildingMenu" index="2"]
+offset_left = -1.0
+offset_right = -1.0
 
 [node name="BuildingItemsGallery" parent="BuildingMenu/BuildingUI/BuildingExhibition/BuildingExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" index="0" node_paths=PackedStringArray("playerHand")]
 playerHand = NodePath("../../../../../../../../PlayerHand")
 
+[node name="BuildingGalleryBtn" parent="BuildingMenu/BuildingUI/BuildingExhibition/BuildingExhibitionPanel/VBoxContainer/MarginContainer/BuildingCategory" index="1"]
+text = "building"
+
 [editable path="Layers"]
-[editable path="Stage"]
 [editable path="BuildingMenu"]
 [editable path="BuildingMenu/PlayerHand"]
 [editable path="BuildingMenu/CursorLayer/HandCursor"]

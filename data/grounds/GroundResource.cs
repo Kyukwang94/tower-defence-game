@@ -11,9 +11,9 @@ public partial class GroundResource : Resource
 
 	[ExportGroup("Ground Info")]
 	[Export] public GroundProperties Properties {get; set;}
-	[Export] public GroundElement 	 Element{get; set;}
-	[Export] public ItemType TargetLayer {get; set;}	
-
+	[Export] public GroundElement 	 Element	{get; set;}
+	[Export] public ItemType Type {get; set;}	
+	
 
 	[ExportGroup ("Visuals")]
 	[Export] public Texture2D Icon {get; set;}
@@ -22,12 +22,15 @@ public partial class GroundResource : Resource
 	[Export] public int AlternativeTileId {get; set;} = 0;
 
 	[ExportGroup("Physical")]
-	[Export] public bool IsWalkable     {get; set;} = false;
-	[Export] public bool IsDestructible {get; set;} = false;
+	[Export] public bool IsWalkable         {get; set;} = false;
+	[Export] public bool IsDestructible     {get; set;} = false;
+	
 
 
 	[ExportGroup("Placement")]
 	[Export] public Godot.Collections.Array<FoundationRuleResource> SpecificRules { get; set; }
+	[Export] public OccupancyType MyType;
+	[Export] public OccupancyType ConflictsWith;
 	public int deployArea = 1;
 
 	

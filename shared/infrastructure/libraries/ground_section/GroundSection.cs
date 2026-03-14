@@ -14,7 +14,7 @@ public partial class GroundSection : Resource
 		foreach (var item in _items)
 		{
 			GD.Print(item.Name , item.AtlasCoords);
-			new GroundTile(item).DisplayOn(gallery);
+			new GroundTileItem(item).DisplayOn(gallery);
 		}
 	}
 }

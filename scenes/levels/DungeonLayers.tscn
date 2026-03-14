@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://evt0via71j6y"]
 
-[ext_resource type="TileSet" uid="uid://6se7yv0i3tct" path="res://scenes/systems/placement/assets/placementValidation.tres" id="1_xhfaj"]
+[ext_resource type="TileSet" uid="uid://6se7yv0i3tct" path="res://scenes/systems/placement/ground/assets/placementValidation.tres" id="1_xhfaj"]
 [ext_resource type="TileSet" uid="uid://5ofd4hgkosgm" path="res://data/grounds/environmentTiles.tres" id="2_2cgwk"]
 
 [node name="DungeonLayers" type="Node"]

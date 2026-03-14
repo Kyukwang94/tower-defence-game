@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c36lbiyerugky"]
+
+[ext_resource type="Texture2D" uid="uid://b04wa6aefnd2s" path="res://assets/entity/building/basicRedHouse.aseprite" id="1_gdths"]
+
+[node name="BasicRedHouse" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gdths")

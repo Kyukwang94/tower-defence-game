@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://busk4cy401gdp"]
+
+[ext_resource type="Script" uid="uid://chmi44cs5d2gs" path="res://scenes/bridges/layers/Board.cs" id="1_2ywxv"]
+
+[node name="Board" type="Node"]
+script = ExtResource("1_2ywxv")
