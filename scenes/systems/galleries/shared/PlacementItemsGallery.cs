@@ -7,7 +7,7 @@ public partial class PlacementItemsGallery : Node , IGallery
 
 	private readonly HashSet<string> _buttons = [];
 
-	public void Show(IButtonInfo item)
+	public void Show(IDisplayable item)
 	{
 		Button mockBtn = new Button();
 		
@@ -19,7 +19,7 @@ public partial class PlacementItemsGallery : Node , IGallery
 		mockBtn.Pressed += () =>
 		{
 			GD.Print($"[Gallery] {item.Label} Button Pressed!");
-			item.Selected(playerHand);
+			item.Select(playerHand);
 		};
 		
 		if(!_buttons.Contains(item.Label)) 
@@ -42,4 +42,5 @@ public partial class PlacementItemsGallery : Node , IGallery
             }
         }
     }
+
 }

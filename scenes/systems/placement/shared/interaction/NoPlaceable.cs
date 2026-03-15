@@ -1,45 +1,32 @@
 using Game.Enums;
 using Godot;
 using System.Collections.Generic;
+using System;
 
 namespace Game.Placement.NullObject;
 
-public partial class NoPlaceable : IHandItem
+public sealed record NoHandItem : IHandItem
 {
-	public ItemType Type 		 	   => ItemType.None;
-	public OccupancyType OccupancyType => OccupancyType.None;
-	public static readonly NoPlaceable Instance = new();
+    public static readonly NoHandItem Instance = new();
+    
+	private NoHandItem() { }
+    
+    public IPlaceable ToGrid() => NoPlaceable.Instance;
+    
+    public ICursorDesign CursorDesign() => new DefaultPlayerHandDesign();
+}
 
+public sealed record NoPlaceable : IPlaceable
+{
+    public static readonly NoPlaceable Instance = new();
+    
+	private NoPlaceable() { } // 외부 생성 방지
 
-	public ICursorDesign CursorDesign()
-	{
-		return new DefaultPlayerHandDesign();
-	}
+    public ItemType Type => ItemType.None;
 
-	public IGridArea Area(Vector2I start, Vector2I end)
-	{
-		return EmprtyArea.Instance;	
-	}
+    public IGridArea Area(Vector2I start, Vector2I end) => EmptyArea.Instance;
 
-	public IEnumerable<Vector2I> OccupiedOffsets()
-	{
-		return [];
-	}
+    public IEnumerable<Vector2I> OccupiedOffsets() => Array.Empty<Vector2I>();
 
-	public IGridCellAction PlacementAction(LayerBag bag)
-	{
-		return new NoPlacementAction();
-	}
-
-	public IGridCellAction PreviewAction()
-	{
-		return new NoPreviewAction();
-	}
-
-	public void DisplayOn(IGallery gallery)
-	{
-		
-	}
-	
-
+    public IGridCellAction PlacementAction(LayerBag bag) => new NoPlacementAction();
 }

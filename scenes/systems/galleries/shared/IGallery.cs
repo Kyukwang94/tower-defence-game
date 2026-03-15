@@ -3,7 +3,7 @@ using System;
 
 public interface IGallery
 {
-	void Show(IButtonInfo displayable);
+	void Show(IDisplayable displayable);
 	void ClearAll();
 }
 

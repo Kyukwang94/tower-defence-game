@@ -26,7 +26,7 @@ public partial class Board : Node , IBoard
 		_occupancyLayer.Hide();
 	}
 
-	public void ActOn(IHandItem item, IGridArea area)
+	public void ActOn(IPlaceable item, IGridArea area)
 	{	
 		if(!_worldMap.TryGetValue(item.Type, out TileMapLayer layer))
 		{
@@ -37,7 +37,7 @@ public partial class Board : Node , IBoard
 		area.ApplyTo(layer, placementAction);
 	}
 	
-	public void PreviewOn(IHandItem item, IGridArea area)
+	public void PreviewOn(IPlaceable item, IGridArea area)
 	{
 		if (!_worldMap.TryGetValue(item.Type, out TileMapLayer itemTargetLayer))
 		{
@@ -63,4 +63,7 @@ public partial class Board : Node , IBoard
 	{
 		_previewLayer.Clear();
 	}
+
+	
+
 } 

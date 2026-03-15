@@ -5,15 +5,13 @@ public partial class PlayerHand : Node2D
 {	
 	[Export] private Board _board;
 	
-	private IHandItem _itemInHand = NoPlaceable.Instance;
+	private IHandItem _itemInHand = NoHandItem.Instance;
 	
 	[Export] private HandCursor _handCursor;
 
 	private bool     _isDragging;
     private Vector2I _dragStartCell;
     private Vector2I _dragEndCell;
-
-	
 
 	public override void _UnhandledInput(InputEvent @event)
 	{			
@@ -49,9 +47,9 @@ public partial class PlayerHand : Node2D
 			_isDragging = false;
 			_dragEndCell = CurrentMouseCell();
 
-			IGridArea gridArea = _itemInHand.Area(_dragStartCell, _dragEndCell);
+			IGridArea gridArea = _itemInHand.ToGrid().Area(_dragStartCell, _dragEndCell);
 			
-			_board.ActOn(_itemInHand, gridArea);
+			_board.ActOn(_itemInHand.ToGrid(), gridArea);
 
 			GetViewport().SetInputAsHandled();
 			return;
@@ -79,8 +77,8 @@ public partial class PlayerHand : Node2D
 	}
 	private void UpdatePreview()
 	{
-		IGridArea area = _itemInHand.Area(_dragStartCell, _dragEndCell);    
-		_board.PreviewOn(_itemInHand, area);
+		IGridArea area = _itemInHand.ToGrid().Area(_dragStartCell, _dragEndCell);    
+		_board.PreviewOn(_itemInHand.ToGrid(), area);
 	}
 	
 	private Vector2I CurrentMouseCell()
@@ -94,7 +92,7 @@ public partial class PlayerHand : Node2D
 
 		_board.PreviewOff();
 		
-		_itemInHand = NoPlaceable.Instance; 		
+		_itemInHand = NoHandItem.Instance; 		
 		_itemInHand.CursorDesign().Apply(_handCursor);
 		
 		GetViewport().SetInputAsHandled();

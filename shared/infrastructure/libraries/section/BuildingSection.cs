@@ -14,7 +14,7 @@ public partial class BuildingSection : Resource
 		foreach (var item in _items)
 		{
 			GD.Print(item.Name, item.AtlasCoords);
-			new BuildingItem(item).DisplayOn(gallery);
+			new BuildingBluePrint(item).ToDisplayableItem().DisplayOn(gallery);
 		}
 	}
 }

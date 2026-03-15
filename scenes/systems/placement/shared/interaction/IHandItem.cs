@@ -1,4 +1,9 @@
 using Godot;
-using System;
+using System.Collections.Generic;
+using Game.Enums;
 
-public interface IHandItem : IPlaceable , ICursorSource , IDisplayable{ }
+public interface IHandItem
+{
+	public ICursorDesign CursorDesign();
+	public IPlaceable ToGrid();
+}
