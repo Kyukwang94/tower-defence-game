@@ -34,7 +34,7 @@ public sealed class GroundTileItem : IButtonInfo , IHandItem
 	}
 	
 	//occupancyLayer를 Building쪽에서 주입시켜야하는데 ..
-	public IGridCellAction PlacementAction(LayerBag layerBag)
+	public IGridCellAction PlacementAction(LayerBag layerBag)	
 	{
 		IGridCellAction action = new GroundPaint(_resource.SourceId , _resource.AtlasCoords);
 

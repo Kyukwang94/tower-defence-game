@@ -6,15 +6,15 @@ using Game.Enums;
 
 public partial class BuildingItem : IHandItem , IButtonInfo
 {
-	private readonly BuildingResource _buildingResource;
+	private readonly BuildingResource _resource;
 
-	public ItemType  Type => _buildingResource.Type;
-	public Texture2D Icon => _buildingResource.Icon;
-	public string    Label  =>  _buildingResource.Name;
+	public ItemType  Type => 	_resource.Type;
+	public Texture2D Icon => 	_resource.Icon;
+	public string    Label  =>  _resource.Name;
 
-	public BuildingItem(BuildingResource buildingResource)
+	public BuildingItem(BuildingResource resource)
 	{
-		_buildingResource = buildingResource;
+		_resource = resource;
 	}
 
 	public IGridArea Area(Vector2I start, Vector2I end)
@@ -24,7 +24,7 @@ public partial class BuildingItem : IHandItem , IButtonInfo
 
 	public ICursorDesign CursorDesign()
 	{
-		return new PlayerHandDesign(_buildingResource.Icon);
+		return new PlayerHandDesign(_resource.Icon);
 	}
 
 	public void DisplayOn(IGallery gallery)
@@ -40,13 +40,13 @@ public partial class BuildingItem : IHandItem , IButtonInfo
 
 	public IGridCellAction PlacementAction(LayerBag layerBag)
 	{		
-		IGridCellAction action = new BuildingSpawnAction(_buildingResource.scene);
+		IGridCellAction action = new BuildingSpawnAction(_resource.scene);
 						
 						action = new OccupancyAction(
 							action,
 							layerBag.occupancy,
-							_buildingResource.MyType,
-							_buildingResource.ConflictsWith);
+							_resource.MyType,
+							_resource.ConflictsWith);
 						
 						action = new ExistingFoundationTile(layerBag.ground,action);
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcm2tmp2f728i"]
+
+[ext_resource type="Script" uid="uid://of51pjea0oak" path="res://scenes/systems/placement/shared/interaction/PlacementMenu.cs" id="1_wtky7"]
+[ext_resource type="PackedScene" uid="uid://ms6p3ftv51cp" path="res://scenes/systems/placement/shared/interaction/PlayerHand.tscn" id="4_8xnts"]
+[ext_resource type="PackedScene" uid="uid://cu5bxj6p7ygoj" path="res://scenes/systems/placement/shared/visual/cursor/HandCursor.tscn" id="5_yahhj"]
+[ext_resource type="PackedScene" uid="uid://de61stqlen5tr" path="res://scenes/systems/galleries/shared/BuildingExhibition.tscn" id="6_6lf7j"]
+
+[node name="PlacementMenu" type="Node"]
+script = ExtResource("1_wtky7")
+
+[node name="CursorLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerHand" parent="CursorLayer" instance=ExtResource("4_8xnts")]
+
+[node name="HandCursor" parent="CursorLayer" instance=ExtResource("5_yahhj")]
+
+[node name="PlacementUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PlacementExhibition" parent="PlacementUI" instance=ExtResource("6_6lf7j")]
+
+[editable path="CursorLayer/HandCursor"]

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://7620slicsmb4"]
-
-[ext_resource type="Script" uid="uid://chmi44cs5d2gs" path="res://scenes/bridges/layers/Board.cs" id="1_o21ra"]
-
-[node name="Stage" type="Node"]
-script = ExtResource("1_o21ra")

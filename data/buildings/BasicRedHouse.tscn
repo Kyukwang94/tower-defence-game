@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c36lbiyerugky"]
+
+[ext_resource type="Script" uid="uid://t521o3671a8n" path="res://data/buildings/Building.cs" id="1_j1lu2"]
+[ext_resource type="Texture2D" uid="uid://b04wa6aefnd2s" path="res://assets/entity/building/basicRedHouse.aseprite" id="2_cx5xy"]
+
+[node name="BasicRedHouse" type="Node2D"]
+script = ExtResource("1_j1lu2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cx5xy")

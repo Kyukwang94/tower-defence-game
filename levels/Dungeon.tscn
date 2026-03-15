@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://enjon3jy3a67"]
+
+[ext_resource type="PackedScene" uid="uid://bycnuxcd6m87r" path="res://scenes/layers/Board.tscn" id="1_5ud45"]
+[ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://scenes/systems/placement/shared/interaction/PlacementMenu.tscn" id="2_kysa1"]
+[ext_resource type="Resource" uid="uid://bnlsw3ddst45y" path="res://data/data_base/game_library.tres" id="3_dft6v"]
+[ext_resource type="Script" uid="uid://bdg1i3vhcebxw" path="res://scenes/systems/galleries/shared/PlacementItemsGallery.cs" id="4_jmxv8"]
+
+[node name="Dungeon" type="Node2D"]
+
+[node name="Board" parent="." node_paths=PackedStringArray("_groundLayer", "_buildingLayer", "_previewLayer", "_interactionLayer", "_occupancyLayer") instance=ExtResource("1_5ud45")]
+_groundLayer = NodePath("GroundLayer")
+_buildingLayer = NodePath("BuildingLayer")
+_previewLayer = NodePath("PlacementPreviewLayer")
+_interactionLayer = NodePath("InteractionLayer")
+_occupancyLayer = NodePath("OccupancyLayer")
+
+[node name="PlacementMenu" parent="." node_paths=PackedStringArray("_playerHand", "_placementGallery", "_groundSectionGalleryBtn", "_buildingSectionGalleryBtn") instance=ExtResource("2_kysa1")]
+_playerHand = NodePath("CursorLayer/PlayerHand")
+_placementGallery = NodePath("PlacementUI/PlacementExhibition/PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/PlacementItemsGallery")
+_groundSectionGalleryBtn = NodePath("PlacementUI/PlacementExhibition/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory/GroundGalleryBtn")
+_buildingSectionGalleryBtn = NodePath("PlacementUI/PlacementExhibition/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory/BuildingGalleryBtn")
+_gameLibrary = ExtResource("3_dft6v")
+
+[node name="PlayerHand" parent="PlacementMenu/CursorLayer" index="0" node_paths=PackedStringArray("_board", "_handCursor")]
+_board = NodePath("../../../Board")
+_handCursor = NodePath("../HandCursor")
+
+[node name="PlacementItemsGallery" parent="PlacementMenu/PlacementUI/PlacementExhibition/PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" index="0" node_paths=PackedStringArray("playerHand")]
+script = ExtResource("4_jmxv8")
+playerHand = NodePath("../../../../../../../../CursorLayer/PlayerHand")
+
+[editable path="Board"]
+[editable path="PlacementMenu"]
+[editable path="PlacementMenu/CursorLayer/HandCursor"]
+[editable path="PlacementMenu/PlacementUI/PlacementExhibition"]

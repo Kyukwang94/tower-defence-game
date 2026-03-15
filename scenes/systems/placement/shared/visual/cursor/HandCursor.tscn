@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu5bxj6p7ygoj"]
+
+[ext_resource type="Script" uid="uid://c7fofh4i8s4ac" path="res://scenes/systems/placement/shared/visual/cursor/HandCursor.cs" id="1_il6av"]
+
+[node name="HandCursor" type="Node2D" node_paths=PackedStringArray("_visual")]
+script = ExtResource("1_il6av")
+_visual = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
