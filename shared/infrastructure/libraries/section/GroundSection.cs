@@ -1,4 +1,6 @@
 using Godot;
+using System.Linq;
+using System.Collections.Generic;
 
 [GlobalClass]
 public partial class GroundSection : Resource
@@ -7,10 +9,12 @@ public partial class GroundSection : Resource
 
 	public void Accept(IGallery gallery)
 	{
-		foreach (var item in _items)
-		{
-			GD.Print(item.Name , item.AtlasCoords);
-			new GroundTileItem(item).DisplayOn(gallery);
-		}
+		gallery.ClearAll();
+
+		_items.Select(item => new GroundTileItem(item))
+			.ToList()
+			.ForEach(tile => tile.DisplayOn(gallery));
+		
 	}
 }
+	

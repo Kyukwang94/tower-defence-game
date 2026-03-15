@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://5ofd4hgkosgm"]
+[gd_resource type="TileSet" format=3 uid="uid://5ofd4hgkosgm"]
 
 [ext_resource type="Texture2D" uid="uid://bdgsc1hadms1v" path="res://assets/enviroment/ground.aseprite" id="1_eou8i"]
 

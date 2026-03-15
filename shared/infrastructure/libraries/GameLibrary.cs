@@ -12,6 +12,5 @@ public partial class GameLibrary : Resource
 	{
 		if(type == ItemType.Ground)   _groundSection.Accept(visitor);		
 		if(type == ItemType.Building) _buildingSection.Accept(visitor);
-
 	}
 }

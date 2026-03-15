@@ -19,7 +19,6 @@ public partial class Board : Node , IBoard
 		{
         	{ ItemType.Ground  , _groundLayer },
 			{ ItemType.Building, _buildingLayer},
-			//새로운 아이템 추후 추가
         };
 
 		_layerBag = new LayerBag (_groundLayer,_occupancyLayer,_buildingLayer,_previewLayer);

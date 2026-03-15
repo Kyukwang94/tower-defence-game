@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GroundResource" load_steps=5 format=3 uid="uid://8881v7ky0tcy"]
+[gd_resource type="Resource" script_class="GroundResource" format=3 uid="uid://8881v7ky0tcy"]
 
 [ext_resource type="Texture2D" uid="uid://bdgsc1hadms1v" path="res://assets/enviroment/ground.aseprite" id="1_plc7v"]
 [ext_resource type="Script" uid="uid://dqb8t7am0vke3" path="res://data/grounds/GroundResource.cs" id="2_plc7v"]

@@ -104,12 +104,8 @@ public partial class PlayerHand : Node2D
 	
 	public void Grasp(IHandItem item)
 	{
-		GD.Print($"[PlayerHand (Grasp)]{_itemInHand.GetType().Name}");
 		_itemInHand = item;			
-		var design = _itemInHand.CursorDesign();
-    	GD.Print($"[Debug] 디자인 객체 타입: {design.GetType().Name}");
+		var design = _itemInHand.CursorDesign();    	
 		design.Apply(_handCursor);
-		
-		// _itemInHand.CursorDesign().Apply(_handCursor);
 	}
 }

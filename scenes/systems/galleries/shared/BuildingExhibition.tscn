@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://de61stqlen5tr"]
+[gd_scene format=3 uid="uid://de61stqlen5tr"]
 
-[ext_resource type="Script" uid="uid://yyjcxvlfjtr0" path="res://scenes/systems/galleries/placeableItems/BuildingItemsGallery.cs" id="1_u1edv"]
+[ext_resource type="Script" uid="uid://bdg1i3vhcebxw" path="res://scenes/systems/galleries/shared/PlacementItemsGallery.cs" id="1_u1edv"]
 [ext_resource type="Script" uid="uid://d35rpbqgvtbsk" path="res://scenes/systems/galleries/ground/GroundGalleryBtn.cs" id="2_qdpei"]
 [ext_resource type="Script" uid="uid://50vy38mh4clh" path="res://scenes/systems/galleries/buildings/BuildingGalleryBtn.cs" id="3_qdpei"]
 

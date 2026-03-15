@@ -40,4 +40,6 @@ public partial class NoPlaceable : IHandItem
 	{
 		
 	}
+	
+
 }
