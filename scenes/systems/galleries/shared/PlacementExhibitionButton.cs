@@ -4,7 +4,7 @@ using System;
 public partial class PlacementExhibitionButton : Button
 {
 	[Export] CanvasLayer PlacementExhibitionPanel;
-	
+
 	public override void _Ready()
 	{
 		Pressed += OnButtonPressed;
@@ -12,7 +12,7 @@ public partial class PlacementExhibitionButton : Button
 
 	public void OnButtonPressed()
 	{
-		if(PlacementExhibitionPanel != null)
+		if (PlacementExhibitionPanel != null)
 		{
 			PlacementExhibitionPanel.Visible = !PlacementExhibitionPanel.Visible;
 		}
@@ -21,5 +21,5 @@ public partial class PlacementExhibitionButton : Button
 			GD.PrintErr("PlacementExhibitionUI가 할당되지 않았습니다");
 		}
 	}
-	
+
 }
