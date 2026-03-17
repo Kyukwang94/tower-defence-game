@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://de61stqlen5tr"]
+
+[ext_resource type="Script" uid="uid://bdg1i3vhcebxw" path="res://scenes/systems/galleries/shared/PlacementItemsGallery.cs" id="1_lgc7n"]
+[ext_resource type="Script" uid="uid://d35rpbqgvtbsk" path="res://scenes/systems/galleries/ground/GroundGalleryBtn.cs" id="2_a0w02"]
+[ext_resource type="Script" uid="uid://50vy38mh4clh" path="res://scenes/systems/galleries/buildings/BuildingGalleryBtn.cs" id="3_7ulv1"]
+
+[node name="PlacementExhibitionLayer" type="CanvasLayer" unique_id=1738398901]
+
+[node name="PlacementExhibitionPanel" type="PanelContainer" parent="." unique_id=40157749]
+custom_minimum_size = Vector2(350, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.99997
+offset_top = 106.0
+offset_right = 128.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1923143, 1.1923143)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlacementExhibitionPanel" unique_id=560907222]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="PlacementExhibitionPanel/VBoxContainer" unique_id=1781896561]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer3" unique_id=1413304678]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer3/HBoxContainer" unique_id=775235290]
+layout_mode = 2
+text = "dev mode"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PlacementExhibitionPanel/VBoxContainer" unique_id=1125584016]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer2" unique_id=1827051346]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer" unique_id=1225771473]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_bottom = 8
+
+[node name="PlacementItemsGallery" type="HBoxContainer" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" unique_id=340985988]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 4
+script = ExtResource("1_lgc7n")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlacementExhibitionPanel/VBoxContainer" unique_id=953957332]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PlacementCategory" type="HBoxContainer" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer" unique_id=933718082]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="GroundGalleryBtn" type="Button" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" unique_id=82952090]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 10
+text = "ground
+"
+script = ExtResource("2_a0w02")
+
+[node name="BuildingGalleryBtn" type="Button" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" unique_id=991614535]
+layout_mode = 2
+text = "building"
+script = ExtResource("3_7ulv1")

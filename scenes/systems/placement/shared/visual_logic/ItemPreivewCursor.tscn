@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cisvxaw22g2n2"]
+[gd_scene format=3 uid="uid://cisvxaw22g2n2"]
 
-[ext_resource type="Script" uid="uid://xbwo6wwg3kbb" path="res://scenes/systems/placement/shared/interaction/ItemPreviewCursor.cs" id="1_bouk0"]
+[ext_resource type="Script" uid="uid://xbwo6wwg3kbb" path="res://scenes/systems/placement/shared/visual_logic/ItemPreviewCursor.cs" id="1_bouk0"]
 
 [node name="ItemPreviewCursor" type="Node2D" node_paths=PackedStringArray("CursorSprite")]
 script = ExtResource("1_bouk0")
