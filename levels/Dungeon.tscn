@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://enjon3jy3a67"]
 
 [ext_resource type="PackedScene" uid="uid://bycnuxcd6m87r" path="res://scenes/layers/Board.tscn" id="1_5ud45"]
+[ext_resource type="Texture2D" uid="uid://iog1clj4s6ua" path="res://assets/entity/building/buildingCollections.aseprite" id="2_5ud45"]
 [ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://scenes/systems/placement/shared/visual_logic/PlacementMenu.tscn" id="2_kysa1"]
 [ext_resource type="Resource" uid="uid://bnlsw3ddst45y" path="res://data/data_base/game_library.tres" id="3_dft6v"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kysa1"]
+texture = ExtResource("2_5ud45")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dft6v"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_kysa1")
 
 [node name="Dungeon" type="Node2D" unique_id=2116114825]
 
@@ -13,21 +23,30 @@ _previewLayer = NodePath("PlacementPreviewLayer")
 _interactionLayer = NodePath("InteractionLayer")
 _occupancyLayer = NodePath("OccupancyLayer")
 
-[node name="PlacementMenu" parent="." unique_id=653533713 node_paths=PackedStringArray("_playerHand", "_placementGallery", "_groundSectionGalleryBtn", "_buildingSectionGalleryBtn") instance=ExtResource("2_kysa1")]
-_playerHand = NodePath("CursorLayer/PlayerHand")
-_placementGallery = NodePath("PlacementUI/PlacementExhibition/PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/PlacementItemsGallery")
-_groundSectionGalleryBtn = NodePath("PlacementUI/PlacementExhibition/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory/GroundGalleryBtn")
-_buildingSectionGalleryBtn = NodePath("PlacementUI/PlacementExhibition/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory/BuildingGalleryBtn")
-_gameLibrary = ExtResource("3_dft6v")
+[node name="BuildingLayer" parent="Board" index="2"]
+tile_set = SubResource("TileSet_dft6v")
 
-[node name="PlayerHand" parent="PlacementMenu/CursorLayer" index="0" node_paths=PackedStringArray("_board", "_handCursor")]
+[node name="PlacementMenu" parent="." unique_id=1409591478 node_paths=PackedStringArray("_playerHand", "_placementGallery", "_groundSectionGalleryBtn", "_buildingSectionGalleryBtn") instance=ExtResource("2_kysa1")]
+_playerHand = NodePath("CursorLayer/PlayerHand")
+_placementGallery = NodePath("PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer/PlacementItemsGallery")
+_groundSectionGalleryBtn = NodePath("PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory/GroundGalleryBtn")
+_buildingSectionGalleryBtn = NodePath("PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory/BuildingGalleryBtn")
+_gameLibraryResource = ExtResource("3_dft6v")
+
+[node name="PlayerHand" parent="PlacementMenu/CursorLayer" parent_id_path=PackedInt32Array(1409591478, 709891705) index="0" unique_id=1379917290 node_paths=PackedStringArray("_board", "_handCursor")]
 _board = NodePath("../../../Board")
 _handCursor = NodePath("../HandCursor")
 
-[node name="PlacementItemsGallery" parent="PlacementMenu/PlacementUI/PlacementExhibition/PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" index="0" unique_id=340985988 node_paths=PackedStringArray("playerHand")]
+[node name="PlacementExhibitionPanel" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI" parent_id_path=PackedInt32Array(1409591478, 29100724) index="0" unique_id=40157749]
+offset_left = -220.0
+offset_top = 160.0
+offset_right = 130.0
+offset_bottom = 282.0
+
+[node name="PlacementItemsGallery" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" parent_id_path=PackedInt32Array(1409591478, 29100724, 1225771473) index="0" unique_id=340985988 node_paths=PackedStringArray("playerHand")]
 playerHand = NodePath("../../../../../../../../CursorLayer/PlayerHand")
 
 [editable path="Board"]
 [editable path="PlacementMenu"]
 [editable path="PlacementMenu/CursorLayer/HandCursor"]
-[editable path="PlacementMenu/PlacementUI/PlacementExhibition"]
+[editable path="PlacementMenu/PlacementControl/PlacementExhibitionUI"]

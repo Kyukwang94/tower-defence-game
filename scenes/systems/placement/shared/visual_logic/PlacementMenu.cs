@@ -7,11 +7,11 @@ public partial class PlacementMenu : Node
 	[Export] private PlacementItemsGallery _placementGallery;
 	[Export] private GroundGalleryBtn 	   _groundSectionGalleryBtn;
 	[Export] private BuildingGalleryBtn    _buildingSectionGalleryBtn;
-	[Export] private GameLibrary 		  _gameLibrary;
+	[Export] private GameLibrary 		  _gameLibraryResource;
 	
 	public override void _Ready()
 	{
-		_groundSectionGalleryBtn  .Setup(new GroundExhibition  (_gameLibrary, _placementGallery));
-		_buildingSectionGalleryBtn.Setup(new BuildingExhibition(_gameLibrary, _placementGallery));
+		_groundSectionGalleryBtn  .Setup(new GroundExhibition  (_gameLibraryResource, _placementGallery));
+		_buildingSectionGalleryBtn.Setup(new BuildingExhibition(_gameLibraryResource, _placementGallery));
 	}
 }

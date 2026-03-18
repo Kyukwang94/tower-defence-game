@@ -1,7 +1,7 @@
 using Godot;
 using Game.Enums;
 
-public sealed class OccupancyAction : IGridCellAction
+public sealed class OccupancyValidatorAction : IGridCellAction
 {
 	private readonly IGridCellAction _origin        ;
 	private readonly TileMapLayer    _occupancyLayer;
@@ -9,7 +9,7 @@ public sealed class OccupancyAction : IGridCellAction
 	private readonly OccupancyType   _conflictsWith ;
 
 	
-	public OccupancyAction(IGridCellAction origin     ,
+	public OccupancyValidatorAction(IGridCellAction origin     ,
 						   TileMapLayer occupanyLayer ,
 						   OccupancyType myType       ,
 						   OccupancyType conflitcsWith )
@@ -27,14 +27,14 @@ public sealed class OccupancyAction : IGridCellAction
 		if(this.TryOnCell(layer, cell))
 		{
 			_origin.OnCell(layer, cell);
-
-			if(_myType != OccupancyType.None)
-			{
-				int currentVal = _occupancyLayer.GetCellSourceId(cell);
-        		int existing   = (currentVal == -1) ? 0 : currentVal;
-				_occupancyLayer.SetCell(cell, existing | (int)_myType, Vector2I.Zero);	
-				GD.Print($"[OccupancyAction] 장부 기록 완료 - Cell: {cell}, Type: {_myType}");			
-			}			
+			//빌딩이 직접 하게 해야함.
+			// if(_myType != OccupancyType.None)
+			// {
+			// 	int currentVal = _occupancyLayer.GetCellSourceId(cell);
+        	// 	int existing   = (currentVal == -1) ? 0 : currentVal;
+			// 	_occupancyLayer.SetCell(cell, existing | (int)_myType, Vector2I.Zero);	
+			// 	GD.Print($"[OccupancyAction] 장부 기록 완료 - Cell: {cell}, Type: {_myType}");			
+			// }			
 		}
 		else
 		{

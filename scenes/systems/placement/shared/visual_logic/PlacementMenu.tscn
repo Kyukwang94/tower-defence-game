@@ -5,16 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://cu5bxj6p7ygoj" path="res://scenes/systems/placement/shared/visual/cursor/HandCursor.tscn" id="5_yahhj"]
 [ext_resource type="PackedScene" uid="uid://de61stqlen5tr" path="res://scenes/systems/galleries/shared/PlacementExhibitionUI.tscn" id="6_6lf7j"]
 
-[node name="PlacementMenu" type="Node"]
+[node name="PlacementMenu" type="Node" unique_id=592378335]
 script = ExtResource("1_wtky7")
 
-[node name="CursorLayer" type="CanvasLayer" parent="."]
+[node name="CursorLayer" type="CanvasLayer" parent="." unique_id=709891705]
 
-[node name="PlayerHand" parent="CursorLayer" instance=ExtResource("4_8xnts")]
+[node name="PlayerHand" parent="CursorLayer" unique_id=1379917290 instance=ExtResource("4_8xnts")]
 
-[node name="HandCursor" parent="CursorLayer" instance=ExtResource("5_yahhj")]
+[node name="HandCursor" parent="CursorLayer" unique_id=991012632 instance=ExtResource("5_yahhj")]
 
-[node name="PlacementUI" type="Control" parent="."]
+[node name="PlacementControl" type="Control" parent="." unique_id=154861640]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +23,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PlacementExhibition" parent="PlacementUI" instance=ExtResource("6_6lf7j")]
+[node name="PlacementExhibitionUI" parent="PlacementControl" unique_id=29100724 instance=ExtResource("6_6lf7j")]
 
 [editable path="CursorLayer/HandCursor"]

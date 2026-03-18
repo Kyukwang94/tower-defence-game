@@ -5,5 +5,5 @@ using Game.Enums;
 public interface IHandItem
 {
 	public ICursorDesign CursorDesign();
-	public IPlaceable ToGrid();
+	public IPlaceable ToPlaceable();
 }

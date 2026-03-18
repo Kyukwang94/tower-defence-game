@@ -1,20 +1,10 @@
+namespace Game.Placement.NullObject;
+
 using Game.Enums;
 using Godot;
 using System.Collections.Generic;
 using System;
 
-namespace Game.Placement.NullObject;
-
-public sealed record NoHandItem : IHandItem
-{
-    public static readonly NoHandItem Instance = new();
-    
-	private NoHandItem() { }
-    
-    public IPlaceable ToGrid() => NoPlaceable.Instance;
-    
-    public ICursorDesign CursorDesign() => new DefaultPlayerHandDesign();
-}
 
 public sealed record NoPlaceable : IPlaceable
 {
@@ -24,7 +14,7 @@ public sealed record NoPlaceable : IPlaceable
 
     public ItemType Type => ItemType.None;
 
-    public IGridArea Area(Vector2I start, Vector2I end) => EmptyArea.Instance;
+    public IGridArea OccupyPlan(Vector2I start, Vector2I end) => EmptyArea.Instance;
 
     public IEnumerable<Vector2I> OccupiedOffsets() => Array.Empty<Vector2I>();
 

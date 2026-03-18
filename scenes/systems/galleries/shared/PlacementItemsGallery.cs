@@ -30,12 +30,10 @@ public partial class PlacementItemsGallery : Node , IGallery
 	}
 	public void ClearAll()
     {
-        // HashSet 초기화
         _buttons.Clear();
-        // 모든 자식 노드를 순회하며 제거
+        
         foreach (Node child in GetChildren())
         {
-            // Button 타입인 경우에만 안전하게 삭제
             if (child is Button)
             {
                 child.QueueFree();

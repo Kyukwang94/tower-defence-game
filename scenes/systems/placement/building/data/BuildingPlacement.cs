@@ -7,9 +7,10 @@ public sealed record BuildingPlacement(BuildingBluePrint BluePrint) : IPlaceable
 {
 	public ItemType Type => BluePrint.Resource.Type;
 
-	public IGridArea Area(Vector2I start, Vector2I end) => new ShapeArea(end, OccupiedOffsets());
+	public IGridArea OccupyPlan(Vector2I start, Vector2I end) => new ShapeArea(end, OccupiedOffsets());
+	
 	public IEnumerable<Vector2I> OccupiedOffsets()
-	{
+	{	
 		yield return new Vector2I(0, 0);
 	}
 
@@ -17,7 +18,7 @@ public sealed record BuildingPlacement(BuildingBluePrint BluePrint) : IPlaceable
 	{
 		IGridCellAction action = new BuildingSpawnAction(BluePrint.Resource.scene);
 
-		action = new OccupancyAction(
+		action = new OccupancyValidatorAction(
 			action,
 			layerBag.occupancy,
 			BluePrint.Resource.MyType,

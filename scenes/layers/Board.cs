@@ -63,7 +63,4 @@ public partial class Board : Node , IBoard
 	{
 		_previewLayer.Clear();
 	}
-
-	
-
 } 

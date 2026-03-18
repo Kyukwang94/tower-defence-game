@@ -13,11 +13,10 @@ public sealed class BuildingSpawnAction : IGridCellAction
 	public void OnCell(TileMapLayer layer, Vector2I cell)
 	{
 		var building = _buildingScene.Instantiate<Node2D>();
-
+		
 		layer.AddChild(building);
 
 		building.Position = layer.MapToLocal(cell);
-
 		GD.Print($"[BuildingSpawnAction] Spawned at {cell}");
 	}
 
