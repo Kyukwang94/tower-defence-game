@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="FoundationRuleResource" load_steps=2 format=3 uid="uid://c407iuoqeu5sr"]
+[gd_resource type="Resource" script_class="FoundationRuleResource" format=3 uid="uid://c407iuoqeu5sr"]
 
-[ext_resource type="Script" uid="uid://b85dleeem77ds" path="res://scenes/systems/placement/shared/core/validation/FoundationRuleResource.cs" id="1_arjy4"]
+[ext_resource type="Script" uid="uid://b85dleeem77ds" path="res://systems/placement/shared/core/validation/FoundationRuleResource.cs" id="1_arjy4"]
 
 [resource]
 script = ExtResource("1_arjy4")

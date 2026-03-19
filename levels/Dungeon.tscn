@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://enjon3jy3a67"]
 
-[ext_resource type="PackedScene" uid="uid://bycnuxcd6m87r" path="res://scenes/layers/Board.tscn" id="1_5ud45"]
+[ext_resource type="PackedScene" uid="uid://bycnuxcd6m87r" path="res://systems/layers/Board.tscn" id="1_5ud45"]
 [ext_resource type="Texture2D" uid="uid://iog1clj4s6ua" path="res://assets/entity/building/buildingCollections.aseprite" id="2_5ud45"]
-[ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://scenes/systems/placement/shared/visual_logic/PlacementMenu.tscn" id="2_kysa1"]
+[ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://systems/placement/shared/visual_logic/PlacementMenu.tscn" id="2_kysa1"]
 [ext_resource type="Resource" uid="uid://bnlsw3ddst45y" path="res://data/data_base/game_library.tres" id="3_dft6v"]
 [ext_resource type="PackedScene" uid="uid://bg1dvi3bq6aj8" path="res://data/buildings/Altar.tscn" id="3_kysa1"]
 

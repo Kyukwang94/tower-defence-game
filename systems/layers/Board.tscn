@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://bycnuxcd6m87r"]
+[gd_scene format=4 uid="uid://bycnuxcd6m87r"]
 
-[ext_resource type="Script" uid="uid://chmi44cs5d2gs" path="res://scenes/layers/Board.cs" id="1_2ywxv"]
-[ext_resource type="TileSet" uid="uid://6se7yv0i3tct" path="res://scenes/systems/placement/shared/assets/placementValidation.tres" id="2_bxj2l"]
+[ext_resource type="Script" uid="uid://chmi44cs5d2gs" path="res://systems/layers/Board.cs" id="1_2ywxv"]
+[ext_resource type="TileSet" uid="uid://6se7yv0i3tct" path="res://systems/placement/shared/assets/placementValidation.tres" id="2_bxj2l"]
 [ext_resource type="TileSet" uid="uid://5ofd4hgkosgm" path="res://data/grounds/environmentTiles.tres" id="3_p76su"]
-[ext_resource type="Texture2D" uid="uid://c2rjmi5hm402q" path="res://scenes/systems/placement/shared/assets/occupancy.aseprite" id="4_plct6"]
+[ext_resource type="Texture2D" uid="uid://c2rjmi5hm402q" path="res://systems/placement/shared/assets/occupancy.aseprite" id="4_plct6"]
 
 [sub_resource type="TileSet" id="TileSet_4rmst"]
 tile_size = Vector2i(32, 32)

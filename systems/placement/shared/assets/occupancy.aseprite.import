@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ggwg1b4qyo71"
-path="res://.godot/imported/placement.aseprite-39ec6533659f98e229f246afac145d58.ctex"
+uid="uid://c2rjmi5hm402q"
+path="res://.godot/imported/occupancy.aseprite-48787969b2ee6684c56096a20f855be8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/systems/placement/shared/assets/placement.aseprite"
-dest_files=["res://.godot/imported/placement.aseprite-39ec6533659f98e229f246afac145d58.ctex"]
+source_file="res://systems/placement/shared/assets/occupancy.aseprite"
+dest_files=["res://.godot/imported/occupancy.aseprite-48787969b2ee6684c56096a20f855be8.ctex"]
 
 [params]
 

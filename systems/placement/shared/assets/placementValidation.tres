@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://6se7yv0i3tct"]
 
-[ext_resource type="Texture2D" uid="uid://ggwg1b4qyo71" path="res://scenes/systems/placement/shared/assets/placement.aseprite" id="1_47kfn"]
+[ext_resource type="Texture2D" uid="uid://ggwg1b4qyo71" path="res://systems/placement/shared/assets/placement.aseprite" id="1_47kfn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c6lr7"]
 resource_name = "PlacmentValidation"

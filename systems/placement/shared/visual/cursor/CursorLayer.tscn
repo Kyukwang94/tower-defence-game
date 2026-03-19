@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2ur2ni488hmv"]
+[gd_scene format=3 uid="uid://d2ur2ni488hmv"]
 
-[ext_resource type="Script" uid="uid://c7fofh4i8s4ac" path="res://scenes/systems/placement/shared/visual/cursor/HandCursor.cs" id="1_1kpb8"]
+[ext_resource type="Script" uid="uid://c7fofh4i8s4ac" path="res://systems/placement/shared/visual/cursor/HandCursor.cs" id="1_1kpb8"]
 
 [node name="CursorLayer" type="CanvasLayer"]
 

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bcm2tmp2f728i"]
 
-[ext_resource type="Script" uid="uid://of51pjea0oak" path="res://scenes/systems/placement/shared/visual_logic/PlacementMenu.cs" id="1_wtky7"]
-[ext_resource type="PackedScene" uid="uid://ms6p3ftv51cp" path="res://scenes/systems/placement/shared/visual_logic/PlayerHand.tscn" id="4_8xnts"]
-[ext_resource type="PackedScene" uid="uid://cu5bxj6p7ygoj" path="res://scenes/systems/placement/shared/visual/cursor/HandCursor.tscn" id="5_yahhj"]
-[ext_resource type="PackedScene" uid="uid://de61stqlen5tr" path="res://scenes/systems/galleries/shared/PlacementExhibitionUI.tscn" id="6_6lf7j"]
+[ext_resource type="Script" uid="uid://of51pjea0oak" path="res://systems/placement/shared/visual_logic/PlacementMenu.cs" id="1_wtky7"]
+[ext_resource type="PackedScene" uid="uid://ms6p3ftv51cp" path="res://systems/placement/shared/visual_logic/PlayerHand.tscn" id="4_8xnts"]
+[ext_resource type="PackedScene" uid="uid://cu5bxj6p7ygoj" path="res://systems/placement/shared/visual/cursor/HandCursor.tscn" id="5_yahhj"]
+[ext_resource type="PackedScene" uid="uid://de61stqlen5tr" path="res://systems/galleries/shared/PlacementExhibitionUI.tscn" id="6_6lf7j"]
 
 [node name="PlacementMenu" type="Node" unique_id=592378335]
 script = ExtResource("1_wtky7")

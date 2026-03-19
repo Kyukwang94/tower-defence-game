@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ms6p3ftv51cp"]
+
+[ext_resource type="Script" uid="uid://n8xko2xfnhdd" path="res://systems/placement/shared/visual_logic/PlayerHand.cs" id="1_s8wdl"]
+
+[node name="PlayerHand" type="Node2D"]
+script = ExtResource("1_s8wdl")

@@ -22,12 +22,13 @@ public partial class Board : Node, IBoard
 		};
 
 		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _previewLayer);
-		// 예시 구조
+		
 		foreach (var node in FindChildren("*", ""))
 		{
-			if (node is ILayerConsumer consumer)
-			{
-				consumer.SetUp(_layerBag);
+			if (node is ILayerConsumer material )
+			{	
+				if(material is Building building)
+					new BuildingConstruction(building, _layerBag).Emit();
 			}
 		}
 	}

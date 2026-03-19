@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bn2hy2spqk2ls"]
 
-[ext_resource type="Script" uid="uid://n8xko2xfnhdd" path="res://scenes/systems/placement/shared/visual_logic/PlayerHand.cs" id="1_h7qpr"]
+[ext_resource type="Script" uid="uid://n8xko2xfnhdd" path="res://systems/placement/shared/visual_logic/PlayerHand.cs" id="1_h7qpr"]
 [ext_resource type="Script" path="res://scenes/systems/galleries/placeableItems/BuildingItemsGallery.cs" id="2_mr4x8"]
-[ext_resource type="Script" uid="uid://d35rpbqgvtbsk" path="res://scenes/systems/galleries/ground/GroundGalleryBtn.cs" id="3_rgs7n"]
+[ext_resource type="Script" uid="uid://d35rpbqgvtbsk" path="res://systems/galleries/ground/GroundGalleryBtn.cs" id="3_rgs7n"]
 
 [node name="BuildingInventory" type="Node"]
 

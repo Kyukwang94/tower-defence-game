@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://de61stqlen5tr"]
 
-[ext_resource type="Script" uid="uid://bdg1i3vhcebxw" path="res://scenes/systems/galleries/shared/PlacementItemsGallery.cs" id="1_lgc7n"]
-[ext_resource type="Script" uid="uid://d35rpbqgvtbsk" path="res://scenes/systems/galleries/ground/GroundGalleryBtn.cs" id="2_a0w02"]
-[ext_resource type="Script" uid="uid://50vy38mh4clh" path="res://scenes/systems/galleries/buildings/BuildingGalleryBtn.cs" id="3_7ulv1"]
+[ext_resource type="Script" uid="uid://bdg1i3vhcebxw" path="res://systems/galleries/shared/PlacementItemsGallery.cs" id="1_lgc7n"]
+[ext_resource type="Script" uid="uid://d35rpbqgvtbsk" path="res://systems/galleries/ground/GroundGalleryBtn.cs" id="2_a0w02"]
+[ext_resource type="Script" uid="uid://50vy38mh4clh" path="res://systems/galleries/buildings/BuildingGalleryBtn.cs" id="3_7ulv1"]
 
 [node name="PlacementExhibitionUI" type="CanvasLayer" unique_id=1738398901]
 

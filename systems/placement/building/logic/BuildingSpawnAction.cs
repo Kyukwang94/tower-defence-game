@@ -15,16 +15,10 @@ public sealed class BuildingSpawnAction : IGridCellAction
 	public void OnCell(TileMapLayer layer, Vector2I cell)
 	{
 
-		Address location = new(cell);
+		Address address = new(cell);
 
-
-		Building building = new(
-			location,
-			_bluePrint.Resource,
-			_layerBag
-		);
-
-
+		Building building = new BuildingConstruction(address, _bluePrint.Resource, _layerBag).Emit();
+		
 		layer.AddChild(building);
 
 		GD.Print($"[BuildingSpawnAction] 건물을 소환했습니다: {cell}");
