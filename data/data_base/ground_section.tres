@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GroundSection" load_steps=5 format=3 uid="uid://78hk1ajeg4lf"]
+[gd_resource type="Resource" script_class="GroundSection" format=3 uid="uid://78hk1ajeg4lf"]
 
 [ext_resource type="Resource" uid="uid://8881v7ky0tcy" path="res://data/grounds/grassGround.tres" id="1_2i3ep"]
 [ext_resource type="Resource" uid="uid://647gfjeg25a6" path="res://data/grounds/mudGround.tres" id="2_3vutr"]

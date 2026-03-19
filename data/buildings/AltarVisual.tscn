@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d1hwnpgko3lt"]
+
+[ext_resource type="Texture2D" uid="uid://c8mufu35n0vyv" path="res://assets/entity/building/altar.aseprite" id="1_l3n1h"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=590172214]
+texture = ExtResource("1_l3n1h")
+offset = Vector2(16, 16)

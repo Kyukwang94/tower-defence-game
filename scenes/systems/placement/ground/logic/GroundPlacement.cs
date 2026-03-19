@@ -30,7 +30,7 @@ public sealed record GroundPlacement(GroundBluePrint BluePrint) : IPlaceable
 		}
 
 		// 2. 보편적 법칙 (Universal Laws): 모든 타일이 지켜야 하는 규칙
-		action = new OccupancyValidatorAction(
+		action = new OccupancyAction(
 			action,
 			layerBag.occupancy,
 			BluePrint.Resource.MyType,

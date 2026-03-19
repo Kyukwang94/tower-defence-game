@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dd3ujqk5wr4k8"]
+
+[ext_resource type="Texture2D" uid="uid://b04wa6aefnd2s" path="res://assets/entity/building/basicRedHouse.aseprite" id="1_1v5lb"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1540880759]
+texture = ExtResource("1_1v5lb")
+offset = Vector2(16, 16)

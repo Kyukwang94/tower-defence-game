@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameLibrary" load_steps=4 format=3 uid="uid://bnlsw3ddst45y"]
+[gd_resource type="Resource" script_class="GameLibrary" format=3 uid="uid://bnlsw3ddst45y"]
 
 [ext_resource type="Resource" uid="uid://c3htqvytq3ib5" path="res://data/data_base/building_section.tres" id="1_72ge0"]
 [ext_resource type="Resource" uid="uid://78hk1ajeg4lf" path="res://data/data_base/ground_section.tres" id="1_fmode"]

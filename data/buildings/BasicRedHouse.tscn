@@ -1,10 +1,11 @@
-[gd_scene format=3 uid="uid://c36lbiyerugky"]
+[gd_scene format=3 uid="uid://cqn52i4kpj40x"]
 
 [ext_resource type="Script" uid="uid://t521o3671a8n" path="res://data/buildings/Building.cs" id="1_j1lu2"]
-[ext_resource type="Texture2D" uid="uid://b04wa6aefnd2s" path="res://assets/entity/building/basicRedHouse.aseprite" id="2_cx5xy"]
+[ext_resource type="Resource" uid="uid://ltnwecag70pi" path="res://data/buildings/basic_red_house.tres" id="2_1qfef"]
+[ext_resource type="PackedScene" uid="uid://dd3ujqk5wr4k8" path="res://data/buildings/BasicRedHouseVisual.tscn" id="3_cx5xy"]
 
 [node name="BasicRedHouse" type="Node2D" unique_id=142696553]
 script = ExtResource("1_j1lu2")
+_editorResource = ExtResource("2_1qfef")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2002974666]
-texture = ExtResource("2_cx5xy")
+[node name="Sprite2D" parent="." unique_id=1540880759 instance=ExtResource("3_cx5xy")]

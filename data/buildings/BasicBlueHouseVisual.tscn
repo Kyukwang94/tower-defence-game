@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cf6jrvup2xpuj"]
+
+[ext_resource type="Texture2D" uid="uid://di0i8nenv4y8p" path="res://assets/entity/building/basicBlueHouse.aseprite" id="1_cmbnd"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=693790591]
+texture = ExtResource("1_cmbnd")
+offset = Vector2(16, 16)

@@ -16,9 +16,9 @@ public sealed record BuildingPlacement(BuildingBluePrint BluePrint) : IPlaceable
 
 	public IGridCellAction PlacementAction(LayerBag layerBag)
 	{
-		IGridCellAction action = new BuildingSpawnAction(BluePrint.Resource.scene);
+		IGridCellAction action = new BuildingSpawnAction(BluePrint, layerBag);
 
-		action = new OccupancyValidatorAction(
+		action = new OccupancyAction(
 			action,
 			layerBag.occupancy,
 			BluePrint.Resource.MyType,

@@ -5,7 +5,6 @@ using Game.Enums;
 [GlobalClass]
 public partial class BuildingResource : Resource
 {
-	
 	[Export] public string Name          {get; set;}
 	[Export] public ItemType Type        {get; set;}	
 
@@ -17,5 +16,4 @@ public partial class BuildingResource : Resource
 	
 	[Export] public OccupancyType MyType;
 	[Export] public OccupancyType ConflictsWith;
-	
 }

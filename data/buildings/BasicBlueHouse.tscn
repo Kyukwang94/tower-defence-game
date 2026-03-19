@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://r805rnqmqbge"]
+[gd_scene format=3 uid="uid://bcutnekjd3did"]
 
-[ext_resource type="Texture2D" uid="uid://di0i8nenv4y8p" path="res://assets/entity/building/basicBlueHouse.aseprite" id="1_b6rjg"]
 [ext_resource type="Script" uid="uid://t521o3671a8n" path="res://data/buildings/Building.cs" id="1_blwko"]
+[ext_resource type="Resource" uid="uid://ycy1j1at3yjc" path="res://data/buildings/basic_blue_house.tres" id="2_hqigq"]
+[ext_resource type="PackedScene" uid="uid://cf6jrvup2xpuj" path="res://data/buildings/BasicBlueHouseVisual.tscn" id="3_hqigq"]
 
-[node name="basicBlueHouse" type="Node2D"]
+[node name="basicBlueHouse" type="Node2D" unique_id=2100214139]
 script = ExtResource("1_blwko")
+_editorResource = ExtResource("2_hqigq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_b6rjg")
+[node name="Sprite2D" parent="." unique_id=693790591 instance=ExtResource("3_hqigq")]

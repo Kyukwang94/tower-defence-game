@@ -2,10 +2,10 @@ using Game.Enums;
 using Godot;
 using System.Collections.Generic;
 
-public partial class Board : Node , IBoard
+public partial class Board : Node, IBoard
 {
-    // 도화지
-    [Export] private TileMapLayer _groundLayer;
+	// 도화지
+	[Export] private TileMapLayer _groundLayer;
 	[Export] private TileMapLayer _buildingLayer;
 	[Export] private TileMapLayer _previewLayer;
 	[Export] private TileMapLayer _interactionLayer;
@@ -17,18 +17,24 @@ public partial class Board : Node , IBoard
 	{
 		_worldMap = new Dictionary<ItemType, TileMapLayer>
 		{
-        	{ ItemType.Ground  , _groundLayer },
+			{ ItemType.Ground  , _groundLayer },
 			{ ItemType.Building, _buildingLayer},
-        };
+		};
 
-		_layerBag = new LayerBag (_groundLayer,_occupancyLayer,_buildingLayer,_previewLayer);
-
-		_occupancyLayer.Hide();
+		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _previewLayer);
+		// 예시 구조
+		foreach (var node in FindChildren("*", ""))
+		{
+			if (node is ILayerConsumer consumer)
+			{
+				consumer.SetUp(_layerBag);
+			}
+		}
 	}
 
 	public void ActOn(IPlaceable item, IGridArea area)
-	{	
-		if(!_worldMap.TryGetValue(item.Type, out TileMapLayer layer))
+	{
+		if (!_worldMap.TryGetValue(item.Type, out TileMapLayer layer))
 		{
 			GD.PrintErr($"[Board] {item.Type} 에 해당하는 레이어를 찾을 수 없습니다");
 		}
@@ -36,7 +42,7 @@ public partial class Board : Node , IBoard
 		IGridCellAction placementAction = item.PlacementAction(_layerBag);
 		area.ApplyTo(layer, placementAction);
 	}
-	
+
 	public void PreviewOn(IPlaceable item, IGridArea area)
 	{
 		if (!_worldMap.TryGetValue(item.Type, out TileMapLayer itemTargetLayer))
@@ -47,15 +53,15 @@ public partial class Board : Node , IBoard
 		_previewLayer.Clear();
 
 		IGridCellAction placementAction = item.PlacementAction(_layerBag);
-		
+
 		IGridCellAction prevAction = new PlacementPreviewAction(itemTargetLayer, placementAction);
 
-		area.ApplyTo(_previewLayer,prevAction);
+		area.ApplyTo(_previewLayer, prevAction);
 	}
 
 	public Vector2I WorldToCell(Vector2 worldPosition)
 	{
-		Vector2 boardPos = _interactionLayer.ToLocal(worldPosition)	;
+		Vector2 boardPos = _interactionLayer.ToLocal(worldPosition);
 		return _interactionLayer.LocalToMap(boardPos);
 	}
 
@@ -63,4 +69,4 @@ public partial class Board : Node , IBoard
 	{
 		_previewLayer.Clear();
 	}
-} 
+}
