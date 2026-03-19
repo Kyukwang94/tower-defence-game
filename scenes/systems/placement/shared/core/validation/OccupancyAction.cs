@@ -24,7 +24,7 @@ public sealed class OccupancyAction : IGridCellAction
 
 	public void OnCell(TileMapLayer layer, Vector2I cell)
 	{	
-		if(this.TryOnCell(layer, cell))
+		if(TryOnCell(layer, cell))
 		{
 			_origin.OnCell(layer, cell);
 		}

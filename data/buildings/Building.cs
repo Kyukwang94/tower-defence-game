@@ -37,7 +37,7 @@ public partial class Building : Node2D, ILayerConsumer
 		}
 
 
-		Activate();
+		Init();
 	}
 
 	private void InitFromEditor()
@@ -51,17 +51,15 @@ public partial class Building : Node2D, ILayerConsumer
 		_location = new Address(point);
 	}
 
-	private void Activate()
+	private void Init()
 	{
 		var visual = _buildingResource.scene.Instantiate();
 		AddChild(visual);
-
 
 		Vector2 centerPos = _layerBag.building.MapToLocal(_location.Cell);
 		Vector2 halfTile = new(16, 16);
 		Position = centerPos - halfTile;
 
-		// 장부(Occupancy Layer)에 기록
 		if (_buildingResource.MyType != OccupancyType.None)
 		{
 			RecordToOccupancy();
@@ -72,7 +70,7 @@ public partial class Building : Node2D, ILayerConsumer
 
 	private void RecordToOccupancy()
 	{
-		
+
 		int currentVal = _layerBag.occupancy.GetCellSourceId(_location.Cell);
 		int existing = (currentVal == -1) ? 0 : currentVal;
 
@@ -85,10 +83,10 @@ public partial class Building : Node2D, ILayerConsumer
 
 	public override void _Ready()
 	{
-		//객체가 동적으로 생성되었을때
+		//런타임
 		if (_layerBag != null)
 		{
-			Activate();
+			Init();
 		}
 	}
 }
