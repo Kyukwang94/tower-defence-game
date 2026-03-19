@@ -22,7 +22,7 @@ public sealed class BuildingSpawnAction : IGridCellAction
     public void OnCell(TileMapLayer layer, Vector2I cell)
     {
         // 1. 객체의 정체성(Location) 정의
-        GridLocation location = new GridLocation(cell);
+        Address location = new Address(cell);
 
         // 2. 객체의 탄생 (우리가 정의한 '진짜 문'을 통해 생성)
         // 이 시점에 Building은 영혼(Location)과 육체(Resource), 도구(LayerBag)를 모두 가집니다.
