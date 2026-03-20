@@ -1,7 +1,7 @@
 using Game.Enums;
 using Godot;
 using System.Collections.Generic;
-
+using System.Linq;
 public partial class Board : Node, IBoard
 {
 	// 도화지
@@ -13,24 +13,30 @@ public partial class Board : Node, IBoard
 
 	private Dictionary<ItemType, TileMapLayer> _worldMap = [];
 	private LayerBag _layerBag;
+
 	public override void _Ready()
 	{
+		Setup();
+	}
+
+	public void Setup()
+	{
+		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _previewLayer);
 		_worldMap = new Dictionary<ItemType, TileMapLayer>
 		{
 			{ ItemType.Ground  , _groundLayer },
 			{ ItemType.Building, _buildingLayer},
 		};
 
-		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _previewLayer);
-		
-		foreach (var node in FindChildren("*", ""))
+
+		var initializabled = GetTree().GetNodesInGroup("Initializables")
+			.OfType<IInitializable>();
+
+		foreach (var target in initializabled)
 		{
-			if (node is ILayerConsumer material )
-			{	
-				if(material is Building building)
-					new BuildingConstruction(building, _layerBag).Emit();
-			}
+			target.Initialize(_layerBag);
 		}
+
 	}
 
 	public void ActOn(IPlaceable item, IGridArea area)

@@ -17,7 +17,7 @@ public sealed class BuildingSpawnAction : IGridCellAction
 
 		Address address = new(cell);
 
-		Building building = new BuildingConstruction(address, _bluePrint.Resource, _layerBag).Emit();
+		Building building = new BuildingConstruction(address, _bluePrint.Resource, _layerBag).Shipping();
 		
 		layer.AddChild(building);
 

@@ -4,12 +4,9 @@ using System;
 
 public sealed record Address(Vector2I Cell);
 
-/// <summary>
-/// User가 런타임때 Building을 설치할때의 객체 초기화와 
-/// 미리 존재하는 객체가 있을때 이 둘을 통합하는 시스템
-/// </summary>
-public partial class Building : Node2D , ILayerConsumer
+public partial class Building : Node2D, IInitializable
 {
+
 	private Address _address;
 	private BuildingResource _resource;
 	private LayerBag _layerBag;
@@ -19,26 +16,10 @@ public partial class Building : Node2D , ILayerConsumer
 	[Export] private BuildingResource _editorResource;
 	public BuildingResource EditorResource => _editorResource;
 
+	#region NoUse
 	public Building() : base() { }
+	#endregion
 
-	//RunTime 객체 초기화
-	public Building(Address location, BuildingResource resource, LayerBag bag)
-	{
-		_address = location ?? throw new ArgumentNullException(nameof(location));
-		_resource = resource ?? throw new ArgumentNullException(nameof(resource));
-		_layerBag = bag ?? throw new ArgumentNullException(nameof(bag));
-	}
-
-	public void SetUp(Address address, BuildingResource resource, LayerBag layerBag )
-	{
-
-		_address = address;
-		_resource = resource;
-		_layerBag = layerBag;
-		
-		Activate();
-	}
-	
 	public override void _Ready()
 	{
 		//런타임
@@ -47,8 +28,33 @@ public partial class Building : Node2D , ILayerConsumer
 			Activate();
 		}
 	}
+
+	#region For Editor
+	public Building(Address address, BuildingResource resource, LayerBag bag)
+	{
+		_address = address ?? throw new ArgumentNullException(nameof(address));
+		_resource = resource ?? throw new ArgumentNullException(nameof(resource));
+		_layerBag = bag ?? throw new ArgumentNullException(nameof(bag));
+	}
 	
-	//RunTime , Editor 모두 객체 초기화 완료되었다고 보장
+	//Editor Trigger 
+	public void Initialize(LayerBag bag)
+	{
+		new BuildingConstruction(this, bag).Shipping();
+	}
+
+	//에디터로 미리 생성된 객체에 불완전한 상태 완전한 상태로 초기화.
+	public void Initialize(Address address, BuildingResource resource, LayerBag layerBag)
+	{
+		_address  = address  ?? throw new ArgumentNullException(nameof(address));
+		_resource = resource ?? throw new ArgumentNullException(nameof(resource));
+		_layerBag = layerBag ?? throw new ArgumentNullException(nameof(layerBag));
+
+		Activate();
+	}
+	#endregion
+
+	#region Runtime/Editor 공용
 	private void Activate()
 	{
 		if (_isActivated || _layerBag == null || _resource == null) return;
@@ -80,10 +86,5 @@ public partial class Building : Node2D , ILayerConsumer
 			Vector2I.Zero
 		);
 	}
-
-	public void SetUp(LayerBag layerBag)
-	{
-		
-	}
-
+	#endregion
 }

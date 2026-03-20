@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://bcbd51cl8u0ib" path="res://data/buildings/altar.tres" id="2_57570"]
 [ext_resource type="PackedScene" uid="uid://d1hwnpgko3lt" path="res://data/buildings/AltarVisual.tscn" id="3_ovyfy"]
 
-[node name="Altar" type="Node2D" unique_id=1181967295]
+[node name="Altar" type="Node2D" unique_id=1181967295 groups=["Initializables"]]
 script = ExtResource("1_ovyfy")
 _editorResource = ExtResource("2_57570")
 
