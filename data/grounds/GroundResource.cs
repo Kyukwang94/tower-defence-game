@@ -33,5 +33,5 @@ public partial class GroundResource : Resource
 	[Export] public OccupancyType ConflictsWith;
 	public int deployArea = 1;
 
-	
+
 } 
