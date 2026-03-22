@@ -22,10 +22,6 @@ config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 
 aseprite_executable_path="D:/steam/steamapps/common/Aseprite/Aseprite.exe"
 
-[autoload]
-
-GameModeManager="res://scenes/globals/GameModeManager.tscn"
-
 [display]
 
 window/stretch/mode="canvas_items"

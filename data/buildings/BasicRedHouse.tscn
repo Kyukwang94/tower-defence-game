@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqn52i4kpj40x"]
 
-[ext_resource type="Script" uid="uid://t521o3671a8n" path="res://data/buildings/Building.cs" id="1_j1lu2"]
+[ext_resource type="Script" uid="uid://t521o3671a8n" path="res://data/buildings/src/Building.cs" id="1_j1lu2"]
 [ext_resource type="Resource" uid="uid://ltnwecag70pi" path="res://data/buildings/basic_red_house.tres" id="2_1qfef"]
 [ext_resource type="PackedScene" uid="uid://dd3ujqk5wr4k8" path="res://data/buildings/BasicRedHouseVisual.tscn" id="3_cx5xy"]
 

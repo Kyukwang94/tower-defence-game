@@ -17,8 +17,10 @@ public sealed record GroundPlacement(GroundBluePrint BluePrint) : IPlaceable
 
 	public IGridCellAction PlacementAction(LayerBag layerBag)
 	{
-		// 기본 행위: 타일 칠하기
-		IGridCellAction action = new GroundPaint(BluePrint.Resource.SourceId, BluePrint.Resource.AtlasCoords);
+		IGridCellAction action = new GroundPaint(
+			BluePrint.Resource.SourceId,
+			BluePrint.Resource.AtlasCoords
+			);
 
 		// 1. 변칙 규칙 (Variant Rules): 리소스에 정의된 특수 로직들 적용
 		if (BluePrint.Resource.SpecificRules != null)

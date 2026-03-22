@@ -20,4 +20,8 @@ public partial class EmptyArea : IGridArea
 		return [];
 	}
 
+	public bool CanApply(TileMapLayer layer, IGridCellAction aciton)
+	{
+		return false;
+	}
 }

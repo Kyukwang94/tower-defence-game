@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ipra3audcex0"]
+
+[ext_resource type="Texture2D" uid="uid://bp57s7b2i5fc5" path="res://assets/entity/building/HorizontalShape.aseprite" id="1_orkub"]
+
+[node name="HorizontalShapeVisual" type="Sprite2D" unique_id=1176998576]
+texture = ExtResource("1_orkub")
+offset = Vector2(32, 16)

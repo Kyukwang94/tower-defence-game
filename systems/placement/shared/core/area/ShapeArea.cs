@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace Game.Placement.Core.Area;
 
-public sealed class ShapeArea : IGridArea
+public sealed class PointArea : IGridArea
 {
 	Vector2I 			  _cursorPos;
 	IEnumerable<Vector2I> _shapeCells;
 
-	public ShapeArea(Vector2I cursorPos, IEnumerable<Vector2I> shapeCells)
+	public PointArea(Vector2I cursorPos, IEnumerable<Vector2I> shapeCells)
 	{
 		_cursorPos  = cursorPos;
 		_shapeCells = shapeCells;	
@@ -30,4 +30,6 @@ public sealed class ShapeArea : IGridArea
 		}
 	}
 
+	public bool CanApply(TileMapLayer layer, IGridCellAction action)
+	=> action.TryOnCell(layer, _cursorPos);
 }

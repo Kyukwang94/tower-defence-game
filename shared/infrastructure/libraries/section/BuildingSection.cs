@@ -13,7 +13,7 @@ public partial class BuildingSection : Resource
 
 		foreach (var item in _items)
 		{
-			GD.Print(item.Name, item.AtlasCoords);
+			GD.Print(item.Name);
 			new BuildingBluePrint(item).ToDisplayableItem().DisplayOn(gallery);
 		}
 	}

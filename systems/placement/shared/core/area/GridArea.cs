@@ -15,27 +15,35 @@ public sealed class GridArea : IGridArea
 		_end = end;
 	}
 
-	public void ApplyTo(Godot.TileMapLayer layer, IGridCellAction action)
+	public void ApplyTo(TileMapLayer layer, IGridCellAction action)
 	{
 		foreach (var cell in CalculateCells())
 		{
 			action.OnCell(layer, cell);
 		}
 	}
+	public bool CanApply(TileMapLayer layer, IGridCellAction action)
+	{
+		foreach (var cell in CalculateCells())
+		{
+			if (action.TryOnCell(layer, cell)) return true;
+		}
+		return false;
+	}
 
 	public IEnumerable<Vector2I> CalculateCells()
 	{
 		int minX = Math.Min(_start.X, _end.X);
-    	int maxX = Math.Max(_start.X, _end.X);
-    	int minY = Math.Min(_start.Y, _end.Y);
-    	int maxY = Math.Max(_start.Y, _end.Y);	
+		int maxX = Math.Max(_start.X, _end.X);
+		int minY = Math.Min(_start.Y, _end.Y);
+		int maxY = Math.Max(_start.Y, _end.Y);
 
-    	var cells = new HashSet<Vector2I>();
+		var cells = new HashSet<Vector2I>();
 
-    	for (int x = minX; x <= maxX; x++)
-    	for (int y = minY; y <= maxY; y++)
-    		cells.Add(new Vector2I(x, y));
+		for (int x = minX; x <= maxX; x++)
+			for (int y = minY; y <= maxY; y++)
+				cells.Add(new Vector2I(x, y));
 
-    	return cells;
+		return cells;
 	}
 }

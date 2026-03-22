@@ -15,3 +15,4 @@ Icon = SubResource("AtlasTexture_vl5lk")
 AtlasCoords = Vector2i(1, 1)
 IsDestructible = true
 SpecificRules = null
+MyType = 4

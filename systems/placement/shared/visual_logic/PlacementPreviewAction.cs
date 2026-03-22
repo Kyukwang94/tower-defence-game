@@ -4,11 +4,11 @@ using System;
 public partial class PlacementPreviewAction : IGridCellAction 
 {
 	private readonly IGridCellAction _origin;
-	private readonly TileMapLayer _FinalLayer;
+	private readonly TileMapLayer _prevLayer;
 
-	public PlacementPreviewAction(TileMapLayer finalLayer, IGridCellAction origin)
+	public PlacementPreviewAction(TileMapLayer prevLayer, IGridCellAction origin)
 	{
-		_FinalLayer = finalLayer;
+		_prevLayer = prevLayer;
 		_origin = origin;
 	}
  
@@ -17,11 +17,9 @@ public partial class PlacementPreviewAction : IGridCellAction
 
 	public void OnCell(TileMapLayer layer, Vector2I cell)
 	{
-		bool canPlace = _origin.TryOnCell(_FinalLayer, cell);
+		bool canPlace = _origin.TryOnCell(_prevLayer, cell);
 		
 		Vector2I coords = canPlace ? new Vector2I(0,0) : new Vector2I(1, 0);
-
-		GD.Print($"PlacementPreview {coords}는 {canPlace} 이다.");
 
 		layer.SetCell(cell, 1, coords);
 	}

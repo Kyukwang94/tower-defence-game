@@ -24,37 +24,42 @@ public partial class Board : Node, IBoard
 		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _previewLayer);
 		_worldMap = new Dictionary<ItemType, TileMapLayer>
 		{
-			{ ItemType.Ground  , _groundLayer },
-			{ ItemType.Building, _buildingLayer},
+	  		{ ItemType.Ground  , _groundLayer },
+	  		{ ItemType.Building, _buildingLayer},
 		};
 
-
 		var initializabled = GetTree().GetNodesInGroup("Initializables")
-			.OfType<IInitializable>();
+		  .OfType<IInitializable>();
 
 		foreach (var target in initializabled)
 		{
 			target.Initialize(_layerBag);
 		}
 
+		_occupancyLayer.Hide();
+
 	}
 
 	public void ActOn(IPlaceable item, IGridArea area)
 	{
-		if (!_worldMap.TryGetValue(item.Type, out TileMapLayer layer))
-		{
-			GD.PrintErr($"[Board] {item.Type} 에 해당하는 레이어를 찾을 수 없습니다");
-		}
+		if (!_worldMap.TryGetValue(item.Type, out TileMapLayer layer)) return;
 
-		IGridCellAction placementAction = item.PlacementAction(_layerBag);
-		area.ApplyTo(layer, placementAction);
+		IGridCellAction action = item.PlacementAction(_layerBag);
+		
+		if (area.CanApply(layer, action))
+		{
+			area.ApplyTo(layer, action);
+		}
+		else
+		{
+			GD.Print("[Board] 무결성 파괴 감지. 설치 불가");
+		}
 	}
 
 	public void PreviewOn(IPlaceable item, IGridArea area)
 	{
 		if (!_worldMap.TryGetValue(item.Type, out TileMapLayer itemTargetLayer))
 		{
-			GD.PrintErr($"[Board] {item.Type}에 해당하는 레이어를 찾을 수 없습니다.");
 			return;
 		}
 		_previewLayer.Clear();

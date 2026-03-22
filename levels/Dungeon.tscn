@@ -10,6 +10,12 @@
 texture = ExtResource("2_5ud45")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+1:2/0 = 0
+1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_dft6v"]
 tile_size = Vector2i(32, 32)
@@ -28,7 +34,7 @@ _occupancyLayer = NodePath("OccupancyLayer")
 tile_set = SubResource("TileSet_dft6v")
 
 [node name="Altar" parent="Board/BuildingLayer" index="0" unique_id=1181967295 instance=ExtResource("3_kysa1")]
-position = Vector2(544, 224)
+position = Vector2(544, 256)
 
 [node name="PlacementMenu" parent="." unique_id=1409591478 node_paths=PackedStringArray("_playerHand", "_placementGallery", "_groundSectionGalleryBtn", "_buildingSectionGalleryBtn") instance=ExtResource("2_kysa1")]
 _playerHand = NodePath("CursorLayer/PlayerHand")
@@ -40,6 +46,9 @@ _gameLibraryResource = ExtResource("3_dft6v")
 [node name="PlayerHand" parent="PlacementMenu/CursorLayer" parent_id_path=PackedInt32Array(1409591478, 709891705) index="0" unique_id=1379917290 node_paths=PackedStringArray("_board", "_handCursor")]
 _board = NodePath("../../../Board")
 _handCursor = NodePath("../HandCursor")
+
+[node name="PlacementControl" parent="PlacementMenu" index="1" unique_id=154861640]
+rotation = -0.00037991875
 
 [node name="PlacementExhibitionPanel" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI" parent_id_path=PackedInt32Array(1409591478, 29100724) index="0" unique_id=40157749]
 offset_left = -220.0

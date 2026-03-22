@@ -16,19 +16,19 @@ public sealed class UniqueTilePlacement : IGridCellAction
 		_targetCoords 	= heldCoords;
 	}
 
-	public bool TryOnCell(Godot.TileMapLayer layer, Vector2I cell)
+	public bool TryOnCell(TileMapLayer layer, Vector2I cell)
 	{
 		return CanOverlap(layer, cell) && _origin.TryOnCell(layer, cell);
 	}
 
-	public void OnCell(Godot.TileMapLayer layer, Vector2I cell)
+	public void OnCell(TileMapLayer layer, Vector2I cell)
 	{
 		if(CanOverlap(layer, cell))
 		{
 			_origin.OnCell(layer, cell);
 		}
 	}
-	private bool CanOverlap(Godot.TileMapLayer layer, Vector2I cell)
+	private bool CanOverlap(TileMapLayer layer, Vector2I cell)
 	{
 		int existingSourceId =    layer.GetCellSourceId(cell);
 		Vector2I existingCoords = layer.GetCellAtlasCoords(cell);

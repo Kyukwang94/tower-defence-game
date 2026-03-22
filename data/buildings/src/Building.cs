@@ -15,11 +15,13 @@ public partial class Building : Node2D, IInitializable
 
 	[Export] private BuildingResource _editorResource;
 	public BuildingResource EditorResource => _editorResource;
-
+	
 	#region NoUse
 	public Building() : base() { }
 	#endregion
 
+
+	#region For Runtime
 	public override void _Ready()
 	{
 		//런타임
@@ -29,24 +31,29 @@ public partial class Building : Node2D, IInitializable
 		}
 	}
 
-	#region For Editor
 	public Building(Address address, BuildingResource resource, LayerBag bag)
 	{
 		_address = address ?? throw new ArgumentNullException(nameof(address));
 		_resource = resource ?? throw new ArgumentNullException(nameof(resource));
 		_layerBag = bag ?? throw new ArgumentNullException(nameof(bag));
 	}
+	#endregion
+
+	#region For Editor
 	
-	//Editor Trigger 
 	public void Initialize(LayerBag bag)
 	{
 		new BuildingConstruction(this, bag).Shipping();
+
+		if (_resource.MyType != OccupancyType.None)
+		{
+			new OccupancyLedger(bag.occupancy).MarkShape(_address.Cell, _resource.Shape, _resource.MyType);
+		}
 	}
 
-	//에디터로 미리 생성된 객체에 불완전한 상태 완전한 상태로 초기화.
 	public void Initialize(Address address, BuildingResource resource, LayerBag layerBag)
 	{
-		_address  = address  ?? throw new ArgumentNullException(nameof(address));
+		_address = address ?? throw new ArgumentNullException(nameof(address));
 		_resource = resource ?? throw new ArgumentNullException(nameof(resource));
 		_layerBag = layerBag ?? throw new ArgumentNullException(nameof(layerBag));
 
@@ -66,25 +73,11 @@ public partial class Building : Node2D, IInitializable
 		Vector2 halfTile = new(16, 16);
 		Position = centerPos - halfTile;
 
-		if (_resource.MyType != OccupancyType.None)
-		{
-			RecordToOccupancy();
-		}
 		_isActivated = true;
 
 		GD.Print($"[Building] 활성화 완료 - Cell: {_address.Cell}, Type: {_resource.MyType}");
 	}
 
-	private void RecordToOccupancy()
-	{
-		int currentVal = _layerBag.occupancy.GetCellSourceId(_address.Cell);
-		int existing = (currentVal == -1) ? 0 : currentVal;
 
-		_layerBag.occupancy.SetCell(
-			_address.Cell,
-			existing | (int)_resource.MyType,
-			Vector2I.Zero
-		);
-	}
 	#endregion
 }

@@ -15,8 +15,8 @@ public sealed class OccupancyAction : IGridCellAction
 						   OccupancyType conflitcsWith )
 
 	{
-		_occupancyLayer = occupanyLayer;
 		_origin 		= origin;
+		_occupancyLayer = occupanyLayer;		
 		_myType 		= myType;
 		_conflictsWith  = conflitcsWith;
 	}
@@ -24,14 +24,9 @@ public sealed class OccupancyAction : IGridCellAction
 
 	public void OnCell(TileMapLayer layer, Vector2I cell)
 	{	
-		if(TryOnCell(layer, cell))
-		{
-			_origin.OnCell(layer, cell);
-		}
-		else
-		{
-			GD.Print($"[OccupancyAction] 장부 기록 실패 - Cell: {cell}");
-		}
+		new OccupancyLedger(_occupancyLayer).MarkCell(cell, _myType);
+
+		_origin.OnCell(layer, cell);
 	}
 
 	public bool TryOnCell(TileMapLayer layer, Vector2I cell)
@@ -42,10 +37,11 @@ public sealed class OccupancyAction : IGridCellAction
 		{
 			if((currentVal & (int)_conflictsWith) != 0)
 			{
-				GD.Print($"[OccupancyAction] 점유되어있습니다. - ConflictsWith: {_conflictsWith}, Type: {_myType}");			
+				GD.Print($"[OccupancyAction]{cell} 실패!");
 				return false;
 			}
 		}
-		return true;
+
+		return _origin.TryOnCell(layer,  cell);
 	}
 }

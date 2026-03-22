@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bb0ivwbxw8uvs"]
+
+[ext_resource type="Texture2D" uid="uid://bki3radldd8aq" path="res://assets/entity/building/LShape.aseprite" id="1_crf5n"]
+
+[node name="LShapeVisual" type="Sprite2D" unique_id=1483067610]
+texture = ExtResource("1_crf5n")
+offset = Vector2(32, 32)
