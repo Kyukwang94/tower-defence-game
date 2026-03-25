@@ -15,7 +15,7 @@ public sealed class PlacementComposite : IGridCellAction
 
 	public void OnCell(TileMapLayer layer, Vector2I point)
 	{
-		_validator.OnCell(layer, point); // 7칸 점유 마킹
-		_spawn.OnCell(layer, point);     // 1번 건물 소환
+		_validator.OnCell(layer, point); 
+		_spawn.OnCell(layer, point);     
 	}
 }

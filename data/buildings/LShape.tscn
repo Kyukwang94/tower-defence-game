@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b6ylsp4kvixo0"]
+[gd_scene format=3 uid="uid://di31olj886dwa"]
 
 [ext_resource type="Script" uid="uid://t521o3671a8n" path="res://data/buildings/src/Building.cs" id="1_byh08"]
 [ext_resource type="Resource" uid="uid://cfa1qglgwrgi4" path="res://data/buildings/l_Shape.tres" id="2_vvolv"]

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dd3ujqk5wr4k8" path="res://data/buildings/BasicRedHouseVisual.tscn" id="3_cx5xy"]
 
 [node name="BasicRedHouse" type="Node2D" unique_id=142696553]
+position = Vector2(0, 3)
 script = ExtResource("1_j1lu2")
 _editorResource = ExtResource("2_1qfef")
 

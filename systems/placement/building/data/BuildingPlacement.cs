@@ -15,18 +15,6 @@ public sealed record BuildingPlacement(BuildingBluePrint BluePrint) : IPlaceable
 
 	public IGridCellAction PlacementAction(LayerBag layerBag)
 	{
-		IGridCellAction spawn = new BuildingSpawnAction(BluePrint, layerBag);
-
-		IGridCellAction tileLogic = new OccupancyAction(
-			new EmptyAction(),
-			layerBag.occupancy,
-			BluePrint.Resource.MyType,
-			BluePrint.Resource.ConflictsWith);
-
-		tileLogic = new ExistingFoundationTile(layerBag.ground, tileLogic);
-		
-		IGridCellAction integrity = new ShapeIntegrity(tileLogic, BluePrint.Resource.Shape);
-
-		return new PlacementComposite(integrity, spawn);
+		return new BuildingStandardPlacement(BluePrint, layerBag);
 	}
 }
