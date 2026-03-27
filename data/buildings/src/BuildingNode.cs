@@ -20,7 +20,6 @@ public partial class BuildingNode : Node2D, IInitializable
 	public BuildingNode() : base() { }
 	#endregion
 
-
 	#region For Runtime
 	public override void _Ready()
 	{
