@@ -5,7 +5,7 @@ public partial class PlayerHand : Node2D
 {
 	[Export] private Board _board;
 
-	private IHandItem _itemInHand = NoHandItem.Instance;
+	private IHandTool _itemInHand = NoHandItem.Instance;
 
 	[Export] private HandCursor _handCursor;
 
@@ -97,7 +97,7 @@ public partial class PlayerHand : Node2D
 		GD.Print("PlayerHand Released");
 	}
 
-	public void Grasp(IHandItem item)
+	public void Grasp(IHandTool item)
 	{
 		_itemInHand = item;
 		ICursorDesign design = _itemInHand.CursorDesign();

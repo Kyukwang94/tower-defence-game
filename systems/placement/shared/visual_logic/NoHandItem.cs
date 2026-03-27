@@ -1,6 +1,6 @@
 using Godot;
 
-public sealed record NoHandItem : IHandItem
+public sealed record NoHandItem : IHandTool
 {
     public static readonly NoHandItem Instance = new();
     

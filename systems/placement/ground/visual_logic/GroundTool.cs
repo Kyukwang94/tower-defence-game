@@ -1,6 +1,6 @@
 using Godot;
 
-public sealed record GroundTool(Ground Core) : IHandItem
+public sealed record GroundTool(Ground Core) : IHandTool
 {
 	public ICursorDesign CursorDesign() => new PlayerHandDesign(Core.Resource.Icon);
 	public void Selected(PlayerHand hand) => hand.Grasp(this);

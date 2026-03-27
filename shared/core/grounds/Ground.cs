@@ -16,5 +16,5 @@ public sealed record Ground(GroundResource Resource) : IPlaceable
 	public IGridCellAction PlacementAction(LayerBag bag) => Resource.installationRule.CreateAction(this, bag);
 	public IGridArea OccupyPlan(Vector2I start, Vector2I end) => new GridArea(start, end);
 
-	public IHandItem ToHandItem() => new GroundTool(this);
+	public IHandTool ToHandItem() => new GroundTool(this);
 }

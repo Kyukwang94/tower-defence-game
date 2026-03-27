@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public sealed record BuildingTool(Building Core) : IHandItem
+public sealed record BuildingTool(Building Core) : IHandTool
 {
 	public ICursorDesign CursorDesign() => new PlayerHandDesign(Core.Resource.Icon);
 
