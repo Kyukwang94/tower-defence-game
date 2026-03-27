@@ -3,10 +3,10 @@ using System;
 
 public sealed class BuildingSpawnAction : IGridCellAction
 {
-	private readonly BuildingBluePrint _bluePrint;
+	private readonly Building _bluePrint;
 	private readonly LayerBag _layerBag;
 
-	public BuildingSpawnAction(BuildingBluePrint bluePrint, LayerBag layerBag)
+	public BuildingSpawnAction(Building bluePrint, LayerBag layerBag)
 	{
 		_bluePrint = bluePrint ?? throw new ArgumentNullException(nameof(bluePrint));
 		_layerBag = layerBag ?? throw new ArgumentNullException(nameof(layerBag));
@@ -17,7 +17,7 @@ public sealed class BuildingSpawnAction : IGridCellAction
 
 		Address address = new(cell);
 
-		Building building = new BuildingConstruction(address, _bluePrint.Resource, _layerBag).Shipping();
+		BuildingNode building = new BuildingConstruction(address, _bluePrint.Resource, _layerBag).Shipping();
 		
 		layer.AddChild(building);
 

@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://b7itwg3y88w5"]
+
+[node name="Demolition" type="Button" unique_id=1001845802]
+text = "Remove"

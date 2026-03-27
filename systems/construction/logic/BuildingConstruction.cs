@@ -1,5 +1,5 @@
-using Godot;
 using System;
+using Godot;
 
 public sealed class BuildingConstruction : IConstruction
 {
@@ -7,18 +7,20 @@ public sealed class BuildingConstruction : IConstruction
 	private readonly BuildingResource _resource;
 	private readonly LayerBag _layerBag;
 
-	private readonly Building _existingBuilding;
+	private readonly BuildingNode _existingBuilding;
 
 	//Runtime Initialize
 	public BuildingConstruction(Address address, BuildingResource resource, LayerBag layerBag)
 	{
-		_address = address; _resource = resource; _layerBag = layerBag;
+		_address = address; 
+		_resource = resource; 
+		_layerBag = layerBag;
 	}
 
 	//Editor Initialize
 	public BuildingConstruction(Node2D existingNode, LayerBag layerBag)
 	{
-		_existingBuilding = existingNode as Building ?? throw new ArgumentException($"{nameof(existingNode)}는 Building 타입이어야 합니다.");
+		_existingBuilding = existingNode as BuildingNode ?? throw new ArgumentException($"{nameof(existingNode)}는 Building 타입이어야 합니다.");
 		_layerBag = layerBag ?? throw new ArgumentNullException(nameof(layerBag));
 
 		_resource = _existingBuilding.EditorResource ?? throw new InvalidOperationException("에디터 리소스가 비어있습니다.");
@@ -27,9 +29,9 @@ public sealed class BuildingConstruction : IConstruction
 		_address = new Address(point);
 	}
 
-	public Building Shipping()
+	public BuildingNode Shipping()
 	{
-		var instance = _existingBuilding ?? new Building(_address, _resource, _layerBag);
+		var instance = _existingBuilding ?? new BuildingNode(_address, _resource, _layerBag);
 
 		if (_existingBuilding != null)
 		{

@@ -3,5 +3,5 @@ using System;
 
 public interface IConstruction
 {
-	Building Shipping ();
+	BuildingNode Shipping ();
 }

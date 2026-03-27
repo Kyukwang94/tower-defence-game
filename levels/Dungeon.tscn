@@ -48,16 +48,25 @@ _board = NodePath("../../../Board")
 _handCursor = NodePath("../HandCursor")
 
 [node name="PlacementControl" parent="PlacementMenu" index="1" unique_id=154861640]
+offset_top = 2.0
+offset_bottom = 2.0
 rotation = -0.00037991875
 
 [node name="PlacementExhibitionPanel" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI" parent_id_path=PackedInt32Array(1409591478, 29100724) index="0" unique_id=40157749]
-offset_left = -220.0
-offset_top = 160.0
-offset_right = 130.0
-offset_bottom = 282.0
+offset_left = -224.0
+offset_top = 124.0
+offset_right = 126.0
+offset_bottom = 246.0
 
 [node name="PlacementItemsGallery" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" parent_id_path=PackedInt32Array(1409591478, 29100724, 1225771473) index="0" unique_id=340985988 node_paths=PackedStringArray("playerHand")]
 playerHand = NodePath("../../../../../../../../CursorLayer/PlayerHand")
+
+[node name="GroundGalleryBtn" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="0" unique_id=82952090]
+text = "Ground
+"
+
+[node name="BuildingGalleryBtn" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="1" unique_id=991614535]
+text = "Building"
 
 [editable path="Board"]
 [editable path="PlacementMenu"]

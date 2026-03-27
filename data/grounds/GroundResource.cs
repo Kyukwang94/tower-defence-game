@@ -32,6 +32,7 @@ public partial class GroundResource : Resource
 	[Export] public OccupancyType MyType;
 	[Export] public OccupancyType ConflictsWith;
 	public int deployArea = 1;
+	[Export] public GroundInstallationRule installationRule;
 
 
 } 

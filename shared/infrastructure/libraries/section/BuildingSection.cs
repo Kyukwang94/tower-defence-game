@@ -1,6 +1,5 @@
 using Godot;
-using System;
-using System.Linq;
+
 
 [GlobalClass]
 public partial class BuildingSection : Resource
@@ -13,8 +12,11 @@ public partial class BuildingSection : Resource
 
 		foreach (var item in _items)
 		{
+			var building = new Building(item);
+
+			gallery.Show(new BuildingExhibit(building));
+
 			GD.Print(item.Name);
-			new BuildingBluePrint(item).ToDisplayableItem().DisplayOn(gallery);
 		}
 	}
 }

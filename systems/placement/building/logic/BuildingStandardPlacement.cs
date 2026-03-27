@@ -5,7 +5,7 @@ public sealed class BuildingStandardPlacement : IGridCellAction
 {
 	private readonly IGridCellAction _action;
 
-	public BuildingStandardPlacement(BuildingBluePrint bluePrint, LayerBag layerBag)
+	public BuildingStandardPlacement(Building bluePrint, LayerBag layerBag)
 	{
 		
 		IGridCellAction spawn = new BuildingSpawnAction(bluePrint,layerBag);

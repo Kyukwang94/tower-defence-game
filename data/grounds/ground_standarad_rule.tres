@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="GroundStandardRule" format=3 uid="uid://b4osmlpd5o0kl"]
+
+[ext_resource type="Script" uid="uid://kypmoq3707al" path="res://shared/core/grounds/GroundStandardRule.cs" id="1_16ke7"]
+
+[resource]
+script = ExtResource("1_16ke7")
+metadata/_custom_type_script = "uid://kypmoq3707al"

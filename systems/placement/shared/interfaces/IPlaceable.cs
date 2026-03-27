@@ -8,5 +8,4 @@ public interface IPlaceable
 
 	IGridCellAction PlacementAction(LayerBag bag);
 	IGridArea OccupyPlan(Vector2I start, Vector2I end);
-	IEnumerable<Vector2I> OccupiedOffsets();
 }

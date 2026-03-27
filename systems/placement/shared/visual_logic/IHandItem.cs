@@ -5,5 +5,6 @@ using Game.Enums;
 public interface IHandItem
 {
 	public ICursorDesign CursorDesign();
-	public IPlaceable ToPlaceable();
+	public void Act(Board board, Vector2I start, Vector2I end);
+	public void ActPrev(Board board, Vector2I start, Vector2I end);
 }

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bdgsc1hadms1v" path="res://assets/enviroment/ground.aseprite" id="1_1drbr"]
 [ext_resource type="Script" uid="uid://dqb8t7am0vke3" path="res://data/grounds/GroundResource.cs" id="2_1drbr"]
+[ext_resource type="Resource" uid="uid://b4osmlpd5o0kl" path="res://data/grounds/ground_standarad_rule.tres" id="2_p6gpb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vl5lk"]
 atlas = ExtResource("1_1drbr")
@@ -16,3 +17,4 @@ AtlasCoords = Vector2i(1, 1)
 IsDestructible = true
 SpecificRules = null
 MyType = 4
+installationRule = ExtResource("2_p6gpb")

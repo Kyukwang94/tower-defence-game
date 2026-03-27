@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="GroundResource" format=3 uid="uid://647gfjeg25a6"]
 
 [ext_resource type="Texture2D" uid="uid://bdgsc1hadms1v" path="res://assets/enviroment/ground.aseprite" id="1_v23up"]
+[ext_resource type="Resource" uid="uid://b4osmlpd5o0kl" path="res://data/grounds/ground_standarad_rule.tres" id="2_ikr0u"]
 [ext_resource type="Script" uid="uid://dqb8t7am0vke3" path="res://data/grounds/GroundResource.cs" id="2_v23up"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_outa7"]
@@ -17,3 +18,4 @@ AtlasCoords = Vector2i(0, 1)
 IsWalkable = true
 SpecificRules = Array[Object]([])
 MyType = 4
+installationRule = ExtResource("2_ikr0u")

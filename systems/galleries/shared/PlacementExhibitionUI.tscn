@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bdg1i3vhcebxw" path="res://systems/galleries/shared/PlacementItemsGallery.cs" id="1_lgc7n"]
 [ext_resource type="Script" uid="uid://d35rpbqgvtbsk" path="res://systems/galleries/ground/GroundGalleryBtn.cs" id="2_a0w02"]
 [ext_resource type="Script" uid="uid://50vy38mh4clh" path="res://systems/galleries/buildings/BuildingGalleryBtn.cs" id="3_7ulv1"]
+[ext_resource type="PackedScene" uid="uid://b7itwg3y88w5" path="res://systems/demolition/Demolition.tscn" id="4_a28jj"]
 
 [node name="PlacementExhibitionUI" type="CanvasLayer" unique_id=1738398901]
 
@@ -90,3 +91,6 @@ script = ExtResource("2_a0w02")
 layout_mode = 2
 text = "building"
 script = ExtResource("3_7ulv1")
+
+[node name="Demolition" parent="PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" unique_id=1001845802 instance=ExtResource("4_a28jj")]
+layout_mode = 2

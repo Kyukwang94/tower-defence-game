@@ -1,20 +1,16 @@
 using Godot;
 using System;
 
-public sealed record BuildingDisplayItem(BuildingBluePrint BluePrint) : IDisplayable
+public sealed record BuildingExhibit(Building Core) : IDisplayable
 {
-
-	public Texture2D Icon => BluePrint.Resource.Icon;
-	public string Label => BluePrint.Resource.Name;
-
-	public void DisplayOn(IGallery gallery)
+	public void RecallDisplayMedia(IDisplayMedia form)
 	{
-		gallery.Show(this);
+		Core.SetDisplayMedia(form);
 	}
 
 	public void Select(PlayerHand hand)
 	{
-		hand.Grasp(BluePrint.ToHandItem());
+		hand.Grasp(new BuildingTool(Core));
 	}
 
 }

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bg1dvi3bq6aj8"]
 
-[ext_resource type="Script" uid="uid://t521o3671a8n" path="res://data/buildings/src/Building.cs" id="1_ovyfy"]
+[ext_resource type="Script" uid="uid://bdglgnatxr3vw" path="res://data/buildings/src/BuildingNode.cs" id="1_h6te7"]
 [ext_resource type="Resource" uid="uid://bcbd51cl8u0ib" path="res://data/buildings/altar.tres" id="2_57570"]
 
 [node name="Altar" type="Node2D" unique_id=1181967295 groups=["Initializables"]]
-script = ExtResource("1_ovyfy")
+script = ExtResource("1_h6te7")
 _editorResource = ExtResource("2_57570")

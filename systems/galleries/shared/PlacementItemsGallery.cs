@@ -1,44 +1,39 @@
-using Godot;
 using System.Collections.Generic;
+using Godot;
 
-public partial class PlacementItemsGallery : Node , IGallery
-{   
+public partial class PlacementItemsGallery : Node, IGallery
+{
 	[Export] private PlayerHand playerHand;
 
 	private readonly HashSet<string> _buttons = [];
 
 	public void Show(IDisplayable item)
 	{
-		Button mockBtn = new Button();
-		
-		string label  = item.Label;
-		Texture2D img = item.Icon;	
+		Button btn = new();
 
-		mockBtn.Icon = img;
-		mockBtn.Text = label;
-		mockBtn.Pressed += () =>
+		var btnMedia = new ButtonMedia(btn);
+		item.RecallDisplayMedia(btnMedia);
+
+		btn.Pressed += () => item.Select(playerHand);
+
+		AddChild(btn);
+	}
+
+	public void ClearAll()
+	{
+		_buttons.Clear();
+
+		foreach (Node child in GetChildren())
 		{
-			GD.Print($"[Gallery] {item.Label} Button Pressed!");
-			item.Select(playerHand);
-		};
-		
-		if(!_buttons.Contains(item.Label)) 
-		{
-			_buttons.Add(item.Label);
-			AddChild(mockBtn);	
+			if (child is Button)
+			{
+				child.QueueFree();
+			}
 		}
 	}
-	public void ClearAll()
-    {
-        _buttons.Clear();
-        
-        foreach (Node child in GetChildren())
-        {
-            if (child is Button)
-            {
-                child.QueueFree();
-            }
-        }
-    }
-
+	public sealed class ButtonMedia(Button target) : IDisplayMedia
+	{
+		public void SetTitle(string text) => target.Text = text;
+		public void SetIcon(Texture2D icon) => target.Icon = icon;
+	}
 }

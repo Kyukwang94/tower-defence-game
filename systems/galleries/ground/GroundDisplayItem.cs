@@ -1,17 +1,14 @@
 using Godot;
 
-public sealed record GroundDisplayItem(GroundBluePrint BluePrint) : IDisplayable
-{
-    public Texture2D Icon => BluePrint.Resource.Icon;
-    public string Label => BluePrint.Resource.Name;
-
-    public void DisplayOn(IGallery gallery)
+public sealed record GroundExhibit(Ground Core) : IDisplayable 
+{	
+    public void RecallDisplayMedia(IDisplayMedia media)
     {
-        gallery.Show(this);
+		Core.SetFormForDisplay(media);
     }
 
 	public void Select(PlayerHand hand)
 	{
-		hand.Grasp(BluePrint.ToHandItem());
+		hand.Grasp(new GroundTool(Core));
 	}
 }

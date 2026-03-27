@@ -47,9 +47,7 @@ public partial class PlayerHand : Node2D
 			_isDragging = false;
 			_dragEndCell = CurrentMouseCell();
 
-			IGridArea gridArea = _itemInHand.ToPlaceable().OccupyPlan(_dragStartCell, _dragEndCell);
-
-			_board.ActOn(_itemInHand.ToPlaceable(), gridArea);
+			_itemInHand.Act(_board, _dragStartCell, _dragEndCell);
 
 			GetViewport().SetInputAsHandled();
 			return;
@@ -77,8 +75,7 @@ public partial class PlayerHand : Node2D
 	}
 	private void UpdatePreview()
 	{
-		IGridArea area = _itemInHand.ToPlaceable().OccupyPlan(_dragStartCell, _dragEndCell);
-		_board.PreviewOn(_itemInHand.ToPlaceable(), area);
+		_itemInHand.ActPrev(_board, _dragStartCell, _dragEndCell);
 	}
 
 	private Vector2I CurrentMouseCell()

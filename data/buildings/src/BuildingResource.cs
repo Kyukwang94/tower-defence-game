@@ -2,9 +2,11 @@ using Godot;
 using System;
 using Game.Enums;
 using Godot.Collections;
+using System.Collections.Generic;
 
 [GlobalClass]
-public partial class BuildingResource : Resource
+public partial class BuildingResource : Resource 
+
 {
 	[Export] public string Name { get; set; }
 	[Export] public ItemType Type { get; set; }
@@ -17,4 +19,6 @@ public partial class BuildingResource : Resource
 
 	[ExportGroup("Shape")]
 	[Export] public Array<Vector2I> Shape { get; set; } = new() { new Vector2I(0, 0) };
+	[ExportGroup("Placement")]
+	[Export] public BuildingInstallationRule InstallationRule;
 } 

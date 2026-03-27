@@ -1,4 +1,4 @@
-using Game.Placement.NullObject;
+using Godot;
 
 public sealed record NoHandItem : IHandItem
 {
@@ -6,7 +6,10 @@ public sealed record NoHandItem : IHandItem
     
 	private NoHandItem() { }
     
-    public IPlaceable ToPlaceable() => NoPlaceable.Instance;
-    
     public ICursorDesign CursorDesign() => new DefaultPlayerHandDesign();
+
+	public void Act(Board board, Vector2I start, Vector2I end){	}
+
+	public void ActPrev(Board board, Vector2I start, Vector2I end){	}
+
 }

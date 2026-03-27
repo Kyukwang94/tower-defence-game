@@ -13,8 +13,11 @@ public partial class GroundSection : Resource
 		
 		foreach (var item in _items)
 		{
-			GD.Print(item.Name , item.AtlasCoords);
-			new GroundBluePrint(item).ToDisplayableItem().DisplayOn(gallery);
+			var ground = new Ground(item);
+			
+			gallery.Show(new GroundExhibit(ground));
+
+			GD.Print(item.Name);
 		}
 	}
 }

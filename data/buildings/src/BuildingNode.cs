@@ -4,7 +4,7 @@ using System;
 
 public sealed record Address(Vector2I Cell);
 
-public partial class Building : Node2D, IInitializable
+public partial class BuildingNode : Node2D, IInitializable
 {
 
 	private Address _address;
@@ -17,7 +17,7 @@ public partial class Building : Node2D, IInitializable
 	public BuildingResource EditorResource => _editorResource;
 	
 	#region NoUse
-	public Building() : base() { }
+	public BuildingNode() : base() { }
 	#endregion
 
 
@@ -27,11 +27,11 @@ public partial class Building : Node2D, IInitializable
 		//런타임
 		if (_layerBag != null)
 		{
-			Activate();
+		Activate();
 		}
 	}
 
-	public Building(Address address, BuildingResource resource, LayerBag bag)
+	public BuildingNode(Address address, BuildingResource resource, LayerBag bag)
 	{
 		_address = address ?? throw new ArgumentNullException(nameof(address));
 		_resource = resource ?? throw new ArgumentNullException(nameof(resource));

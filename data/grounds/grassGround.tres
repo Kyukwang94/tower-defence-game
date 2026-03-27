@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bdgsc1hadms1v" path="res://assets/enviroment/ground.aseprite" id="1_plc7v"]
 [ext_resource type="Script" uid="uid://dqb8t7am0vke3" path="res://data/grounds/GroundResource.cs" id="2_plc7v"]
 [ext_resource type="Resource" uid="uid://c407iuoqeu5sr" path="res://data/grounds/grass_foundation_rule.tres" id="2_temw3"]
+[ext_resource type="Resource" uid="uid://b4osmlpd5o0kl" path="res://data/grounds/ground_standarad_rule.tres" id="3_p5qf1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb0l8"]
 atlas = ExtResource("1_plc7v")
@@ -18,3 +19,4 @@ AtlasCoords = Vector2i(2, 1)
 IsWalkable = true
 SpecificRules = Array[Object]([ExtResource("2_temw3")])
 MyType = 4
+installationRule = ExtResource("3_p5qf1")

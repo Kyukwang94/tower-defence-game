@@ -5,7 +5,7 @@ public sealed class GroundStandardPlacement : IGridCellAction
 {
 	private readonly IGridCellAction _origin;
 
-	public GroundStandardPlacement(GroundBluePrint bluePrint, LayerBag layerBag)
+	public GroundStandardPlacement(Ground bluePrint, LayerBag layerBag)
 	{
 		IGridCellAction action = new GroundPaint(
 			bluePrint.Resource.SourceId,
