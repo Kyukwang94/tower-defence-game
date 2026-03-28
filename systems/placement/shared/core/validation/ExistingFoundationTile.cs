@@ -6,17 +6,15 @@ using System;
 public sealed class ExistingFoundationTile : IGridCellAction
 {
 	private readonly IGridCellAction _origin;
-	private readonly TileMapLayer	 _foundationLayer;
 
-	public ExistingFoundationTile(TileMapLayer foundationLayer, IGridCellAction origin )
+	public ExistingFoundationTile(IGridCellAction origin )
 	{
 		_origin = origin;
-		_foundationLayer = foundationLayer;
 	}
 
-	public bool TryOnCell(TileMapLayer layer , Vector2I cell)
+	public bool TryOnCell(Board board , Vector2I cell)
 	{
-		if(_foundationLayer.GetCellSourceId(cell) != -1 && _origin.TryOnCell(layer , cell))
+		if(board.HasFoundation(cell) && _origin.TryOnCell(board , cell))
 		{
 			return true;
 		}
@@ -27,11 +25,11 @@ public sealed class ExistingFoundationTile : IGridCellAction
 		}	
 	}
 
-	public void OnCell(TileMapLayer layer, Vector2I cell)
+	public void OnCell(Board board, Vector2I cell)
 	{
-		if(TryOnCell(layer, cell))
+		if(TryOnCell(board, cell))
 		{
-			_origin.OnCell(layer, cell);
+			_origin.OnCell(board, cell);
 		}
 	}
 

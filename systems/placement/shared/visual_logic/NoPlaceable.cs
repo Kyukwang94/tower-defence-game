@@ -18,5 +18,5 @@ public sealed record NoPlaceable : IPlaceable
 
     public IEnumerable<Vector2I> OccupiedOffsets() => Array.Empty<Vector2I>();
 
-    public IGridCellAction PlacementAction(LayerBag bag) => new NoPlacementAction();
+    public IGridCellAction PlacementAction() => new NoPlacementAction();
 }

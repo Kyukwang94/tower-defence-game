@@ -6,6 +6,6 @@ public interface IPlaceable
 {
 	ItemType Type { get; }
 
-	IGridCellAction PlacementAction(LayerBag bag);
+	IGridCellAction PlacementAction();
 	IGridArea OccupyPlan(Vector2I start, Vector2I end);
 }

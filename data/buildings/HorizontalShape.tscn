@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://d0px2ndfuaidu"]
 
 [ext_resource type="Script" uid="uid://bdglgnatxr3vw" path="res://data/buildings/src/BuildingNode.cs" id="1_nxjpg"]
+[ext_resource type="Resource" uid="uid://dbnfp8y7n0qlm" path="res://data/buildings/horizontalShape.tres" id="2_r762b"]
 
 [node name="HorizontalShape" type="Node2D" unique_id=1848081389]
 script = ExtResource("1_nxjpg")
+_editorResource = ExtResource("2_r762b")

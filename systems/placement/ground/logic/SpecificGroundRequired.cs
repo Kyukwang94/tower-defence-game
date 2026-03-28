@@ -14,17 +14,17 @@ public sealed class SpecificGroundRequired : IGridCellAction
 		_requiredCoords =  requiredCoords;
 	}
 
-	public bool TryOnCell(Godot.TileMapLayer layer ,Vector2I cell)
+	public bool TryOnCell(Board board ,Vector2I cell)
 	{
-		return layer.GetCellAtlasCoords(cell) == _requiredCoords && _origin.TryOnCell(layer, cell);
+		return board.IsGroundMatch(cell, _requiredCoords) && _origin.TryOnCell(board, cell);
 	}
 
 
-	public void OnCell(Godot.TileMapLayer layer, Vector2I cell )
+	public void OnCell(Board board, Vector2I cell )
 	{
-		if(TryOnCell(layer, cell))
+		if(TryOnCell(board, cell))
 		{
-			_origin.OnCell(layer, cell);
+			_origin.OnCell(board, cell);
 		}
 	}
 }

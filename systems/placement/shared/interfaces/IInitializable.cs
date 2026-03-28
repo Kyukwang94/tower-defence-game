@@ -4,7 +4,7 @@ using System;
 public interface IInitializable
 {
 	//Runtime
-	void Initialize(Address address, BuildingResource resource, LayerBag layerBag);
+	void Finalize(Address address, BuildingResource resource,Vector2 pos);
 	//Editor
-	void Initialize(LayerBag layerBag);
+	void InitializeForEditor(Board board);
 }

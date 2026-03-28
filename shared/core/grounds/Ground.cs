@@ -13,7 +13,7 @@ public sealed record Ground(GroundResource Resource) : IPlaceable
 		emptyForm.SetIcon(Resource.Icon);
 	}
 
-	public IGridCellAction PlacementAction(LayerBag bag) => Resource.installationRule.CreateAction(this, bag);
+	public IGridCellAction PlacementAction() => Resource.installationRule.CreateAction(this);
 	public IGridArea OccupyPlan(Vector2I start, Vector2I end) => new GridArea(start, end);
 
 	public IHandTool ToHandItem() => new GroundTool(this);

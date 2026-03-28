@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 namespace Game.Action.Validation;
 
@@ -16,33 +15,18 @@ public sealed class UniqueTilePlacement : IGridCellAction
 		_targetCoords 	= heldCoords;
 	}
 
-	public bool TryOnCell(TileMapLayer layer, Vector2I cell)
+	public bool TryOnCell(Board board, Vector2I cell)
 	{
-		return CanOverlap(layer, cell) && _origin.TryOnCell(layer, cell);
+		return board.CanOverlap(cell, _targetSourceId, _targetCoords) && _origin.TryOnCell(board, cell);
 	}
 
-	public void OnCell(TileMapLayer layer, Vector2I cell)
+	public void OnCell(Board board, Vector2I cell)
 	{
-		if(CanOverlap(layer, cell))
+		if(board.CanOverlap(cell, _targetSourceId, _targetCoords))
 		{
-			_origin.OnCell(layer, cell);
+			_origin.OnCell(board, cell);
 		}
 	}
-	private bool CanOverlap(TileMapLayer layer, Vector2I cell)
-	{
-		int existingSourceId =    layer.GetCellSourceId(cell);
-		Vector2I existingCoords = layer.GetCellAtlasCoords(cell);
-
-		if(existingSourceId == _targetSourceId && existingCoords == _targetCoords)
-		{
-			GD.Print($"{cell}동일한 타일이 설치되어있습니다.");
-			return false;
-		}
-		else
-		{
-			GD.Print($"{cell} Overlap 통과");
-			return true;
-		}
-	}
+	
 
 }

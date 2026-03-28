@@ -23,10 +23,10 @@ sources/0 = SubResource("TileSetAtlasSource_kysa1")
 
 [node name="Dungeon" type="Node2D" unique_id=2116114825]
 
-[node name="Board" parent="." unique_id=1319248591 node_paths=PackedStringArray("_groundLayer", "_buildingLayer", "_previewLayer", "_interactionLayer", "_occupancyLayer") instance=ExtResource("1_5ud45")]
+[node name="Board" parent="." unique_id=1319248591 node_paths=PackedStringArray("_groundLayer", "_buildingLayer", "_prevLayer", "_interactionLayer", "_occupancyLayer") instance=ExtResource("1_5ud45")]
 _groundLayer = NodePath("GroundLayer")
 _buildingLayer = NodePath("BuildingLayer")
-_previewLayer = NodePath("PlacementPreviewLayer")
+_prevLayer = NodePath("PlacementPreviewLayer")
 _interactionLayer = NodePath("InteractionLayer")
 _occupancyLayer = NodePath("OccupancyLayer")
 

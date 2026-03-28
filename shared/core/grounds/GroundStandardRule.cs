@@ -3,8 +3,8 @@ using Godot;
 [GlobalClass]
 public partial class GroundStandardRule : GroundInstallationRule
 {
-	public override IGridCellAction CreateAction(Ground bluePrint, LayerBag layerBag)
+	public override IGridCellAction CreateAction(Ground bluePrint)
 	{
-		return new GroundStandardPlacement(bluePrint, layerBag);
+		return new GroundStandardPlacement(bluePrint);
 	}
 }

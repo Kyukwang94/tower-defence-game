@@ -5,7 +5,7 @@ public sealed class GroundStandardPlacement : IGridCellAction
 {
 	private readonly IGridCellAction _origin;
 
-	public GroundStandardPlacement(Ground bluePrint, LayerBag layerBag)
+	public GroundStandardPlacement(Ground bluePrint)
 	{
 		IGridCellAction action = new GroundPaint(
 			bluePrint.Resource.SourceId,
@@ -22,16 +22,15 @@ public sealed class GroundStandardPlacement : IGridCellAction
 		
 		action = new OccupancyAction(
 			action,
-			layerBag.occupancy,
 			bluePrint.Resource.MyType,
 			bluePrint.Resource.ConflictsWith);
 
-		action = new ExistingFoundationTile(layerBag.ground, action);
+		action = new ExistingFoundationTile(action);
 		action = new UniqueTilePlacement(action, bluePrint.Resource.SourceId, bluePrint.Resource.AtlasCoords);
 
 		_origin = action;
 	}
 
-	public void OnCell(TileMapLayer layer, Vector2I cell) => _origin.OnCell(layer, cell);
-	public bool TryOnCell(TileMapLayer layer, Vector2I cell) => _origin.TryOnCell(layer, cell);
+	public void OnCell(Board board, Vector2I cell) => _origin.OnCell(board, cell);
+	public bool TryOnCell(Board board, Vector2I cell) => _origin.TryOnCell(board, cell);
 }

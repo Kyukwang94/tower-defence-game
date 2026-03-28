@@ -9,7 +9,7 @@ public partial class EmptyArea : IGridArea
 	private EmptyArea() { }
 
 
-	public void ApplyTo(Godot.TileMapLayer layer, IGridCellAction action)
+	public void ApplyTo(Board board, IGridCellAction action)
 	{
 		
 	}
@@ -20,7 +20,7 @@ public partial class EmptyArea : IGridArea
 		return [];
 	}
 
-	public bool CanApply(TileMapLayer layer, IGridCellAction aciton)
+	public bool CanApply(Board board, IGridCellAction aciton)
 	{
 		return false;
 	}

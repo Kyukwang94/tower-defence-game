@@ -5,24 +5,23 @@ public sealed class BuildingStandardPlacement : IGridCellAction
 {
 	private readonly IGridCellAction _action;
 
-	public BuildingStandardPlacement(Building bluePrint, LayerBag layerBag)
+	public BuildingStandardPlacement(Building bluePrint)
 	{
 		
-		IGridCellAction spawn = new BuildingSpawnAction(bluePrint,layerBag);
+		IGridCellAction spawn = new BuildingSpawnAction(bluePrint);
 
 		IGridCellAction tileLogic = new OccupancyAction(
 			new EmptyAction(),
-			layerBag.occupancy,
 			bluePrint.Resource.MyType,
 			bluePrint.Resource.ConflictsWith);
 
-		tileLogic = new ExistingFoundationTile(layerBag.ground, tileLogic);
+		tileLogic = new ExistingFoundationTile(tileLogic);
 		
 		IGridCellAction integrity = new ShapeIntegrity(tileLogic, bluePrint.Resource.Shape);
 
 		_action = new PlacementComposite(integrity, spawn);
 	}
 
-	public void OnCell(TileMapLayer layer, Vector2I cell)  => _action.OnCell(layer, cell);
-	public bool TryOnCell(TileMapLayer layer, Vector2I cell) => _action.TryOnCell(layer, cell);
+	public void OnCell(Board board, Vector2I cell)  => _action.OnCell(board, cell);
+	public bool TryOnCell(Board board, Vector2I cell) => _action.TryOnCell(board, cell);
 }

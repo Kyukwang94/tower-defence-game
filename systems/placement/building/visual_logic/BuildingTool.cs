@@ -7,12 +7,17 @@ public sealed record BuildingTool(Building Core) : IHandTool
 
 	public void Act(Board board, Vector2I start, Vector2I end)
 	{
-		IGridArea gridArea = Core.OccupyPlan(start, end);
-		board.ActOn(Core, gridArea);
+		IGridArea area = Core.OccupyPlan(start, end);
+		IGridCellAction action = Core.PlacementAction();
+		board.ActOn(area, action);
 	}
 	public void ActPrev(Board board, Vector2I start, Vector2I end)
 	{
 		IGridArea area = Core.OccupyPlan(start, end);
-		board.PreviewOn(Core, area);
+
+		IGridCellAction placementAction = Core.PlacementAction();
+		IGridCellAction prevAction = new PlacementPreviewAction(placementAction);
+
+		board.PreviewOn(area, prevAction);
 	}
 }

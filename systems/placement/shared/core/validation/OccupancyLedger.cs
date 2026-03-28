@@ -27,8 +27,6 @@ public sealed record OccupancyLedger(TileMapLayer Layer)
             Layer.SetCell(target, val | (int)type, Vector2I.Zero);
 	
 			GD.Print($"[Ledger] {type}에 대한 점유 기록 완료 (Cell: {target})");
-        }
-        
-        
+        }            
     }
 }

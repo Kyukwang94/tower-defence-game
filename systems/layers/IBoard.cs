@@ -4,6 +4,6 @@ using Game.Enums;
 
 public interface IBoard
 {
-	void ActOn(IPlaceable item, IGridArea area);
-	void PreviewOn(IPlaceable item, IGridArea area);
+	void ActOn(IGridArea gridArea, IGridCellAction action);
+	void PreviewOn(IGridArea area, IGridCellAction action);
 }

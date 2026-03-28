@@ -3,47 +3,33 @@ using Godot;
 
 public sealed class BuildingConstruction : IConstruction
 {
-	private readonly Address _address;
+	private readonly Address _runtimeAddress;
 	private readonly BuildingResource _resource;
-	private readonly LayerBag _layerBag;
-
 	private readonly BuildingNode _existingBuilding;
 
 	//Runtime Initialize
-	public BuildingConstruction(Address address, BuildingResource resource, LayerBag layerBag)
+	public BuildingConstruction(Address address, BuildingResource resource)
 	{
-		_address = address; 
-		_resource = resource; 
-		_layerBag = layerBag;
+		_runtimeAddress = address; 
+		_resource = resource;
+		_existingBuilding = null;
 	}
 
 	//Editor Initialize
-	public BuildingConstruction(Node2D existingNode, LayerBag layerBag)
+	public BuildingConstruction(Node2D existingNode)
 	{
 		_existingBuilding = existingNode as BuildingNode ?? throw new ArgumentException($"{nameof(existingNode)}는 Building 타입이어야 합니다.");
-		_layerBag = layerBag ?? throw new ArgumentNullException(nameof(layerBag));
-
 		_resource = _existingBuilding.EditorResource ?? throw new InvalidOperationException("에디터 리소스가 비어있습니다.");
-
-		Vector2I point = _layerBag.building.LocalToMap(_existingBuilding.Position);
-		_address = new Address(point);
 	}
 
-	public BuildingNode Shipping()
+	public BuildingNode Execute(Board board)
 	{
-		var instance = _existingBuilding ?? new BuildingNode(_address, _resource, _layerBag);
-
-		if (_existingBuilding != null)
+		if(_existingBuilding != null)
 		{
-			_existingBuilding.Initialize(
-			_address,
-			_resource,
-			_layerBag
-			);
+			return board.EditorBuildingPlacement(_existingBuilding,_resource);
 		}
 
-		return instance;
+		//RunTime 
+		return board.BuildNewBuilding(_resource, _runtimeAddress);
 	}
-
-
 }

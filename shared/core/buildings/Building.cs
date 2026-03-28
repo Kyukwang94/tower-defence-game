@@ -7,7 +7,7 @@ public sealed record Building(BuildingResource Resource) : IPlaceable
 {
 	//Identity
 	public ItemType Type => Resource.Type;
-	public IGridCellAction PlacementAction(LayerBag bag) => Resource.InstallationRule.CreateAction(this, bag);
+	public IGridCellAction PlacementAction() => Resource.InstallationRule.CreateAction(this);
 	public IGridArea OccupyPlan(Vector2I start, Vector2I end) => new PointArea(end);
 
 	
