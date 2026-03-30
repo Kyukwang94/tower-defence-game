@@ -4,15 +4,12 @@ using Game.Enums;
 using Godot;
 public partial class Board : Node, IBoard
 {
-	// 도화지
-
 	[Export] private TileMapLayer _groundLayer;
 	[Export] private TileMapLayer _buildingLayer;
 	[Export] private TileMapLayer _prevLayer;
 	[Export] private TileMapLayer _interactionLayer;
 	[Export] private TileMapLayer _occupancyLayer;
 
-	private Dictionary<ItemType, TileMapLayer> _worldMap = [];
 	private LayerBag _layerBag;
 
 	public override void _Ready()
@@ -23,11 +20,6 @@ public partial class Board : Node, IBoard
 	public void Setup()
 	{
 		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _prevLayer);
-		_worldMap = new Dictionary<ItemType, TileMapLayer>
-		{
-	  		{ ItemType.Ground  , _groundLayer },
-	  		{ ItemType.Building, _buildingLayer},
-		};
 
 		SyncEditorBuildings();
 
