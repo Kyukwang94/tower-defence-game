@@ -26,7 +26,7 @@ public partial class BuildingNode : Node2D, IInitializable
 		_resource = resource ?? throw new ArgumentNullException(nameof(resource));
 	}
 	#endregion
-
+	
 	#region For Editor
 	public void InitializeForEditor(Board board)
 	{
@@ -34,7 +34,6 @@ public partial class BuildingNode : Node2D, IInitializable
 		
 		construction.Execute(board);
 	}
-
 	public void Finalize(Address address, BuildingResource resource, Vector2 finalPos)
 	{
 		if(_isActivated) return;

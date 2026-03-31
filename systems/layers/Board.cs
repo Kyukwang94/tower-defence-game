@@ -132,14 +132,11 @@ public partial class Board : Node, IBoard
             _layerBag.building.AddChild(node);
         }
 
-        // 2. 위치 계산 (보드만이 가진 지식: 16, 16 오프셋 등)
         Vector2 centerPos = _layerBag.building.MapToLocal(cell);
         Vector2 finalPos = centerPos - new Vector2(16, 16);
 
-        // 3. 노드 최종 확정 (Finalize)
         node.Finalize(new Address(cell), resource, finalPos);
 
-        // 4. 장부 마킹
         MarkShapeOccupancy(cell, resource.Shape, resource.MyType);
     }
 }
