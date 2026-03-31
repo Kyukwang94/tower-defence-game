@@ -12,7 +12,6 @@ public sealed class BuildingSpawnAction : IGridCellAction
 
 	public void OnCell(Board board, Vector2I cell)
 	{
-
 		var construction = new BuildingConstruction(new Address(cell), _bluePrint.Resource);
 		
 		construction.Execute(board);

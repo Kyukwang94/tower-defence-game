@@ -125,36 +125,21 @@ public partial class Board : Node, IBoard
 		_layerBag.ground.SetCell(cell, sourceId, atlasCoords);
 	}
 
-	public BuildingNode EditorBuildingPlacement(BuildingNode node, BuildingResource resource)
-	{
-		Vector2I cell = _layerBag.building.LocalToMap(node.Position);
+	public void PlaceBuilding(BuildingNode node, BuildingResource resource, Vector2I cell)
+    {
+        if (node.GetParent() == null)
+        {
+            _layerBag.building.AddChild(node);
+        }
 
-		node.Finalize(new Address(cell), resource, node.Position);
+        // 2. 위치 계산 (보드만이 가진 지식: 16, 16 오프셋 등)
+        Vector2 centerPos = _layerBag.building.MapToLocal(cell);
+        Vector2 finalPos = centerPos - new Vector2(16, 16);
 
-		MarkShapeOccupancy(cell, resource.Shape, resource.MyType);
+        // 3. 노드 최종 확정 (Finalize)
+        node.Finalize(new Address(cell), resource, finalPos);
 
-		return node;
-	}
-	
-	// 런타임에 새로운 노드를 생성함
-	public BuildingNode BuildNewBuilding(BuildingResource resource, Address address)
-	{
-		var node = new BuildingNode(address, resource);
-		_layerBag.building.AddChild(node);
-
-		node.GlobalPosition = _layerBag.building.MapToLocal(address.Cell);
-	
-		Vector2 centerPos = _layerBag.building.MapToLocal(address.Cell);
-		Vector2 halfTile = new(16, 16); 
-		Vector2 finalPos = centerPos - halfTile;
-
-		node.Finalize(address, resource, finalPos);
-
-		MarkShapeOccupancy(address.Cell, resource.Shape, resource.MyType);
-
-		return node;
-	}
-
-
-
+        // 4. 장부 마킹
+        MarkShapeOccupancy(cell, resource.Shape, resource.MyType);
+    }
 }

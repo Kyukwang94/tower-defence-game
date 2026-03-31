@@ -21,9 +21,8 @@ public partial class BuildingNode : Node2D, IInitializable
 
 	#region For Runtime
 
-	public BuildingNode(Address address, BuildingResource resource)
+	public BuildingNode(BuildingResource resource)
 	{
-		_address = address ?? throw new ArgumentNullException(nameof(address));
 		_resource = resource ?? throw new ArgumentNullException(nameof(resource));
 	}
 	#endregion
@@ -31,7 +30,7 @@ public partial class BuildingNode : Node2D, IInitializable
 	#region For Editor
 	public void InitializeForEditor(Board board)
 	{
-		var construction = new BuildingConstruction(this);
+		var construction = new BuildingConstruction(this);		
 		
 		construction.Execute(board);
 	}
@@ -44,7 +43,8 @@ public partial class BuildingNode : Node2D, IInitializable
 		_resource = resource ?? throw new ArgumentNullException(nameof(resource));
 
 		this.GlobalPosition = finalPos;
-		//null일경우 미리 Editor에 존재하므로 생략.
+
+		//null일경우 Editor이므로 생략.
 		if(_resource.visual != null)
 		{
 			var visual = _resource.visual.Instantiate();

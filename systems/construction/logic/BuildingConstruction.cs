@@ -22,14 +22,16 @@ public sealed class BuildingConstruction : IConstruction
 		_resource = _existingBuilding.EditorResource ?? throw new InvalidOperationException("에디터 리소스가 비어있습니다.");
 	}
 
-	public BuildingNode Execute(Board board)
+	public void Execute(Board board)
 	{
 		if(_existingBuilding != null)
 		{
-			return board.EditorBuildingPlacement(_existingBuilding,_resource);
+			Vector2I cell = board.WorldToCell(_existingBuilding.GlobalPosition);
+            board.PlaceBuilding(_existingBuilding, _resource, cell);
 		}
-
-		//RunTime 
-		return board.BuildNewBuilding(_resource, _runtimeAddress);
+		else
+		{
+			board.PlaceBuilding(new BuildingNode(_resource), _resource, _runtimeAddress.Cell);
+		}
 	}
 }
