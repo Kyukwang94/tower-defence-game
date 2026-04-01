@@ -1,4 +1,7 @@
 [gd_scene format=3 uid="uid://b7itwg3y88w5"]
 
-[node name="Demolition" type="Button" unique_id=1001845802]
+[ext_resource type="Script" uid="uid://cw5qftfme1lb3" path="res://systems/demolition/DemolitionBtn.cs" id="1_1io3q"]
+
+[node name="DemolitionBtn" type="Button" unique_id=1001845802]
 text = "Remove"
+script = ExtResource("1_1io3q")

@@ -68,6 +68,9 @@ text = "Ground
 [node name="BuildingGalleryBtn" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="1" unique_id=991614535]
 text = "Building"
 
+[node name="Demolition" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="2" unique_id=1001845802 node_paths=PackedStringArray("playerHand")]
+playerHand = NodePath("../../../../../../../CursorLayer/PlayerHand")
+
 [editable path="Board"]
 [editable path="PlacementMenu"]
 [editable path="PlacementMenu/CursorLayer/HandCursor"]

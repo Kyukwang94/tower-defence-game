@@ -11,6 +11,7 @@ public partial class Board : Node, IBoard
 	[Export] private TileMapLayer _occupancyLayer;
 
 	private LayerBag _layerBag;
+	private readonly Dictionary<Vector2I, IDemolishable> _occupantRegistry = [];
 
 	public override void _Ready()
 	{
@@ -134,9 +135,37 @@ public partial class Board : Node, IBoard
 
         Vector2 centerPos = _layerBag.building.MapToLocal(cell);
         Vector2 finalPos = centerPos - new Vector2(16, 16);
+		Address address = new Address(cell);
 
-        node.Finalize(new Address(cell), resource, finalPos);
+        node.Finalize(address , resource, finalPos);
 
         MarkShapeOccupancy(cell, resource.Shape, resource.MyType);
+
+		//class 나누기.
+		foreach(var offset in resource.Shape)
+		{
+			Vector2I occupiedCell = cell + offset;
+			_occupantRegistry[occupiedCell] = node;	
+		}
     }
+	public bool TryDemolishAt(Vector2I cell)
+	{
+		if (_occupantRegistry.TryGetValue(cell, out var target))
+		{
+			target.Demolish(this);
+			
+			return true;
+		}
+		return false;
+	}
+	public void UnregisterOccupant(Vector2I pivot, IEnumerable<Vector2I> shape)
+	{
+		foreach (var offset in shape)
+		{
+			_occupantRegistry.Remove(pivot + offset);
+
+			GD.Print($"[Board] {pivot + offset}에 점유 삭제");	
+		}
+	}
+	
 }

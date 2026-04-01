@@ -17,7 +17,7 @@ public sealed record BuildingTool(Building Core) : IHandTool
 
 		IGridCellAction placementAction = Core.PlacementAction();
 		IGridCellAction prevAction = new PlacementPreviewAction(placementAction);
-
+		
 		board.PreviewOn(area, prevAction);
 	}
 }

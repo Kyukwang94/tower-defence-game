@@ -99,8 +99,10 @@ public partial class PlayerHand : Node2D
 
 	public void Grasp(IHandTool item)
 	{
+		ClearHand();
+		
 		_itemInHand = item;
 		ICursorDesign design = _itemInHand.CursorDesign();
-		design.Apply(_handCursor);
+		design?.Apply(_handCursor);
 	}
 }
