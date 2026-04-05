@@ -91,18 +91,21 @@ public partial class PlayerHand : Node2D
 
 		_itemInHand = NoHandItem.Instance;
 		_itemInHand.CursorDesign().Apply(_handCursor);
-
+		
+		new DefaultPlayerHandDesign().Apply(_handCursor);
+		
 		GetViewport().SetInputAsHandled();
-
 		GD.Print("PlayerHand Released");
 	}
 
 	public void Grasp(IHandTool item)
 	{
+		//SNAPMODE를 켜야함
 		ClearHand();
 		
 		_itemInHand = item;
+		
 		ICursorDesign design = _itemInHand.CursorDesign();
-		design?.Apply(_handCursor);
+		design.Apply(_handCursor);
 	}
 }

@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://cufdrg7f1eeo" path="res://data/buildings/src/BuildingResource.cs" id="1_58yek"]
 [ext_resource type="Texture2D" uid="uid://di0i8nenv4y8p" path="res://assets/entity/building/basicBlueHouse.aseprite" id="1_bmftt"]
-[ext_resource type="PackedScene" uid="uid://cf6jrvup2xpuj" path="res://data/buildings/BasicBlueHouseVisual.tscn" id="2_0p7ir"]
 [ext_resource type="Resource" uid="uid://cfr4d1vrni5kv" path="res://data/buildings/src/building_standrad_rule.tres" id="2_5cbly"]
+[ext_resource type="PackedScene" uid="uid://bcutnekjd3did" path="res://data/buildings/BasicBlueHouse.tscn" id="3_5cbly"]
 
 [resource]
 script = ExtResource("1_58yek")
 Name = "BasicBlueHouse"
 Type = 2
 Icon = ExtResource("1_bmftt")
-visual = ExtResource("2_0p7ir")
+scene = ExtResource("3_5cbly")
 MyType = 1
 ConflictsWith = 11
 InstallationRule = ExtResource("2_5cbly")

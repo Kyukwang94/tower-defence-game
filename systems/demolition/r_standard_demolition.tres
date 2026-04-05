@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="StandardDemolitionResource" format=3 uid="uid://cikc0djlq1uqi"]
+
+[ext_resource type="Script" uid="uid://cheoa7xhaq4vk" path="res://systems/demolition/StandardDemolitionResource.cs" id="1_j5fee"]
+
+[resource]
+script = ExtResource("1_j5fee")
+metadata/_custom_type_script = "uid://cheoa7xhaq4vk"

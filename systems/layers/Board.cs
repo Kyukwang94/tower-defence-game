@@ -15,17 +15,10 @@ public partial class Board : Node, IBoard
 
 	public override void _Ready()
 	{
-		Setup();
-	}
-
-	public void Setup()
-	{
 		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _prevLayer);
-
 		SyncEditorBuildings();
-
+		
 		_occupancyLayer.Hide();
-
 	}
 
 	public void ActOn(IGridArea area, IGridCellAction action)
@@ -113,13 +106,15 @@ public partial class Board : Node, IBoard
 	{
 		_layerBag.occupancy.Clear();
 
-		var initializabled = GetTree().GetNodesInGroup("Initializables")
-		  .OfType<IInitializable>();
+		var prePlacedBuildings = _layerBag.building.GetChildren().OfType<BuildingNode>();
 
-		foreach (var target in initializabled)
+		foreach (var building in prePlacedBuildings)
 		{
-			target.InitializeForEditor(this);
+
+			Vector2I cell = WorldToCell(building.GlobalPosition);
+			PlaceBuilding(building, building.Resource, cell);
 		}
+
 	}
 	public void SetTile(Vector2I cell, int sourceId, Vector2I atlasCoords)
 	{
@@ -127,33 +122,32 @@ public partial class Board : Node, IBoard
 	}
 
 	public void PlaceBuilding(BuildingNode node, BuildingResource resource, Vector2I cell)
-    {
-        if (node.GetParent() == null)
-        {
-            _layerBag.building.AddChild(node);
-        }
+	{
+		if (node.GetParent() == null)
+		{
+			_layerBag.building.AddChild(node);
+		}
 
-        Vector2 centerPos = _layerBag.building.MapToLocal(cell);
-        Vector2 finalPos = centerPos - new Vector2(16, 16);
-		Address address = new Address(cell);
+		Vector2 centerPos = _layerBag.building.MapToLocal(cell);
+		Vector2 finalPos = centerPos - new Vector2(16, 16);
+		Address address = new(cell);
 
-        node.Finalize(address , resource, finalPos);
-
-        MarkShapeOccupancy(cell, resource.Shape, resource.MyType);
-
-		//class 나누기.
-		foreach(var offset in resource.Shape)
+		node.Setup(address, resource, finalPos);
+		MarkShapeOccupancy(cell, resource.Shape, resource.MyType);
+		RegisterOccupant(node, resource, cell);
+	}
+	public void RegisterOccupant(BuildingNode node, BuildingResource resource, Vector2I cell)
+	{
+		foreach (var offset in resource.Shape)
 		{
 			Vector2I occupiedCell = cell + offset;
-			_occupantRegistry[occupiedCell] = node;	
+			_occupantRegistry[occupiedCell] = node;
 		}
-    }
-	public bool TryDemolishAt(Vector2I cell)
+	}
+	public bool HasOccupant(Vector2I cell)
 	{
 		if (_occupantRegistry.TryGetValue(cell, out var target))
 		{
-			target.Demolish(this);
-			
 			return true;
 		}
 		return false;
@@ -164,8 +158,18 @@ public partial class Board : Node, IBoard
 		{
 			_occupantRegistry.Remove(pivot + offset);
 
-			GD.Print($"[Board] {pivot + offset}에 점유 삭제");	
+			GD.Print($"[Board] {pivot + offset}에 점유 삭제");
 		}
 	}
-	
+	public void DemolishAt(Vector2I cell)
+	{
+		if (_occupantRegistry.TryGetValue(cell, out var target) && target is BuildingNode targetBuilding)
+		{
+			target.Demolish((address, shape) =>
+			{
+				MarkShapeOccupancy(targetBuilding.CurrentAddress.Cell, targetBuilding.Resource.Shape, OccupancyType.None);
+				UnregisterOccupant(targetBuilding.CurrentAddress.Cell, targetBuilding.Resource.Shape);
+			});		
+		}
+	}
 }

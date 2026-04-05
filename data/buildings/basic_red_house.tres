@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="BuildingResource" format=3 uid="uid://ltnwecag70pi"]
 
 [ext_resource type="Texture2D" uid="uid://b04wa6aefnd2s" path="res://assets/entity/building/basicRedHouse.aseprite" id="1_y6imn"]
-[ext_resource type="PackedScene" uid="uid://dd3ujqk5wr4k8" path="res://data/buildings/BasicRedHouseVisual.tscn" id="2_03fic"]
 [ext_resource type="Resource" uid="uid://cfr4d1vrni5kv" path="res://data/buildings/src/building_standrad_rule.tres" id="2_mxcy0"]
 [ext_resource type="Script" uid="uid://cufdrg7f1eeo" path="res://data/buildings/src/BuildingResource.cs" id="2_y6imn"]
+[ext_resource type="PackedScene" uid="uid://cqn52i4kpj40x" path="res://data/buildings/BasicRedHouse.tscn" id="3_mxcy0"]
 
 [resource]
 script = ExtResource("2_y6imn")
 Name = "BasicRedHouse"
 Type = 2
 Icon = ExtResource("1_y6imn")
-visual = ExtResource("2_03fic")
+scene = ExtResource("3_mxcy0")
 MyType = 1
 ConflictsWith = 11
 InstallationRule = ExtResource("2_mxcy0")

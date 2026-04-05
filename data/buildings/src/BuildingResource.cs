@@ -12,7 +12,7 @@ public partial class BuildingResource : Resource
 	[Export] public ItemType Type { get; set; }
 
 	[Export] public Texture2D Icon { get; set; }
-	[Export] public PackedScene visual;
+	[Export] public PackedScene scene;
 
 	[Export] public OccupancyType MyType;
 	[Export] public OccupancyType ConflictsWith;
@@ -21,4 +21,5 @@ public partial class BuildingResource : Resource
 	[Export] public Array<Vector2I> Shape { get; set; } = new() { new Vector2I(0, 0) };
 	[ExportGroup("Placement")]
 	[Export] public BuildingInstallationRule InstallationRule;
+	
 } 

@@ -2,12 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://c8mufu35n0vyv" path="res://assets/entity/building/altar.aseprite" id="1_waaye"]
 [ext_resource type="Script" uid="uid://cufdrg7f1eeo" path="res://data/buildings/src/BuildingResource.cs" id="1_xjrt1"]
+[ext_resource type="PackedScene" uid="uid://d1hwnpgko3lt" path="res://data/buildings/AltarVisual.tscn" id="2_waaye"]
 
 [resource]
 script = ExtResource("1_xjrt1")
 Name = "Altar"
 Type = 2
 Icon = ExtResource("1_waaye")
+scene = ExtResource("2_waaye")
 MyType = 1
 ConflictsWith = 13
 metadata/_custom_type_script = "uid://cufdrg7f1eeo"

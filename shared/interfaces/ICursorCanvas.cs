@@ -5,4 +5,8 @@ public interface ICursorCanvas
 {
 	void SetTexture(Texture2D texture);
 	void SetColor(Color color); 
+	
+	void SetMouseCursor(Texture2D texture);
+	
+	void ResetToDefault();
 }

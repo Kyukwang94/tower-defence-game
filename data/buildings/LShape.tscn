@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://di31olj886dwa"]
 
 [ext_resource type="Script" uid="uid://bdglgnatxr3vw" path="res://data/buildings/src/BuildingNode.cs" id="1_vvolv"]
-[ext_resource type="Resource" uid="uid://cfa1qglgwrgi4" path="res://data/buildings/l_Shape.tres" id="2_vvolv"]
+[ext_resource type="Resource" uid="uid://cikc0djlq1uqi" path="res://systems/demolition/r_standard_demolition.tres" id="2_h18sg"]
+[ext_resource type="Texture2D" uid="uid://bki3radldd8aq" path="res://assets/entity/building/LShape.aseprite" id="3_h18sg"]
 
 [node name="LShape" type="Node2D" unique_id=2061899248]
 script = ExtResource("1_vvolv")
-_editorResource = ExtResource("2_vvolv")
+_demolitionPolicy = ExtResource("2_h18sg")
+_resourcePath = "uid://cfa1qglgwrgi4"
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=574672320]
+texture = ExtResource("3_h18sg")
+offset = Vector2(32, 32)

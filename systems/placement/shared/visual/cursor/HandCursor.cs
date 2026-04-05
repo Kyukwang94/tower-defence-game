@@ -21,4 +21,15 @@ public partial class HandCursor : Node2D , ICursorCanvas
 		_visual.Modulate = color;
 	}
 
+	public void SetMouseCursor(Texture2D texture)
+	{
+		Input.SetCustomMouseCursor(texture);
+	}
+
+	public void ResetToDefault()
+	{
+		_visual.Texture = null;
+		Input.SetCustomMouseCursor(null);
+	}
+
 }

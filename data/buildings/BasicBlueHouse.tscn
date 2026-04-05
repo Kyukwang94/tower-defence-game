@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://bcutnekjd3did"]
 
 [ext_resource type="Script" uid="uid://bdglgnatxr3vw" path="res://data/buildings/src/BuildingNode.cs" id="1_blwko"]
-[ext_resource type="Resource" uid="uid://ycy1j1at3yjc" path="res://data/buildings/basic_blue_house.tres" id="2_hqigq"]
+[ext_resource type="Resource" uid="uid://cikc0djlq1uqi" path="res://systems/demolition/r_standard_demolition.tres" id="2_y4uev"]
+[ext_resource type="Texture2D" uid="uid://di0i8nenv4y8p" path="res://assets/entity/building/basicBlueHouse.aseprite" id="4_y4uev"]
 
-[node name="basicBlueHouse" type="Node2D" unique_id=2100214139]
+[node name="BasicBlueHouse" type="Node2D" unique_id=2100214139]
 script = ExtResource("1_blwko")
-_editorResource = ExtResource("2_hqigq")
+_demolitionPolicy = ExtResource("2_y4uev")
+_resourcePath = "uid://ycy1j1at3yjc"
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=1757650842]
+texture = ExtResource("4_y4uev")
+offset = Vector2(16, 16)

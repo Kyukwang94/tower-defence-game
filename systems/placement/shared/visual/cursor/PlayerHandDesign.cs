@@ -15,5 +15,4 @@ public sealed class PlayerHandDesign : ICursorDesign
 		cursorCanvas.SetColor(new Color(1,1,1,0.7f));
 		cursorCanvas.SetTexture(_itemTexture);
 	}
-
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System.Collections.Generic;
+using System;
 public interface IDemolishable
 {
-	void Demolish(Board board);
-	IEnumerable<Vector2I> Shape();
+	void Demolish(Action<Address, IEnumerable<Vector2I>> DemolishAction);
 }

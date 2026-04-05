@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://systems/placement/shared/visual_logic/PlacementMenu.tscn" id="2_kysa1"]
 [ext_resource type="Resource" uid="uid://bnlsw3ddst45y" path="res://data/data_base/game_library.tres" id="3_dft6v"]
 [ext_resource type="PackedScene" uid="uid://bg1dvi3bq6aj8" path="res://data/buildings/Altar.tscn" id="3_kysa1"]
+[ext_resource type="Resource" uid="uid://ci2sm0oy4nuog" path="res://systems/demolition/demolish.tres" id="6_dft6v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kysa1"]
 texture = ExtResource("2_5ud45")
@@ -35,6 +36,9 @@ tile_set = SubResource("TileSet_dft6v")
 
 [node name="Altar" parent="Board/BuildingLayer" index="0" unique_id=1181967295 instance=ExtResource("3_kysa1")]
 position = Vector2(544, 256)
+
+[node name="OccupancyLayer" parent="Board" index="4"]
+visible = false
 
 [node name="PlacementMenu" parent="." unique_id=1409591478 node_paths=PackedStringArray("_playerHand", "_placementGallery", "_groundSectionGalleryBtn", "_buildingSectionGalleryBtn") instance=ExtResource("2_kysa1")]
 _playerHand = NodePath("CursorLayer/PlayerHand")
@@ -70,6 +74,7 @@ text = "Building"
 
 [node name="Demolition" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="2" unique_id=1001845802 node_paths=PackedStringArray("playerHand")]
 playerHand = NodePath("../../../../../../../CursorLayer/PlayerHand")
+_resource = ExtResource("6_dft6v")
 
 [editable path="Board"]
 [editable path="PlacementMenu"]

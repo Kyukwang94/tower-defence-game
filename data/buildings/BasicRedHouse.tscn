@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://cqn52i4kpj40x"]
 
 [ext_resource type="Script" uid="uid://bdglgnatxr3vw" path="res://data/buildings/src/BuildingNode.cs" id="1_j1lu2"]
-[ext_resource type="Resource" uid="uid://ltnwecag70pi" path="res://data/buildings/basic_red_house.tres" id="2_1qfef"]
+[ext_resource type="Resource" uid="uid://cikc0djlq1uqi" path="res://systems/demolition/r_standard_demolition.tres" id="2_cx5xy"]
+[ext_resource type="Texture2D" uid="uid://b04wa6aefnd2s" path="res://assets/entity/building/basicRedHouse.aseprite" id="3_cx5xy"]
 
 [node name="BasicRedHouse" type="Node2D" unique_id=142696553]
-position = Vector2(0, 3)
 script = ExtResource("1_j1lu2")
-_editorResource = ExtResource("2_1qfef")
+_demolitionPolicy = ExtResource("2_cx5xy")
+_resourcePath = "uid://ltnwecag70pi"
+
+[node name="Visual" type="Sprite2D" parent="." unique_id=1436423473]
+texture = ExtResource("3_cx5xy")
+offset = Vector2(16, 16)

@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://bg1dvi3bq6aj8"]
 
 [ext_resource type="Script" uid="uid://bdglgnatxr3vw" path="res://data/buildings/src/BuildingNode.cs" id="1_h6te7"]
-[ext_resource type="Resource" uid="uid://bcbd51cl8u0ib" path="res://data/buildings/altar.tres" id="2_57570"]
+[ext_resource type="Resource" uid="uid://81d2xw1e8vd3" path="res://systems/demolition/r_no_demolition.tres" id="2_7ecl4"]
 [ext_resource type="PackedScene" uid="uid://d1hwnpgko3lt" path="res://data/buildings/AltarVisual.tscn" id="3_ovyfy"]
 
 [node name="Altar" type="Node2D" unique_id=1181967295 groups=["Initializables"]]
 script = ExtResource("1_h6te7")
-_editorResource = ExtResource("2_57570")
+_demolitionPolicy = ExtResource("2_7ecl4")
+_resourcePath = "uid://bcbd51cl8u0ib"
 
 [node name="Sprite2D" parent="." unique_id=590172214 instance=ExtResource("3_ovyfy")]

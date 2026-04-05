@@ -5,8 +5,6 @@ using Godot;
 
 public sealed record OccupancyLedger(TileMapLayer Layer)
 {
-
-
 	public void MarkCell(Vector2I cell, OccupancyType type)
 	{
 		int current = Layer.GetCellSourceId(cell);

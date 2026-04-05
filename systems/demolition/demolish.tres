@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DemolishResource" format=3 uid="uid://ci2sm0oy4nuog"]
+
+[ext_resource type="Texture2D" uid="uid://dkgcawt44olba" path="res://assets/ui/cursor/erase.aseprite" id="1_3fo43"]
+[ext_resource type="Script" uid="uid://cta1fhcx6i0gq" path="res://systems/demolition/DemolishResource.cs" id="1_a412m"]
+[ext_resource type="Texture2D" uid="uid://v5nan0rvs7yd" path="res://assets/ui/cursor/paint.aseprite" id="2_5kr5b"]
+
+[resource]
+script = ExtResource("1_a412m")
+PrevTexture = ExtResource("2_5kr5b")
+MouseTexture = ExtResource("1_3fo43")
+metadata/_custom_type_script = "uid://cta1fhcx6i0gq"

@@ -16,7 +16,7 @@ public sealed record BuildingTool(Building Core) : IHandTool
 		IGridArea area = Core.OccupyPlan(start, end);
 
 		IGridCellAction placementAction = Core.PlacementAction();
-		IGridCellAction prevAction = new PlacementPreviewAction(placementAction);
+		IGridCellAction prevAction = new PlacementPreviewAction(placementAction, Core.Shape);
 		
 		board.PreviewOn(area, prevAction);
 	}
