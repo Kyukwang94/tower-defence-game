@@ -21,7 +21,8 @@ public sealed class OccupancyAction : IGridCellAction
 
 	public void OnCell(Board board, Vector2I cell)
 	{	
-		board.MarkCellOccupancy(cell, _myType);
+		board.ActOn(new MarkCellOccupancyAction(cell, _myType));
+		
 		_origin.OnCell(board, cell);
 	}
 
@@ -32,7 +33,7 @@ public sealed class OccupancyAction : IGridCellAction
 			GD.Print($"[OccupancyAction]{cell} 실패!");
 			return false;
 		}
-		
+
 		return _origin.TryOnCell(board,  cell);
 	}
 }

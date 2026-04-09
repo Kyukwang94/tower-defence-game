@@ -65,12 +65,14 @@ offset_bottom = 246.0
 [node name="PlacementItemsGallery" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer2/ScrollContainer/MarginContainer" parent_id_path=PackedInt32Array(1409591478, 29100724, 1225771473) index="0" unique_id=340985988 node_paths=PackedStringArray("playerHand")]
 playerHand = NodePath("../../../../../../../../CursorLayer/PlayerHand")
 
-[node name="GroundGalleryBtn" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="0" unique_id=82952090]
+[node name="GroundGalleryBtn" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="0" unique_id=82952090 node_paths=PackedStringArray("playerHand")]
 text = "Ground
 "
+playerHand = NodePath("../../../../../../../CursorLayer/PlayerHand")
 
-[node name="BuildingGalleryBtn" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="1" unique_id=991614535]
+[node name="BuildingGalleryBtn" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="1" unique_id=991614535 node_paths=PackedStringArray("playerHand")]
 text = "Building"
+playerHand = NodePath("../../../../../../../CursorLayer/PlayerHand")
 
 [node name="Demolition" parent="PlacementMenu/PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory" parent_id_path=PackedInt32Array(1409591478, 29100724, 933718082) index="2" unique_id=1001845802 node_paths=PackedStringArray("playerHand")]
 playerHand = NodePath("../../../../../../../CursorLayer/PlayerHand")

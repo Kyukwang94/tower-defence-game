@@ -1,7 +1,4 @@
 using Godot;
-using System;
-
-
 
 public sealed class ExistingFoundationTile : IGridCellAction
 {
@@ -32,5 +29,4 @@ public sealed class ExistingFoundationTile : IGridCellAction
 			_origin.OnCell(board, cell);
 		}
 	}
-
 }

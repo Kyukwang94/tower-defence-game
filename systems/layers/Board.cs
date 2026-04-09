@@ -11,14 +11,24 @@ public partial class Board : Node, IBoard
 	[Export] private TileMapLayer _occupancyLayer;
 
 	private LayerBag _layerBag;
+	private OccupancyLedger _occupancyLedger;
 	private readonly Dictionary<Vector2I, IDemolishable> _occupantRegistry = [];
+	private readonly Dictionary<LayerType, TileMapLayer> _layers = [];
+
 
 	public override void _Ready()
 	{
+		_layers[LayerType.Ground] = _groundLayer;
+		_layers[LayerType.Building] = _buildingLayer;
+		_layers[LayerType.Preview] = _prevLayer;
+		_layers[LayerType.Interaction] = _interactionLayer;
+		_layers[LayerType.Occupancy] = _occupancyLayer;
+		
 		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _prevLayer);
-		SyncEditorBuildings();
+		_occupancyLedger = new OccupancyLedger(_layerBag.occupancy, _occupantRegistry);
 		
 		_occupancyLayer.Hide();
+		SyncEditorBuildings();
 	}
 
 	public void ActOn(IGridArea area, IGridCellAction action)
@@ -33,143 +43,8 @@ public partial class Board : Node, IBoard
 		}
 	}
 
-	public void PreviewOn(IGridArea area, IGridCellAction action)
+	public void ActOn(IOccupancyAction action)
 	{
-		_prevLayer.Clear();
-
-		area.ApplyTo(this, action);
-	}
-
-	public Vector2I WorldToCell(Vector2 worldPosition)
-	{
-		Vector2 boardPos = _interactionLayer.ToLocal(worldPosition);
-		return _interactionLayer.LocalToMap(boardPos);
-	}
-
-	public void PreviewOff()
-	{
-		_prevLayer.Clear();
-	}
-
-
-	public bool IsGroundMatch(Vector2I cell, Vector2I requiredAtlas)
-	{
-		return _layerBag.ground.GetCellAtlasCoords(cell) == requiredAtlas;
-	}
-	public bool CanOverlap(Vector2I cell, int targetSourceId, Vector2I targetCoords)
-	{
-		int existingSourceId = _layerBag.ground.GetCellSourceId(cell);
-		Vector2I existingCoords = _layerBag.ground.GetCellAtlasCoords(cell);
-
-		if (existingSourceId == targetSourceId && existingCoords == targetCoords)
-		{
-			GD.Print($"{cell}동일한 타일이 설치되어있습니다.");
-			return false;
-		}
-		else
-		{
-			GD.Print($"{cell} Overlap 통과");
-			return true;
-		}
-	}
-	public bool HasFoundation(Vector2I cell)
-	{
-		if (_layerBag.ground.GetCellSourceId(cell) != -1)
-		{
-			return true;
-		}
-		return false;
-	}
-	public void MarkCellOccupancy(Vector2I cell, OccupancyType myType)
-	{
-		new OccupancyLedger(_occupancyLayer).MarkCell(cell, myType);
-	}
-	public void MarkShapeOccupancy(Vector2I pivot, IEnumerable<Vector2I> shape, OccupancyType type)
-	{
-		new OccupancyLedger(_occupancyLayer).MarkShape(pivot, shape, type);
-	}
-	public bool IsOccupancyConflict(Vector2I cell, OccupancyType conflictsWith)
-	{
-		int currentVal = _occupancyLayer.GetCellSourceId(cell);
-
-		if (currentVal == -1) return false;
-
-
-		return (currentVal & (int)conflictsWith) != 0;
-	}
-	public void SetCellAtPrev(Vector2I cell, int sourceId, Vector2I coords)
-	{
-		_layerBag.preview.SetCell(cell, sourceId, coords);
-	}
-
-	private void SyncEditorBuildings()
-	{
-		_layerBag.occupancy.Clear();
-
-		var prePlacedBuildings = _layerBag.building.GetChildren().OfType<BuildingNode>();
-
-		foreach (var building in prePlacedBuildings)
-		{
-
-			Vector2I cell = WorldToCell(building.GlobalPosition);
-			PlaceBuilding(building, building.Resource, cell);
-		}
-
-	}
-	public void SetTile(Vector2I cell, int sourceId, Vector2I atlasCoords)
-	{
-		_layerBag.ground.SetCell(cell, sourceId, atlasCoords);
-	}
-
-	public void PlaceBuilding(BuildingNode node, BuildingResource resource, Vector2I cell)
-	{
-		if (node.GetParent() == null)
-		{
-			_layerBag.building.AddChild(node);
-		}
-
-		Vector2 centerPos = _layerBag.building.MapToLocal(cell);
-		Vector2 finalPos = centerPos - new Vector2(16, 16);
-		Address address = new(cell);
-
-		node.Setup(address, resource, finalPos);
-		MarkShapeOccupancy(cell, resource.Shape, resource.MyType);
-		RegisterOccupant(node, resource, cell);
-	}
-	public void RegisterOccupant(BuildingNode node, BuildingResource resource, Vector2I cell)
-	{
-		foreach (var offset in resource.Shape)
-		{
-			Vector2I occupiedCell = cell + offset;
-			_occupantRegistry[occupiedCell] = node;
-		}
-	}
-	public bool HasOccupant(Vector2I cell)
-	{
-		if (_occupantRegistry.TryGetValue(cell, out var target))
-		{
-			return true;
-		}
-		return false;
-	}
-	public void UnregisterOccupant(Vector2I pivot, IEnumerable<Vector2I> shape)
-	{
-		foreach (var offset in shape)
-		{
-			_occupantRegistry.Remove(pivot + offset);
-
-			GD.Print($"[Board] {pivot + offset}에 점유 삭제");
-		}
-	}
-	public void DemolishAt(Vector2I cell)
-	{
-		if (_occupantRegistry.TryGetValue(cell, out var target) && target is BuildingNode targetBuilding)
-		{
-			target.Demolish((address, shape) =>
-			{
-				MarkShapeOccupancy(targetBuilding.CurrentAddress.Cell, targetBuilding.Resource.Shape, OccupancyType.None);
-				UnregisterOccupant(targetBuilding.CurrentAddress.Cell, targetBuilding.Resource.Shape);
-			});		
-		}
+		action.Execute(_occupancyLedger);
 	}
 }

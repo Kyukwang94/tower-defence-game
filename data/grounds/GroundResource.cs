@@ -1,6 +1,7 @@
 using Godot;
 using Game.Enums;
 using Game.Action.Validation;
+using System.Collections;
 
 
 [GlobalClass]
@@ -14,7 +15,6 @@ public partial class GroundResource : Resource
 	[Export] public GroundElement 	 Element	{get; set;}
 	[Export] public ItemType Type {get; set;}	
 	
-
 	[ExportGroup ("Visuals")]
 	[Export] public Texture2D Icon {get; set;}
 	[Export] public int SourceId {get; set;} = 0;
@@ -31,6 +31,8 @@ public partial class GroundResource : Resource
 	[Export] public Godot.Collections.Array<FoundationRuleResource> SpecificRules { get; set; }
 	[Export] public OccupancyType MyType;
 	[Export] public OccupancyType ConflictsWith;
+	
+
 	public int deployArea = 1;
 	[Export] public GroundInstallationRule installationRule;
 

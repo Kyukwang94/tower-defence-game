@@ -1,19 +1,21 @@
 using Godot;
-using System;
+
 
 public partial class BuildingGalleryBtn : Button
 {
 	private IExhibition _exhibition;
-
+	[Export] PlayerHand playerHand;
 	public void Setup(IExhibition exhibition)
 	{
-		GD.Print("[BuildingGalleryBtn] Exhibition Set");
 		_exhibition = exhibition;
+		GD.Print("[BuildingGalleryBtn] Exhibition Set");
 	}
 	public override void _Pressed()
 	{
-		GD.Print("[BuildingGalleryBtn] Open Exhibition");
 		_exhibition.Open();
+
+		playerHand.Grasp(NoHandItem.Instance);
+		GD.Print("[BuildingGalleryBtn] Open Exhibition");
 	}
 
 }

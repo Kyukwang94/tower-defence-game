@@ -15,6 +15,6 @@ public sealed class BuildingConstruction : IConstruction
 	public void Execute(Board board)
 	{
 		var building = _resource.scene.Instantiate<BuildingNode>();
-		board.PlaceBuilding(building, _resource, _runtimeAddress.Cell);
+		board.PlaceBuilding(building, _resource, _runtimeAddress.StartCell);
 	}
 }

@@ -8,6 +8,6 @@ public sealed record DemolishAction() : IGridCellAction
 
 	public bool TryOnCell(Board board, Vector2I cell)
 	{
-		return board.HasOccupant(cell);
+		return board.HasOccupant(cell, out var target);
 	}
 }

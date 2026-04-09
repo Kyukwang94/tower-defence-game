@@ -1,6 +1,6 @@
 using Game.Placement.Core.Area;
 using Godot;
-
+using System.Linq;
 public sealed record DemolishTool(DemolishResource Core) : IHandTool
 {
 	public ICursorDesign CursorDesign() => new DemolishCursorDesign(Core);
@@ -10,8 +10,11 @@ public sealed record DemolishTool(DemolishResource Core) : IHandTool
 	}
 
 	public void ActPrev(Board board, Vector2I start, Vector2I end)
-	{
-		//가능하다면 해당 건물의 색을 바꿀까
-			
+	{	
+		IGridArea area = Core.OccupyPlan(end,end);
+		
+		IGridCellAction prevAction = new DemolishPreviewAction();
+		
+		board.PreviewOn(area, prevAction);
 	}
-}
+}	
