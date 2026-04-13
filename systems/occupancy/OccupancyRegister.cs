@@ -1,10 +1,8 @@
 using Game.Enums;
 using Godot;
 
-public sealed class OccupancyRegister : IOccupancyAction
+public sealed class OccupancyRegister : IBoardAction
 {
-	public LayerType TargetLayer => LayerType.Occupancy;
-
 	private readonly BuildingNode _node;
 	private readonly BuildingResource _resource;
 	private readonly Vector2I _cell;
@@ -14,8 +12,8 @@ public sealed class OccupancyRegister : IOccupancyAction
 		_resource = resource;
 		_cell = cell;
 	}
-	public void Execute(OccupancyLedger ledger)
+	public void Execute(BoardContext context)
 	{
-		ledger.RegisterOccupant(_node, _resource, _cell);
+		context.OccupancyLedger.RegisterOccupant(_node, _resource, _cell);
 	}
 }

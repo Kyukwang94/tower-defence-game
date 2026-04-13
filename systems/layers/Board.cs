@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Game.Enums;
 using Godot;
 public partial class Board : Node, IBoard
@@ -12,39 +11,40 @@ public partial class Board : Node, IBoard
 
 	private LayerBag _layerBag;
 	private OccupancyLedger _occupancyLedger;
-	private readonly Dictionary<Vector2I, IDemolishable> _occupantRegistry = [];
-	private readonly Dictionary<LayerType, TileMapLayer> _layers = [];
-
+	private BoardContext _context;
+	public ILayerProvider LayerProvider => _layerBag;
 
 	public override void _Ready()
 	{
-		_layers[LayerType.Ground] = _groundLayer;
-		_layers[LayerType.Building] = _buildingLayer;
-		_layers[LayerType.Preview] = _prevLayer;
-		_layers[LayerType.Interaction] = _interactionLayer;
-		_layers[LayerType.Occupancy] = _occupancyLayer;
-		
-		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _prevLayer);
-		_occupancyLedger = new OccupancyLedger(_layerBag.occupancy, _occupantRegistry);
-		
+		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _prevLayer, _interactionLayer);
+		_occupancyLedger = new OccupancyLedger(_layerBag.Occupancy);
+		_context = new(this, _occupancyLedger, _layerBag);
+
 		_occupancyLayer.Hide();
-		SyncEditorBuildings();
+		ActOn(new SyncEditorBuildingsAction());
 	}
 
 	public void ActOn(IGridArea area, IGridCellAction action)
 	{
-		if (area.CanApply(this, action))
+		ActOn(new ClearPreviewAction());
+
+		if (area.CanApply(_context, action))
 		{
-			area.ApplyTo(this, action);
+			area.ApplyTo(_context, action);
 		}
 		else
 		{
-			GD.Print("[Board] 무결성 파괴 감지. 설치 불가");
+			GD.Print("[Board] 설치 불가");
 		}
 	}
 
-	public void ActOn(IOccupancyAction action)
+	public void ActOn(IBoardAction boardAction)
 	{
-		action.Execute(_occupancyLedger);
+		boardAction.Execute(_context);
+	}
+
+	public T Ask<T>(ILayerQuery<T> query)
+	{
+		return query.Execute(LayerProvider);
 	}
 }

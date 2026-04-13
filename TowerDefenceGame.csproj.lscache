@@ -62,26 +62,6 @@ data/buildings/src/
  BuildingNode.cs
  BuildingResource.cs
 data/grounds/GroundResource.cs
-shared/core/buildings/
- Building.cs
- BuildingInstallationRule.cs
- BuildingStandardRule.cs
-shared/core/grounds/
- Ground.cs
- GroundInstallationRule.cs
- GroundStandardRule.cs
-shared/
- cursor/NormalCursorDesign.cs
- globals/Enums.cs
- infrastructure/libraries/
-  GameLibrary.cs
-  section/
-   BuildingSection.cs
-   GroundSection.cs
- interfaces/
-  ICursorCanvas.cs
-  ICursorDesign.cs
-  ICursorSource.cs
 systems/construction/
  interfaces/IConstruction.cs
  logic/BuildingConstruction.cs
@@ -111,28 +91,33 @@ systems/galleries/shared/
  IGallery.cs
  PlacementExhibitionButton.cs
  PlacementItemsGallery.cs
+systems/ground/
+ CanOverlap.cs
+ GroundMatch.cs
+ HasFoundation.cs
+ SetTileAction.cs
 systems/layers/
- Board.Building.cs
  Board.cs
- Board.Demolition.cs
- Board.Ground.cs
- Board.Occupancy.cs
- Board.Queries.cs
- Board.Visual.cs
  IBoard.cs
+ ILayerQuery.cs
  LayerBag.cs
 systems/occupancy/
- IOccupancyAction.cs
+ ClearOccupancyAction.cs
+ HasOccupancyAction.cs
  MarkCellOccupancyAction.cs
  MarkShapeOccupancyAction.cs
+ OccupancyConflict.cs
+ OccupancyLedger.cs
  OccupancyRegister.cs
  OccupancyUnRegister.cs
 systems/placement/building/logic/
  BuildingSpawnAction.cs
  BuildingStandardPlacement.cs
  EmptyAction.cs
+ PlaceBuildingAction.cs
  PlacementComposite.cs
  ShapeIntegrity.cs
+ SyncEditorBuildingsAction.cs
 systems/placement/
  building/visual_logic/BuildingTool.cs
  ground/logic/
@@ -154,7 +139,6 @@ systems/placement/
   ExistingFoundationTile.cs
   FoundationRuleResource.cs
   OccupancyAction.cs
-  OccupancyLedger.cs
  shared/interfaces/
   IInitializable.cs
   IPlaceable.cs
@@ -172,7 +156,32 @@ systems/placement/
   PlacementMenu.cs
   PlacementPreviewAction.cs
   PlayerHand.cs
-[99] archived/ILayerProvider.cs
+systems/Preview/
+ ClearPreviewAction.cs
+ SetCellAtPrevAction.cs
+systems/shared/
+ Address.cs
+ core/buildings/
+  Building.cs
+  BuildingInstallationRule.cs
+  BuildingStandardRule.cs
+ core/grounds/
+  Ground.cs
+  GroundInstallationRule.cs
+  GroundStandardRule.cs
+ cursor/NormalCursorDesign.cs
+ globals/
+  Enums.cs
+  GridUtils.cs
+ infrastructure/libraries/
+  GameLibrary.cs
+  section/
+   BuildingSection.cs
+   GroundSection.cs
+ interfaces/
+  ICursorCanvas.cs
+  ICursorDesign.cs
+  ICursorSource.cs
 
 [metadataReferences]
 <NUGET>/

@@ -19,21 +19,21 @@ public sealed class OccupancyAction : IGridCellAction
 	}
 
 
-	public void OnCell(Board board, Vector2I cell)
+	public void OnCell(BoardContext context, Vector2I cell)
 	{	
-		board.ActOn(new MarkCellOccupancyAction(cell, _myType));
+		context.Board.ActOn(new MarkCellOccupancyAction(cell, _myType));
 		
-		_origin.OnCell(board, cell);
+		_origin.OnCell(context, cell);
 	}
 
-	public bool TryOnCell(Board board, Vector2I cell)
+	public bool TryOnCell(BoardContext context, Vector2I cell)
 	{	
-		if(board.IsOccupancyConflict(cell, _conflictsWith))
+		if(context.Board.Ask(new OccupancyConflict(cell, _conflictsWith)))
 		{
 			GD.Print($"[OccupancyAction]{cell} 실패!");
 			return false;
 		}
 
-		return _origin.TryOnCell(board,  cell);
+		return _origin.TryOnCell(context,  cell);
 	}
 }

@@ -15,18 +15,18 @@ public sealed class GridArea : IGridArea
 		_end = end;
 	}
 
-	public void ApplyTo(Board board, IGridCellAction action)
+	public void ApplyTo(BoardContext context, IGridCellAction action)
 	{
 		foreach (var cell in CalculateCells())
 		{
-			action.OnCell(board, cell);
+			action.OnCell(context, cell);
 		}
 	}
-	public bool CanApply(Board board, IGridCellAction action)
+	public bool CanApply(BoardContext context, IGridCellAction action)
 	{
 		foreach (var cell in CalculateCells())
 		{
-			if (action.TryOnCell(board, cell)) return true;
+			if (action.TryOnCell(context, cell)) return true;
 		}
 		return false;
 	}

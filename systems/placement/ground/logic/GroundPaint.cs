@@ -11,13 +11,13 @@ public sealed class GroundPaint : IGridCellAction
 		_atlasCoords = atlasCoords;
 	}
 
-	public bool TryOnCell(Board board, Vector2I cell) => true;
+	public bool TryOnCell(BoardContext board, Vector2I cell) => true;
 	
 
-	public void OnCell(Board board, Vector2I cell)
+	public void OnCell(BoardContext context, Vector2I cell)
 	{	
-		board.SetTile(cell, _sourceId, _atlasCoords);
-		
+
+		context.Board.ActOn(new SetTileAction(cell, _sourceId, _atlasCoords));
 		GD.Print($"[GroundPaint]{cell}에 Paint 성공!");
 	}
 	

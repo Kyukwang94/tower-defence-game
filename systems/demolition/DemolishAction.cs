@@ -1,13 +1,25 @@
 using Godot;
-public sealed record DemolishAction() : IGridCellAction
-{
-	public void OnCell(Board board, Vector2I cell)
-	{
-		board.DemolishAt(cell);
-	}
 
-	public bool TryOnCell(Board board, Vector2I cell)
+public interface IDemolishAction
+{
+	public void Execute(BoardContext board);
+}
+public sealed class DemolishAction : IBoardAction
+{
+	private readonly Vector2I _cell;
+	public DemolishAction(Vector2I cell)
 	{
-		return board.HasOccupant(cell, out var target);
+		_cell = cell;
+		
+	}
+	public void Execute(BoardContext context)
+	{
+		if (context.OccupancyLedger.TryGetOccupant(_cell, out var target))
+		{	
+			target.Demolish((address) =>
+			{
+				context.Board.ActOn(new ClearOccupancyAction(address));
+			});
+		}
 	}
 }

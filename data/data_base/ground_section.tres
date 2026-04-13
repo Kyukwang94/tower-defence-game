@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://8881v7ky0tcy" path="res://data/grounds/grassGround.tres" id="1_2i3ep"]
 [ext_resource type="Resource" uid="uid://647gfjeg25a6" path="res://data/grounds/mudGround.tres" id="2_3vutr"]
 [ext_resource type="Resource" uid="uid://b21578apilraq" path="res://data/grounds/stoneGround.tres" id="3_4sx1r"]
-[ext_resource type="Script" uid="uid://ddruq3ufau0w0" path="res://shared/infrastructure/libraries/section/GroundSection.cs" id="4_ual3r"]
+[ext_resource type="Script" uid="uid://ddruq3ufau0w0" path="res://systems/shared/infrastructure/libraries/section/GroundSection.cs" id="4_ual3r"]
 
 [resource]
 script = ExtResource("4_ual3r")

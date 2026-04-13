@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://c3htqvytq3ib5" path="res://data/data_base/building_section.tres" id="1_72ge0"]
 [ext_resource type="Resource" uid="uid://78hk1ajeg4lf" path="res://data/data_base/ground_section.tres" id="1_fmode"]
-[ext_resource type="Script" uid="uid://cjer844td55ua" path="res://shared/infrastructure/libraries/GameLibrary.cs" id="1_iexu0"]
+[ext_resource type="Script" uid="uid://cjer844td55ua" path="res://systems/shared/infrastructure/libraries/GameLibrary.cs" id="1_iexu0"]
 
 [resource]
 script = ExtResource("1_iexu0")

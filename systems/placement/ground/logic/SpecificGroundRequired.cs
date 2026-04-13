@@ -1,5 +1,5 @@
-using Godot;
 using System;
+using Godot;
 
 namespace Game.Action.Validation;
 
@@ -8,23 +8,23 @@ public sealed class SpecificGroundRequired : IGridCellAction
 	private readonly IGridCellAction _origin;
 	private readonly Vector2I _requiredCoords;
 
-	public SpecificGroundRequired(IGridCellAction origin, Vector2I requiredCoords )
+	public SpecificGroundRequired(IGridCellAction origin, Vector2I requiredCoords)
 	{
 		_origin = origin;
-		_requiredCoords =  requiredCoords;
+		_requiredCoords = requiredCoords;
 	}
 
-	public bool TryOnCell(Board board ,Vector2I cell)
+	public bool TryOnCell(BoardContext context, Vector2I cell)
 	{
-		return board.IsGroundMatch(cell, _requiredCoords) && _origin.TryOnCell(board, cell);
+		return context.Board.Ask(new GroundMatch(cell, _requiredCoords)) && _origin.TryOnCell(context, cell);
 	}
 
 
-	public void OnCell(Board board, Vector2I cell )
+	public void OnCell(BoardContext context, Vector2I cell)
 	{
-		if(TryOnCell(board, cell))
+		if (TryOnCell(context, cell))
 		{
-			_origin.OnCell(board, cell);
+			_origin.OnCell(context, cell);
 		}
 	}
 }

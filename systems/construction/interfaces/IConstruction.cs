@@ -3,5 +3,5 @@ using System;
 
 public interface IConstruction
 {
-	void Execute(Board board);
+	void Execute(BoardContext context);
 }

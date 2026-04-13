@@ -31,6 +31,6 @@ public sealed class GroundStandardPlacement : IGridCellAction
 		_origin = action;
 	}
 
-	public void OnCell(Board board, Vector2I cell) => _origin.OnCell(board, cell);
-	public bool TryOnCell(Board board, Vector2I cell) => _origin.TryOnCell(board, cell);
+	public void OnCell(BoardContext context, Vector2I cell) => _origin.OnCell(context, cell);
+	public bool TryOnCell(BoardContext board, Vector2I cell) => _origin.TryOnCell(board, cell);
 }

@@ -1,5 +1,5 @@
 using Godot;
-using System;
+
 
 public sealed record BuildingTool(Building Core) : IHandTool
 {
@@ -18,6 +18,7 @@ public sealed record BuildingTool(Building Core) : IHandTool
 		IGridCellAction placementAction = Core.PlacementAction();
 		IGridCellAction prevAction = new PlacementPreviewAction(placementAction, Core.Shape);
 		
-		board.PreviewOn(area, prevAction);
+		//board.PreviewOn(area, prevAction);
+		board.ActOn(area, prevAction);
 	}
 }

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GroundStandardRule" format=3 uid="uid://b4osmlpd5o0kl"]
 
-[ext_resource type="Script" uid="uid://kypmoq3707al" path="res://shared/core/grounds/GroundStandardRule.cs" id="1_16ke7"]
+[ext_resource type="Script" uid="uid://kypmoq3707al" path="res://systems/shared/core/grounds/GroundStandardRule.cs" id="1_16ke7"]
 
 [resource]
 script = ExtResource("1_16ke7")

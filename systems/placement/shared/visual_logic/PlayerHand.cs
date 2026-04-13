@@ -80,14 +80,14 @@ public partial class PlayerHand : Node2D
 
 	private Vector2I CurrentMouseCell()
 	{
-		return _board.WorldToCell(GetGlobalMousePosition());
+		return  GridUtils.WorldToCell(GetGlobalMousePosition());
 	}
 
 	private void ClearHand()
 	{
 		_isDragging = false;
-
-		_board.PreviewOff();
+		
+		_board.ActOn(new ClearPreviewAction());
 
 		_itemInHand = NoHandItem.Instance;
 		_itemInHand.CursorDesign().Apply(_handCursor);

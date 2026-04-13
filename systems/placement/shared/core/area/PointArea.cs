@@ -7,11 +7,11 @@ public sealed class PointArea : IGridArea
 
     public PointArea(Vector2I point) => _point = point;
 
-    public bool CanApply(Board board, IGridCellAction action) 
-        => action.TryOnCell(board, _point);
+    public bool CanApply(BoardContext context, IGridCellAction action) 
+        => action.TryOnCell(context, _point);
 
-    public void ApplyTo(Board board, IGridCellAction action) 
-        => action.OnCell(board, _point);
+    public void ApplyTo(BoardContext context, IGridCellAction action) 
+        => action.OnCell(context, _point);
 
 	public IEnumerable<Vector2I> CalculateCells()
 	{

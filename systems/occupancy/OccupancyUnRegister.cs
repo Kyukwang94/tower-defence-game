@@ -1,18 +1,14 @@
-using Game.Enums;
-using Godot;
-
-public sealed class OccupancyUnRegister : IOccupancyAction
+public sealed class OccupancyUnRegister : IBoardAction
 {
-	public LayerType TargetLayer => LayerType.Occupancy;
-
 	private readonly Address _address;
 	
 	public OccupancyUnRegister(Address address)
 	{
 		_address = address;
 	}
-	public void Execute(OccupancyLedger ledger)
+
+	public void Execute(BoardContext boardContext)
 	{
-		ledger.UnRegisterOccupant(_address);
+		boardContext.OccupancyLedger.UnRegisterOccupant(_address);
 	}
 }

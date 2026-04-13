@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BuildingStandardRule" format=3 uid="uid://cfr4d1vrni5kv"]
 
-[ext_resource type="Script" uid="uid://x4vsgdf5hh7f" path="res://shared/core/buildings/BuildingStandardRule.cs" id="1_v468s"]
+[ext_resource type="Script" uid="uid://x4vsgdf5hh7f" path="res://systems/shared/core/buildings/BuildingStandardRule.cs" id="1_v468s"]
 
 [resource]
 script = ExtResource("1_v468s")

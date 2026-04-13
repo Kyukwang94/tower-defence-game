@@ -7,10 +7,9 @@ public sealed class OccupancyLedger
 {
 	private readonly TileMapLayer _layer;
 	private readonly Dictionary<Vector2I, IDemolishable> _registry = [];
-	public OccupancyLedger(TileMapLayer layer, Dictionary<Vector2I, IDemolishable> registry)
+	public OccupancyLedger(TileMapLayer layer)
 	{
 		_layer = layer;
-		_registry = registry;
 	}
 
 	public void MarkCell(Vector2I cell, OccupancyType occupancyType)
@@ -35,9 +34,7 @@ public sealed class OccupancyLedger
 		foreach (var target in address.OccupiedCells)
 		{
 			int current = _layer.GetCellSourceId(target);
-
 			int val = (current == -1) ? 0 : current;
-
 
 			_layer.SetCell(target, val | (int)occupancyType, Vector2I.Zero);
 
@@ -61,13 +58,13 @@ public sealed class OccupancyLedger
 	}
 	public bool TryGetOccupant(Vector2I cell, out IDemolishable target)
 	{
-		if(_registry.TryGetValue(cell, out target))
+		if (_registry.TryGetValue(cell, out target))
 		{
-			return true;	
+			return true;
 		}
 		target = null;
 		return false;
-		
+
 	}
 	public bool IsOccupancyConflict(Vector2I cell, OccupancyType conflictsWith)
 	{
@@ -75,6 +72,11 @@ public sealed class OccupancyLedger
 
 		if (currentVal == -1) return false;
 
-		return (currentVal & (int)conflictsWith) != 0;	
+		return (currentVal & (int)conflictsWith) != 0;
 	}
+	public void Clear()
+	{
+		_layer.Clear();
+	}
+	
 }

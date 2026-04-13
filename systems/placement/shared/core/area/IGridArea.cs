@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public interface IGridArea 
 {
-	public void ApplyTo(Board board, IGridCellAction action);
-	public bool CanApply(Board board, IGridCellAction aciton);
+	public void ApplyTo(BoardContext context, IGridCellAction action);
+	public bool CanApply(BoardContext context, IGridCellAction aciton);
 	public IEnumerable<Vector2I> CalculateCells();
 }

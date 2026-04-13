@@ -18,7 +18,7 @@ public sealed record GroundTool(Ground Core) : IHandTool
 		IGridCellAction placementAction = Core.PlacementAction();
 		IGridCellAction prevAction = new PlacementPreviewAction(placementAction, Core.Shape);
 
-		board.PreviewOn(area, prevAction);
+		board.ActOn(area, prevAction);
 	}
 
 }

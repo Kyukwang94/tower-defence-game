@@ -1,12 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using Godot;
 
-public sealed record Address(Vector2I StartCell, IEnumerable<Vector2I> Shape)
-{
-	public IEnumerable<Vector2I> OccupiedCells => Shape.Select(offset => StartCell + offset);
-}
+using Godot;
 
 public partial class BuildingNode : Node2D, IDemolishable
 {
@@ -36,11 +30,11 @@ public partial class BuildingNode : Node2D, IDemolishable
 		_isActivated = true;
 	}
 
-	public void Demolish(Action<Address, IEnumerable<Vector2I>> DemolishAction)
+	public void Demolish(Action<Address> DemolishAction)
 	{
 		if(_demolitionPolicy is IDemolitionPolicy policy && policy.CanDemolish())
 		{
-			DemolishAction?.Invoke(Address, Resource.Shape);
+			DemolishAction?.Invoke(Address);
 			policy.Execute(this);
 
 			GD.Print($"[Board] {Address.StartCell} 위치의 건물이 성공적으로 철거되었습니다.");

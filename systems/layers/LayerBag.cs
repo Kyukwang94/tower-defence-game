@@ -1,23 +1,27 @@
+using Game.Enums;
 using Godot;
 using System;
 
-public sealed class LayerBag
+public sealed class LayerBag : ILayerProvider
 {
-	public readonly TileMapLayer ground    ;
-	public readonly TileMapLayer occupancy ;
-	public readonly TileMapLayer building  ;
-	public readonly TileMapLayer preview   ;
-
+	public TileMapLayer Ground 	{get;}
+	public TileMapLayer Occupancy {get;}
+	public TileMapLayer Building  {get;}
+	public TileMapLayer Preview   {get;}
+	public TileMapLayer Interaction{get;}
+	
 	public LayerBag(
-		TileMapLayer Ground,
-		TileMapLayer Occupancy,
-		TileMapLayer Building,
-		TileMapLayer Preview)
+		TileMapLayer ground,
+		TileMapLayer occupancy,
+		TileMapLayer building,
+		TileMapLayer preview,
+		TileMapLayer interaction)
 	{
-		ground 	= Ground;
-		occupancy  = Occupancy;
-		building   = Building;
-		preview 	= Preview;
-
+		Ground 	= ground;
+		Occupancy  = occupancy;
+		Building   = building;
+		Preview 	= preview;
+		Interaction = interaction;
 	}
+
 }

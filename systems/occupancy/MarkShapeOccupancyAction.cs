@@ -1,7 +1,7 @@
 using Game.Enums;
 using Godot;
 
-public sealed class MarkShapeOccupancyAction : IOccupancyAction
+public sealed class MarkShapeOccupancyAction : IBoardAction
 {
 	public LayerType TargetLayer => LayerType.Occupancy;
 
@@ -13,8 +13,8 @@ public sealed class MarkShapeOccupancyAction : IOccupancyAction
 		_occupancyType = occupancyType;
 	}
 
-	public void Execute(OccupancyLedger ledger)
+	public void Execute(BoardContext context)
 	{
-		ledger.MarkShape(_address, _occupancyType);
+		context.OccupancyLedger.MarkShape(_address, _occupancyType);
 	}
 }

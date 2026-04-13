@@ -3,9 +3,9 @@ using System;
 
 public sealed class NoPlacementAction : IGridCellAction
 {
-	public bool TryOnCell(Board board, Vector2I cell) => false;
+	public bool TryOnCell(BoardContext board, Vector2I cell) => false;
 
-	public void OnCell(Board board, Vector2I cell)
+	public void OnCell(BoardContext board, Vector2I cell)
 	{
 		
 	}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 public interface IDemolishable
 {
-	void Demolish(Action<Address, IEnumerable<Vector2I>> DemolishAction);
-	bool CanDemolish();
+	void Demolish(Action<Address> DemolishAction);
+	bool CanDemolish();	
 	Address Address { get; }
 }
