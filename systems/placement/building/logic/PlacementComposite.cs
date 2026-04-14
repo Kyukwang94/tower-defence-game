@@ -11,11 +11,11 @@ public sealed class PlacementComposite : IGridCellAction
 		_spawn = spawn;
 	}
 
-	public bool TryOnCell(BoardContext context, Vector2I point) => _validator.TryOnCell(context, point);
+	public bool TryOnCell(BoardEnvironment boardEnv, Vector2I point) => _validator.TryOnCell(boardEnv, point);
 
-	public void OnCell(BoardContext context, Vector2I point)
+	public void OnCell(BoardEnvironment boardEnv, Vector2I point)
 	{
-		_validator.OnCell(context, point); 
-		_spawn.OnCell(context, point);     
+		_validator.OnCell(boardEnv, point); 
+		_spawn.OnCell(boardEnv, point);     
 	}
 }

@@ -12,8 +12,8 @@ public sealed class OccupancyRegister : IBoardAction
 		_resource = resource;
 		_cell = cell;
 	}
-	public void Execute(BoardContext context)
+	public void Execute(BoardEnvironment boardEnv)
 	{
-		context.OccupancyLedger.RegisterOccupant(_node, _resource, _cell);
+		boardEnv.RegisterOccupant(_node, _resource, _cell);
 	}
 }

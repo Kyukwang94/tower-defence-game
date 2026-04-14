@@ -3,8 +3,6 @@ using Godot;
 
 public sealed class MarkShapeOccupancyAction : IBoardAction
 {
-	public LayerType TargetLayer => LayerType.Occupancy;
-
 	private readonly Address _address;
 	private readonly OccupancyType _occupancyType;
 	public MarkShapeOccupancyAction(Address address, OccupancyType occupancyType)
@@ -12,9 +10,8 @@ public sealed class MarkShapeOccupancyAction : IBoardAction
 		_address = address;
 		_occupancyType = occupancyType;
 	}
-
-	public void Execute(BoardContext context)
+	public void Execute(BoardEnvironment boardEnv)
 	{
-		context.OccupancyLedger.MarkShape(_address, _occupancyType);
+		boardEnv.MarkShape(_address, _occupancyType);
 	}
 }

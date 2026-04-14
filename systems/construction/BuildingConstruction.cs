@@ -12,9 +12,9 @@ public sealed class BuildingConstruction : IConstruction
 		_resource = resource;
 	}
 
-	public void Execute(BoardContext context)
+	public void Execute(BoardEnvironment boardEnv)
 	{	
 		var building = _resource.scene.Instantiate<BuildingNode>();
-		context.Board.ActOn(new PlaceBuildingAction(building, _resource, _runtimeAddress.StartCell));
+		boardEnv.InstallBuilding(building, _runtimeAddress.StartCell);
 	}
 }

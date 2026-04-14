@@ -10,17 +10,17 @@ public sealed class BuildingSpawnAction : IGridCellAction
 		_bluePrint = bluePrint ?? throw new ArgumentNullException(nameof(bluePrint));
 	}
 
-	public void OnCell(BoardContext context, Vector2I cell)
+	public void OnCell(BoardEnvironment boardEnv, Vector2I cell)
 	{
 		var construction = new BuildingConstruction(new Address(cell, _bluePrint.Shape), _bluePrint.Resource);
 		
-		construction.Execute(context);
+		construction.Execute(boardEnv);
 
 		GD.Print($"[BuildingSpawnAction] 건물을 소환했습니다: {cell}");
 	}
 
 
-	public bool TryOnCell(BoardContext board, Vector2I cell)
+	public bool TryOnCell(BoardEnvironment board, Vector2I cell)
 	{
 		return _bluePrint != null && _bluePrint.Resource != null;
 	}

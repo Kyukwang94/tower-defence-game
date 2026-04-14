@@ -5,13 +5,15 @@ public sealed class ClearOccupancyAction : IBoardAction
 {
 	
 	private readonly Address _address;
-	public ClearOccupancyAction(Address address)
+	private readonly OccupancyLedger _occupancyLedger;
+	public ClearOccupancyAction(Address address, OccupancyLedger occupancyLedger)
 	{
 		_address = address;
+		_occupancyLedger = occupancyLedger;
 	}
-	public void Execute(BoardContext context)
+	public void Execute(BoardEnvironment boardEnv)
 	{
-		context.OccupancyLedger.MarkShape(_address, OccupancyType.None);
-		context.OccupancyLedger.UnRegisterOccupant(_address);
+		_occupancyLedger.MarkShape(_address, OccupancyType.None);
+		_occupancyLedger.UnRegisterOccupant(_address);
 	}
 }

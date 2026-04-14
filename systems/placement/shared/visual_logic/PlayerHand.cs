@@ -47,8 +47,7 @@ public partial class PlayerHand : Node2D
 			_isDragging = false;
 			_dragEndCell = CurrentMouseCell();
 
-			_itemInHand.Act(_board, _dragStartCell, _dragEndCell);
-
+			_itemInHand.Act(_board.BoardEnv, _dragStartCell, _dragEndCell);
 			GetViewport().SetInputAsHandled();
 			return;
 		}
@@ -75,7 +74,7 @@ public partial class PlayerHand : Node2D
 	}
 	private void UpdatePreview()
 	{
-		_itemInHand.ActPrev(_board, _dragStartCell, _dragEndCell);
+		_itemInHand.ActPrev(_board.BoardEnv, _dragStartCell, _dragEndCell);
 	}
 
 	private Vector2I CurrentMouseCell()
@@ -87,7 +86,7 @@ public partial class PlayerHand : Node2D
 	{
 		_isDragging = false;
 		
-		_board.ActOn(new ClearPreviewAction());
+		_board.BoardEnv.ActOn(new ClearPreviewAction());
 
 		_itemInHand = NoHandItem.Instance;
 		_itemInHand.CursorDesign().Apply(_handCursor);
@@ -100,7 +99,6 @@ public partial class PlayerHand : Node2D
 
 	public void Grasp(IHandTool item)
 	{
-		//SNAPMODE를 켜야함
 		ClearHand();
 		
 		_itemInHand = item;

@@ -11,8 +11,8 @@ public sealed class SetCellAtPrevAction : IBoardAction
 		_sourceId = sourceId;
 		_coords = coords;
 	}
-	public void Execute(BoardContext boardContext)
+	public void Execute(BoardEnvironment boardEnv)
 	{
-		boardContext.LayerProvider.Preview.SetCell(_cell, _sourceId, _coords);
+		boardEnv.PaintPreviewTile(_cell, _sourceId, _coords);
 	}
 }

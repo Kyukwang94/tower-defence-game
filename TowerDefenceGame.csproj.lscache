@@ -63,8 +63,8 @@ data/buildings/src/
  BuildingResource.cs
 data/grounds/GroundResource.cs
 systems/construction/
- interfaces/IConstruction.cs
- logic/BuildingConstruction.cs
+ BuildingConstruction.cs
+ IConstruction.cs
 systems/demolition/
  DemolishAction.cs
  DemolishCursorDesign.cs
@@ -103,7 +103,6 @@ systems/layers/
  LayerBag.cs
 systems/occupancy/
  ClearOccupancyAction.cs
- HasOccupancyAction.cs
  MarkCellOccupancyAction.cs
  MarkShapeOccupancyAction.cs
  OccupancyConflict.cs
@@ -182,6 +181,21 @@ systems/shared/
   ICursorCanvas.cs
   ICursorDesign.cs
   ICursorSource.cs
+systems/working/
+ BoardStage.cs
+ BuildingDemolition.cs
+ BuildingInstaller.cs
+ DemolishPreview.cs
+ IBoardEnvironment.cs
+ IBuildingAction.cs
+ IDemolishAction.cs
+ ILayerProvider.cs
+ IOccupancy.cs
+ IPaintSystem.cs
+ IPreviewSystem.cs
+ OccupancySync.cs
+ PaintTileInstallation.cs
+ PrevTileInstallation.cs
 
 [metadataReferences]
 <NUGET>/

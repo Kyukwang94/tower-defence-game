@@ -4,10 +4,8 @@ using Godot;
 public sealed class BuildingStandardPlacement : IGridCellAction
 {
 	private readonly IGridCellAction _action;
-
 	public BuildingStandardPlacement(Building bluePrint)
 	{
-
 		IGridCellAction spawn = new BuildingSpawnAction(bluePrint);
 
 		IGridCellAction tileLogic = new OccupancyAction(
@@ -22,7 +20,6 @@ public sealed class BuildingStandardPlacement : IGridCellAction
 
 		_action = new PlacementComposite(integrity, spawn);
 	}
-
-	public void OnCell(BoardContext context, Vector2I cell) => _action.OnCell(context, cell);
-	public bool TryOnCell(BoardContext context, Vector2I cell) => _action.TryOnCell(context, cell);
+	public void OnCell(BoardEnvironment boardEnv, Vector2I cell) => _action.OnCell(boardEnv, cell);
+	public bool TryOnCell(BoardEnvironment boardEnv, Vector2I cell) => _action.TryOnCell(boardEnv, cell);
 }

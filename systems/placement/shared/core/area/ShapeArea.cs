@@ -14,11 +14,11 @@ public sealed class PointArea : IGridArea
 		_cursorPos  = cursorPos;
 		_shapeCells = shapeCells;	
 	}
-	public void ApplyTo(BoardContext context , IGridCellAction action)
+	public void ApplyTo(BoardEnvironment boardEnv , IGridCellAction action)
 	{
 		foreach (var cell in CalculateCells())
 		{
-			action.OnCell(context, cell);
+			action.OnCell(boardEnv, cell);
 		}
 	}
 
@@ -30,6 +30,6 @@ public sealed class PointArea : IGridArea
 		}
 	}
 
-	public bool CanApply(BoardContext board, IGridCellAction action)
+	public bool CanApply(BoardEnvironment board, IGridCellAction action)
 	=> action.TryOnCell(board, _cursorPos);
 }

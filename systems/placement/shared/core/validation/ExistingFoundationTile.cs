@@ -9,9 +9,9 @@ public sealed class ExistingFoundationTile : IGridCellAction
 		_origin = origin;
 	}
 
-	public bool TryOnCell(BoardContext context , Vector2I cell)
+	public bool TryOnCell(BoardEnvironment boardEnv , Vector2I cell)
 	{
-		if(context.Board.Ask(new HasFoundation(cell)) && _origin.TryOnCell(context , cell))
+		if(boardEnv.Ask(new HasFoundation(cell)) && _origin.TryOnCell(boardEnv , cell))
 		{
 			return true;
 		}
@@ -22,11 +22,11 @@ public sealed class ExistingFoundationTile : IGridCellAction
 		}	
 	}
 
-	public void OnCell(BoardContext context, Vector2I cell)
+	public void OnCell(BoardEnvironment boardEnv, Vector2I cell)
 	{
-		if(TryOnCell(context, cell))
+		if(TryOnCell(boardEnv, cell))
 		{
-			_origin.OnCell(context, cell);
+			_origin.OnCell(boardEnv, cell);
 		}
 	}
 }

@@ -9,7 +9,7 @@ public partial class EmptyArea : IGridArea
 	private EmptyArea() { }
 
 
-	public void ApplyTo(BoardContext context, IGridCellAction action)
+	public void ApplyTo(BoardEnvironment boardEnv, IGridCellAction action)
 	{
 		
 	}
@@ -20,7 +20,7 @@ public partial class EmptyArea : IGridArea
 		return [];
 	}
 
-	public bool CanApply(BoardContext context, IGridCellAction aciton)
+	public bool CanApply(BoardEnvironment boardEnv, IGridCellAction aciton)
 	{
 		return false;
 	}

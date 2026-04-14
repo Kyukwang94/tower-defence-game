@@ -12,8 +12,8 @@ public sealed class SetTileAction : IBoardAction
 		_sourceId = sourceId;
 		_atlasCoords = atlasCoords;
 	}
-	public void Execute(BoardContext boardContext)
+	public void Execute(BoardEnvironment boardEnv)
 	{
-		boardContext.LayerProvider.Ground.SetCell(_cell, _sourceId, _atlasCoords);
+		boardEnv.PaintTile(_cell, _sourceId, _atlasCoords);
 	}
 }
