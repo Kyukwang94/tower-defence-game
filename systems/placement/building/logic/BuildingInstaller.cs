@@ -11,7 +11,7 @@ public sealed class BuildingInstallation
     {
         _layers = layers;
         _ledger = ledger;
-        _node = node;
+        _node = node;	
         _resource = resource;
         _cell = cell;
     }

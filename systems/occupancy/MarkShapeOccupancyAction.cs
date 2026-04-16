@@ -10,8 +10,8 @@ public sealed class MarkShapeOccupancyAction : IBoardAction
 		_address = address;
 		_occupancyType = occupancyType;
 	}
-	public void Execute(BoardEnvironment boardEnv)
+	public void Execute(IBoard boardContext)
 	{
-		boardEnv.MarkShape(_address, _occupancyType);
+		boardContext.Ledger.MarkShape(_address, _occupancyType);
 	}
 }

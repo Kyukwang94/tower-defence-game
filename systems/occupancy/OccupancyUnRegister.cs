@@ -7,8 +7,8 @@ public sealed class OccupancyUnRegister : IBoardAction
 		_address = address;
 	}
 
-	public void Execute(BoardEnvironment boardEnv)
+	public void Execute(IBoard boardContext)
 	{
-		boardEnv.UnRegisterOccupant(_address);
+		boardContext.Ledger.UnRegisterOccupant(_address);
 	}
 }

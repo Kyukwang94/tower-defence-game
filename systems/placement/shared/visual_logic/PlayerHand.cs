@@ -3,11 +3,11 @@ using Game.Placement.NullObject;
 
 public partial class PlayerHand : Node2D
 {
-	[Export] private Board _board;
+	[Export] private BoardNode _board;
 
 	private IHandTool _itemInHand = NoHandItem.Instance;
 
-	[Export] private HandCursor _handCursor;
+	[Export] private HandCursor _cursorNode;
 
 	private bool _isDragging;
 	private Vector2I _dragStartCell;
@@ -47,7 +47,7 @@ public partial class PlayerHand : Node2D
 			_isDragging = false;
 			_dragEndCell = CurrentMouseCell();
 
-			_itemInHand.Act(_board.BoardEnv, _dragStartCell, _dragEndCell);
+			_itemInHand.Act(_board.Board, _dragStartCell, _dragEndCell);
 			GetViewport().SetInputAsHandled();
 			return;
 		}
@@ -74,26 +74,26 @@ public partial class PlayerHand : Node2D
 	}
 	private void UpdatePreview()
 	{
-		_itemInHand.ActPrev(_board.BoardEnv, _dragStartCell, _dragEndCell);
+		_itemInHand.ActPrev(_board.Board, _dragStartCell, _dragEndCell);
 	}
 
 	private Vector2I CurrentMouseCell()
 	{
-		return  GridUtils.WorldToCell(GetGlobalMousePosition());
+		return GridUtils.WorldToCell(GetGlobalMousePosition());
 	}
 
 	private void ClearHand()
 	{
 		_isDragging = false;
 		
-		_board.BoardEnv.ActOn(new ClearPreviewAction());
+		_board.Board.ActOn(new ClearPreviewAction());
 
 		_itemInHand = NoHandItem.Instance;
-		_itemInHand.CursorDesign().Apply(_handCursor);
 		
-		new DefaultPlayerHandDesign().Apply(_handCursor);
+		new DefaultPlayerHandDesign().Apply(_cursorNode);
 		
 		GetViewport().SetInputAsHandled();
+		
 		GD.Print("PlayerHand Released");
 	}
 
@@ -104,6 +104,6 @@ public partial class PlayerHand : Node2D
 		_itemInHand = item;
 		
 		ICursorDesign design = _itemInHand.CursorDesign();
-		design.Apply(_handCursor);
+		design.Apply(_cursorNode);
 	}
 }

@@ -1,5 +1,5 @@
 using Godot;
-public sealed class HasFoundation : ILayerQuery<bool>
+public sealed class HasFoundation : IBoardQuery<bool>
 {
 	private readonly Vector2I _cell;
 
@@ -7,9 +7,9 @@ public sealed class HasFoundation : ILayerQuery<bool>
 	{
 		_cell = cell;
 	}
-	public bool Execute(ILayerProvider layerProvider)
+	public bool Ask(IBoard boardContext)
 	{
-		if (layerProvider.Ground.GetCellSourceId(_cell) != -1)
+		if (boardContext.Layers.Ground.GetCellSourceId(_cell) != -1)
 		{
 			return true;
 		}

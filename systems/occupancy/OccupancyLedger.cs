@@ -11,7 +11,6 @@ public sealed class OccupancyLedger
 	{
 		_layer = layer;
 	}
-
 	public void MarkCell(Vector2I cell, OccupancyType occupancyType)
 	{
 		int current = _layer.GetCellSourceId(cell);
@@ -64,19 +63,5 @@ public sealed class OccupancyLedger
 		}
 		target = null;
 		return false;
-
 	}
-	public bool IsOccupancyConflict(Vector2I cell, OccupancyType conflictsWith)
-	{
-		int currentVal = _layer.GetCellSourceId(cell);
-
-		if (currentVal == -1) return false;
-
-		return (currentVal & (int)conflictsWith) != 0;
-	}
-	public void Clear()
-	{
-		_layer.Clear();
-	}
-	
 }

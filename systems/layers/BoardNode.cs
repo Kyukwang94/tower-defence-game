@@ -1,7 +1,6 @@
 using Godot;
-public partial class Board : Node, IBoard
+public partial class BoardNode : Node, IBoarNode
 {
-
 	[Export] private TileMapLayer _groundLayer;
 	[Export] private TileMapLayer _buildingLayer;
 	[Export] private TileMapLayer _prevLayer;
@@ -11,16 +10,16 @@ public partial class Board : Node, IBoard
 
 	private LayerBag _layerBag;
 	private OccupancyLedger _occupancyLedger;
-	private BoardEnvironment _boardEnv;
-	public BoardEnvironment BoardEnv => _boardEnv;
+	private Board _board;
+	public Board Board => _board;
 
 
 	public override void _Ready()
 	{
 		_layerBag = new LayerBag(_groundLayer, _occupancyLayer, _buildingLayer, _prevLayer, _interactionLayer);
 		_occupancyLedger = new OccupancyLedger(_layerBag.Occupancy);
-		_boardEnv = new(_occupancyLedger, _layerBag);
-		_boardEnv.ActOn(new SyncEditorBuildingsAction());
+		_board = new(_occupancyLedger, _layerBag);
+		new SyncEditorBuildingsAction().Execute(_board);
 
 		_occupancyLayer.Hide();
 	}

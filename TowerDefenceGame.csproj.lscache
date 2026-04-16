@@ -62,20 +62,29 @@ data/buildings/src/
  BuildingNode.cs
  BuildingResource.cs
 data/grounds/GroundResource.cs
+systems/archived/
+ DemolishAction.cs
+ DemolishPreviewAction.cs
 systems/construction/
  BuildingConstruction.cs
  IConstruction.cs
 systems/demolition/
- DemolishAction.cs
+ BuildingDemolition.cs
  DemolishCursorDesign.cs
- DemolishPreviewAction.cs
  DemolishResource.cs
+ DemolishTarget.cs
  DemolishTool.cs
  DemolitionBtn.cs
  IDemolishable.cs
+ IDemolishAction.cs
  IDemolitionPolicy.cs
  NoDemolitionResource.cs
  StandardDemolitionResource.cs
+systems/environment/board/
+ Board.cs
+ IBoard.cs
+ IBoardContext.cs
+ ILayerProvider.cs
 systems/galleries/buildings/
  BuildingDisplayItem.cs
  BuildingExhibition.cs
@@ -97,22 +106,26 @@ systems/ground/
  HasFoundation.cs
  SetTileAction.cs
 systems/layers/
- Board.cs
- IBoard.cs
- ILayerQuery.cs
+ BoardNode.cs
+ IBoardQuery.cs
+ IBoarNode.cs
  LayerBag.cs
 systems/occupancy/
  ClearOccupancyAction.cs
+ IOccupancy.cs
  MarkCellOccupancyAction.cs
  MarkShapeOccupancyAction.cs
  OccupancyConflict.cs
  OccupancyLedger.cs
  OccupancyRegister.cs
+ OccupancySync.cs
  OccupancyUnRegister.cs
 systems/placement/building/logic/
+ BuildingInstaller.cs
  BuildingSpawnAction.cs
  BuildingStandardPlacement.cs
  EmptyAction.cs
+ IBuildingAction.cs
  PlaceBuildingAction.cs
  PlacementComposite.cs
  ShapeIntegrity.cs
@@ -122,6 +135,7 @@ systems/placement/
  ground/logic/
   GroundPaint.cs
   GroundStandardPlacement.cs
+  PaintTileInstallation.cs
   SpecificGroundRequired.cs
   UniqueTilePlacement.cs
  ground/visual_logic/
@@ -157,6 +171,7 @@ systems/placement/
   PlayerHand.cs
 systems/preview/
  ClearPreviewAction.cs
+ DemolishPreview.cs
  SetCellAtPrevAction.cs
 systems/shared/
  Address.cs
@@ -181,21 +196,6 @@ systems/shared/
   ICursorCanvas.cs
   ICursorDesign.cs
   ICursorSource.cs
-systems/working/
- BoardStage.cs
- BuildingDemolition.cs
- BuildingInstaller.cs
- DemolishPreview.cs
- IBoardEnvironment.cs
- IBuildingAction.cs
- IDemolishAction.cs
- ILayerProvider.cs
- IOccupancy.cs
- IPaintSystem.cs
- IPreviewSystem.cs
- OccupancySync.cs
- PaintTileInstallation.cs
- PrevTileInstallation.cs
 
 [metadataReferences]
 <NUGET>/

@@ -3,6 +3,6 @@ using System;
 
 public interface  IGridCellAction
 {
-	void OnCell(BoardEnvironment boardEnv ,Vector2I cell);
-	bool TryOnCell(BoardEnvironment boardEnv ,Vector2I cell);
+	void OnCell(IBoard boardContext ,Vector2I cell);
+	bool TryOnCell(IBoard boardContext ,Vector2I cell);
 }

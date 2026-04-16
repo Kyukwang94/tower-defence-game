@@ -13,9 +13,9 @@ public partial class PlacementPreviewAction : IGridCellAction
 		_origin = origin;
 		_shape = shape;
 	}
-	public void OnCell(BoardEnvironment boardEnv, Vector2I pivot)
+	public void OnCell(IBoard boardContext, Vector2I pivot)
 	{
-		bool totalCanPlace = _origin.TryOnCell(boardEnv, pivot);
+		bool totalCanPlace = _origin.TryOnCell(boardContext, pivot);
 
 		foreach (var offset in _shape)
 		{
@@ -23,8 +23,8 @@ public partial class PlacementPreviewAction : IGridCellAction
 
 			Vector2I atlasCoords = totalCanPlace ? new Vector2I(0, 0) : new Vector2I(1, 0);
 
-			boardEnv.ActOn(new SetCellAtPrevAction(worldCell, 1, atlasCoords));
+			new SetCellAtPrevAction(worldCell, 1, atlasCoords).Execute(boardContext);
 		}
 	}
-	public bool TryOnCell(BoardEnvironment board, Vector2I pivot) => true;
+	public bool TryOnCell(IBoard boardContext, Vector2I pivot) => true;
 }

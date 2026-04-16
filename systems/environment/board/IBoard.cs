@@ -1,6 +1,6 @@
-public interface IBoardEnvironment
+public interface IBoard : IBoardContext
 {
 	void ActOn(IGridArea area, IGridCellAction action);
 	void ActOn(IBoardAction action);
-	T Ask<T>(ILayerQuery<T> query);
+	T Ask<T>(IBoardQuery<T> query);
 }

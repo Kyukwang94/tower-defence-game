@@ -24,20 +24,15 @@ sources/0 = SubResource("TileSetAtlasSource_kysa1")
 
 [node name="Dungeon" type="Node2D" unique_id=2116114825]
 
-[node name="Board" parent="." unique_id=1319248591 node_paths=PackedStringArray("_groundLayer", "_buildingLayer", "_prevLayer", "_interactionLayer", "_occupancyLayer") instance=ExtResource("1_5ud45")]
-_groundLayer = NodePath("GroundLayer")
-_buildingLayer = NodePath("BuildingLayer")
-_prevLayer = NodePath("PlacementPreviewLayer")
-_interactionLayer = NodePath("InteractionLayer")
-_occupancyLayer = NodePath("OccupancyLayer")
+[node name="Board" parent="." unique_id=1319248591 instance=ExtResource("1_5ud45")]
 
-[node name="BuildingLayer" parent="Board" index="2"]
+[node name="BuildingLayer" parent="Board" index="2" unique_id=1845577831]
 tile_set = SubResource("TileSet_dft6v")
 
 [node name="Altar" parent="Board/BuildingLayer" index="0" unique_id=1181967295 instance=ExtResource("3_kysa1")]
 position = Vector2(544, 256)
 
-[node name="OccupancyLayer" parent="Board" index="4"]
+[node name="OccupancyLayer" parent="Board" index="4" unique_id=776630239]
 visible = false
 
 [node name="PlacementMenu" parent="." unique_id=1409591478 node_paths=PackedStringArray("_playerHand", "_placementGallery", "_groundSectionGalleryBtn", "_buildingSectionGalleryBtn") instance=ExtResource("2_kysa1")]
@@ -47,9 +42,9 @@ _groundSectionGalleryBtn = NodePath("PlacementControl/PlacementExhibitionUI/Plac
 _buildingSectionGalleryBtn = NodePath("PlacementControl/PlacementExhibitionUI/PlacementExhibitionPanel/VBoxContainer/MarginContainer/PlacementCategory/BuildingGalleryBtn")
 _gameLibraryResource = ExtResource("3_dft6v")
 
-[node name="PlayerHand" parent="PlacementMenu/CursorLayer" parent_id_path=PackedInt32Array(1409591478, 709891705) index="0" unique_id=1379917290 node_paths=PackedStringArray("_board", "_handCursor")]
+[node name="PlayerHand" parent="PlacementMenu/CursorLayer" parent_id_path=PackedInt32Array(1409591478, 709891705) index="0" unique_id=1379917290 node_paths=PackedStringArray("_board", "_cursorNode")]
 _board = NodePath("../../../Board")
-_handCursor = NodePath("../HandCursor")
+_cursorNode = NodePath("../HandCursor")
 
 [node name="PlacementControl" parent="PlacementMenu" index="1" unique_id=154861640]
 offset_top = 2.0

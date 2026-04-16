@@ -11,9 +11,9 @@ public sealed class MarkCellOccupancyAction : IBoardAction
 		_occupancyType = occupancyType;
 	}
 
-	public void Execute(BoardEnvironment boardEnv)
+	public void Execute(IBoard boardContext)
 	{
-		boardEnv.MarkCell(_cell, _occupancyType);
+		boardContext.Ledger.MarkCell(_cell, _occupancyType);
 	}
 	
 }

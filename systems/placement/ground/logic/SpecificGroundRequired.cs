@@ -14,17 +14,18 @@ public sealed class SpecificGroundRequired : IGridCellAction
 		_requiredCoords = requiredCoords;
 	}
 
-	public bool TryOnCell(BoardEnvironment boardEnv, Vector2I cell)
+	public bool TryOnCell(IBoard boardContext, Vector2I cell)
 	{
-		return boardEnv.Ask(new GroundMatch(cell, _requiredCoords)) && _origin.TryOnCell(boardEnv, cell);
+		bool groundMatch = new GroundMatch(cell, _requiredCoords).Ask(boardContext);
+		return groundMatch && _origin.TryOnCell(boardContext, cell);
 	}
 
 
-	public void OnCell(BoardEnvironment boardEnv, Vector2I cell)
+	public void OnCell(IBoard boardContext, Vector2I cell)
 	{
-		if (TryOnCell(boardEnv, cell))
+		if (TryOnCell(boardContext, cell))
 		{
-			_origin.OnCell(boardEnv, cell);
+			_origin.OnCell(boardContext, cell);
 		}
 	}
 }

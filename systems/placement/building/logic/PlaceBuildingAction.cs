@@ -10,8 +10,8 @@ public sealed class PlaceBuildingAction : IBoardAction
 		_cell = cell;
 	}
 	
-	public void Execute(BoardEnvironment boardEnv)
+	public void Execute(IBoard board)
 	{
-		boardEnv.InstallBuilding(_node, _cell);
+		new BuildingInstallation(board.Layers, board.Ledger, _node, _node.Resource, _cell ).Install();
 	}
 }

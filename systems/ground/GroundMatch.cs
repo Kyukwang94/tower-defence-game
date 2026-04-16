@@ -1,5 +1,5 @@
 using Godot;
-public sealed class GroundMatch : ILayerQuery<bool>
+public sealed class GroundMatch : IBoardQuery<bool>
 {
 	private readonly Vector2I _cell;
 	private readonly Vector2I _requiredAtlas;
@@ -8,8 +8,8 @@ public sealed class GroundMatch : ILayerQuery<bool>
 		_cell = cell;
 		_requiredAtlas = requiredAtlas;
 	}
-	public bool Execute(ILayerProvider layerProvider)
+	public bool Ask(IBoard board)
 	{
-		return layerProvider.Ground.GetCellAtlasCoords(_cell) == _requiredAtlas;
+		return board.Layers.Ground.GetCellAtlasCoords(_cell) == _requiredAtlas;
 	}
 }

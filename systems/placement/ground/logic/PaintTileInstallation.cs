@@ -13,8 +13,8 @@ public sealed class PaintTileInstallation
 		_atlasCoords = atlasCoords;
 	}
 
-	public void Paint(ILayerProvider layerProvider)
+	public void Paint(IBoard boardContext)
 	{
-		layerProvider.Ground.SetCell(_cell, _sourceId, _atlasCoords);
+		boardContext.Layers.Ground.SetCell(_cell, _sourceId, _atlasCoords);
 	}
 }

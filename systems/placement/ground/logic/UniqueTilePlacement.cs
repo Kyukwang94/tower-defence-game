@@ -15,16 +15,17 @@ public sealed class UniqueTilePlacement : IGridCellAction
 		_targetCoords = heldCoords;
 	}
 
-	public bool TryOnCell(BoardEnvironment boardEnv, Vector2I cell)
+	public bool TryOnCell(IBoard boardContext, Vector2I cell)
 	{
-		return boardEnv.Ask(new CanOverlap(cell, _targetSourceId, _targetCoords)) && _origin.TryOnCell(boardEnv, cell);
+		bool canOverlap = new CanOverlap(cell, _targetSourceId, _targetCoords).Ask(boardContext);
+		return canOverlap && _origin.TryOnCell(boardContext, cell);
 	}
 
-	public void OnCell(BoardEnvironment boardEnv, Vector2I cell)
+	public void OnCell(IBoard boardContext, Vector2I cell)
 	{
-		if (boardEnv.Ask(new CanOverlap(cell, _targetSourceId, _targetCoords)))
+		if (new CanOverlap(cell, _targetSourceId, _targetCoords).Ask(boardContext))
 		{
-			_origin.OnCell(boardEnv, cell);
+			_origin.OnCell(boardContext, cell);
 		}
 	}
 

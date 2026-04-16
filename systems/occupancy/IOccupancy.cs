@@ -7,5 +7,4 @@ public interface IOccupancy
 	public void UnRegisterOccupant(Address address);
 	public void MarkCell(Vector2I cell, OccupancyType myType);
 	public void ClearOccupancy();
-	public void SyncOccupancyBuilding();
 }

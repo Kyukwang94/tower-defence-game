@@ -3,5 +3,5 @@ using System;
 
 public interface IConstruction
 {
-	void Execute(BoardEnvironment boardEnv);
+	void Execute(IBoard boardContext);
 }

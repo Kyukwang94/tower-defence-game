@@ -1,7 +1,7 @@
 public sealed class ClearPreviewAction : IBoardAction
 {	
-	public void Execute(BoardEnvironment boardEnv)
+	public void Execute(IBoard board)
 	{
-		boardEnv.ClearPreview();
+		new ILayerProvider.Smart(board.Layers).ClearPreview();
 	}
 }
