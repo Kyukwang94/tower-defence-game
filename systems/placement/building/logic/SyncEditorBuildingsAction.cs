@@ -2,8 +2,8 @@ using Godot;
 using System.Linq;
 public sealed class SyncEditorBuildingsAction : IBoardAction
 {
-	public void Execute(BoardEnvironment boardEnv)
+	public void Execute(IBoard boardContext)
 	{
-		boardEnv.SyncOccupancyBuilding();
+		new OccupancySync(boardContext).Sync();
 	}
 }

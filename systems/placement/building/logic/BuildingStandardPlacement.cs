@@ -20,6 +20,6 @@ public sealed class BuildingStandardPlacement : IGridCellAction
 
 		_action = new PlacementComposite(integrity, spawn);
 	}
-	public void OnCell(BoardEnvironment boardEnv, Vector2I cell) => _action.OnCell(boardEnv, cell);
-	public bool TryOnCell(BoardEnvironment boardEnv, Vector2I cell) => _action.TryOnCell(boardEnv, cell);
+	public void OnCell(IBoard board, Vector2I cell) => _action.OnCell(board, cell);
+	public bool TryOnCell(IBoard board, Vector2I cell) => _action.TryOnCell(board, cell);
 }

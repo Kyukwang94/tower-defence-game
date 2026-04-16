@@ -1,6 +1,6 @@
 using Godot;
 using Game.Enums;
-public sealed class OccupancyConflict : ILayerQuery<bool>
+public sealed class OccupancyConflict : IBoardQuery<bool>
 {
 	private readonly Vector2I _cell;
 	private readonly OccupancyType _conflictsWith;
@@ -9,9 +9,9 @@ public sealed class OccupancyConflict : ILayerQuery<bool>
 		_cell = cell;
 		_conflictsWith = conflictsWith;
 	}
-	public bool Execute(ILayerProvider layerProvider)
+	public bool Ask(IBoard boardContext)
 	{
-		int currentVal = layerProvider.Occupancy.GetCellSourceId(_cell);
+		int currentVal = boardContext.Layers.Occupancy.GetCellSourceId(_cell);
 
 		if (currentVal == -1) return false;
 

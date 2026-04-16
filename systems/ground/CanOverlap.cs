@@ -1,5 +1,5 @@
 using Godot;
-public sealed class CanOverlap : ILayerQuery<bool>
+public sealed class CanOverlap : IBoardQuery<bool>
 {
 	
 	private readonly Vector2I _cell;
@@ -15,10 +15,10 @@ public sealed class CanOverlap : ILayerQuery<bool>
 		_targetSourceId = targetSourceId;
 		_targetCoords = targetCoords;
 	}
-	public bool Execute(ILayerProvider layerProvider)
+	public bool Ask(IBoard board)
 	{
-		int existingSourceId = layerProvider.Ground.GetCellSourceId(_cell);
-		Vector2I existingCoords = layerProvider.Ground.GetCellAtlasCoords(_cell);
+		int existingSourceId = board.Layers.Ground.GetCellSourceId(_cell);
+		Vector2I existingCoords = board.Layers.Ground.GetCellAtlasCoords(_cell);
 
 		if (existingSourceId == _targetSourceId && existingCoords == _targetCoords)
 		{

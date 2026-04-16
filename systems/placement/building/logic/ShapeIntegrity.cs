@@ -12,21 +12,21 @@ public sealed class ShapeIntegrity : IGridCellAction
 		_shapeCells = shapeCells ?? throw new ArgumentException(nameof(origin));
 	}
 
-	public void OnCell(BoardEnvironment boardEnv, Vector2I pivot)
+	public void OnCell(IBoard boardContext, Vector2I pivot)
 	{
 		foreach (var cell in _shapeCells)
 		{
-			_origin.OnCell(boardEnv, pivot + cell);	
+			_origin.OnCell(boardContext, pivot + cell);	
 		}
 	}
 
-	public bool TryOnCell(BoardEnvironment boardEnv, Vector2I pivot)
+	public bool TryOnCell(IBoard boardContext, Vector2I pivot)
 	{
 		foreach( var cell in _shapeCells)
 		{
 			Vector2I unverfiedCell = pivot + cell;
 
-			if(!_origin.TryOnCell(boardEnv, unverfiedCell))
+			if(!_origin.TryOnCell(boardContext, unverfiedCell))
 			{
 				return false;
 			}

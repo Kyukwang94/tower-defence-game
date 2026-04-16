@@ -3,12 +3,12 @@ using System;
 
 public sealed class NoPreviewAction : IGridCellAction
 {
-	public void OnCell(BoardEnvironment board, Vector2I cell)
+	public void OnCell(IBoard boardContext, Vector2I cell)
 	{
 		
 	}
 
-	public bool TryOnCell(BoardEnvironment board, Vector2I cell)
+	public bool TryOnCell(IBoard boardContext, Vector2I cell)
 	{
 		return true;
 	}
