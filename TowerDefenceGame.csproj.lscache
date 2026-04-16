@@ -155,7 +155,7 @@ systems/placement/
   PlacementMenu.cs
   PlacementPreviewAction.cs
   PlayerHand.cs
-systems/Preview/
+systems/preview/
  ClearPreviewAction.cs
  SetCellAtPrevAction.cs
 systems/shared/
