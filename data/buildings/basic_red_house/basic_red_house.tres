@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BuildingResource" format=3 uid="uid://ltnwecag70pi"]
+
+[ext_resource type="Texture2D" uid="uid://b04wa6aefnd2s" path="res://assets/entity/building/basicRedHouse.aseprite" id="1_buhw2"]
+[ext_resource type="Resource" uid="uid://cfr4d1vrni5kv" path="res://data/buildings/src/building_standrad_rule.tres" id="2_f567i"]
+[ext_resource type="PackedScene" uid="uid://cqn52i4kpj40x" path="res://data/buildings/basic_red_house/BasicRedHouse.tscn" id="3_fywj5"]
+[ext_resource type="Script" uid="uid://cufdrg7f1eeo" path="res://data/buildings/src/BuildingResource.cs" id="4_qt0j7"]
+
+[resource]
+script = ExtResource("4_qt0j7")
+Name = "BasicRedHouse"
+Type = 2
+Icon = ExtResource("1_buhw2")
+scene = ExtResource("3_fywj5")
+MyType = 1
+ConflictsWith = 11
+InstallationRule = ExtResource("2_f567i")
+metadata/_custom_type_script = "uid://cufdrg7f1eeo"

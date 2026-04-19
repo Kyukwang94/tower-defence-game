@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://iog1clj4s6ua" path="res://assets/entity/building/buildingCollections.aseprite" id="2_5ud45"]
 [ext_resource type="PackedScene" uid="uid://bcm2tmp2f728i" path="res://systems/placement/shared/visual_logic/PlacementMenu.tscn" id="2_kysa1"]
 [ext_resource type="Resource" uid="uid://bnlsw3ddst45y" path="res://data/data_base/game_library.tres" id="3_dft6v"]
-[ext_resource type="PackedScene" uid="uid://bg1dvi3bq6aj8" path="res://data/buildings/Altar.tscn" id="3_kysa1"]
+[ext_resource type="PackedScene" uid="uid://bg1dvi3bq6aj8" path="res://data/buildings/altar/Altar.tscn" id="3_kysa1"]
 [ext_resource type="Resource" uid="uid://ci2sm0oy4nuog" path="res://systems/demolition/demolish.tres" id="6_dft6v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kysa1"]

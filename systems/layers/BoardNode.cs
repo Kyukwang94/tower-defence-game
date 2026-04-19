@@ -6,13 +6,12 @@ public partial class BoardNode : Node, IBoarNode
 	[Export] private TileMapLayer _prevLayer;
 	[Export] private TileMapLayer _interactionLayer;
 	[Export] private TileMapLayer _occupancyLayer;
-	
+
 
 	private LayerBag _layerBag;
 	private OccupancyLedger _occupancyLedger;
 	private Board _board;
 	public Board Board => _board;
-
 
 	public override void _Ready()
 	{

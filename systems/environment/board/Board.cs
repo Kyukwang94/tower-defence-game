@@ -1,4 +1,3 @@
-using Game.Enums;
 using Godot;
 public sealed class Board : IBoard
 {
@@ -14,13 +13,14 @@ public sealed class Board : IBoard
 		_occupancyLedger = occupancyLedger;
 		_layerProvider = layerProvider;
 	}
-	public void ActOn(IBoardAction action)
-	{
-		action.Execute(this);
-	}
+	
 	public T Ask<T>(IBoardQuery<T> query)
 	{
 		return query.Ask(this);
+	}
+	public void ActOn(IBoardAction action)
+	{
+		action.Execute(this);
 	}
 
 	public void ActOn(IGridArea area, IGridCellAction action)

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bp57s7b2i5fc5" path="res://assets/entity/building/HorizontalShape.aseprite" id="1_24b6v"]
 [ext_resource type="Script" uid="uid://cufdrg7f1eeo" path="res://data/buildings/src/BuildingResource.cs" id="1_hsuy1"]
 [ext_resource type="Resource" uid="uid://cfr4d1vrni5kv" path="res://data/buildings/src/building_standrad_rule.tres" id="2_og6kv"]
-[ext_resource type="PackedScene" uid="uid://d0px2ndfuaidu" path="res://data/buildings/HorizontalShape.tscn" id="3_og6kv"]
+[ext_resource type="PackedScene" uid="uid://d0px2ndfuaidu" path="res://data/buildings/horizontal_shape/HorizontalShape.tscn" id="3_og6kv"]
 
 [resource]
 script = ExtResource("1_hsuy1")

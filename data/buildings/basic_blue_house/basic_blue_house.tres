@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BuildingResource" format=3 uid="uid://ycy1j1at3yjc"]
+
+[ext_resource type="Texture2D" uid="uid://di0i8nenv4y8p" path="res://assets/entity/building/basicBlueHouse.aseprite" id="1_eft2q"]
+[ext_resource type="Resource" uid="uid://cfr4d1vrni5kv" path="res://data/buildings/src/building_standrad_rule.tres" id="2_omqa4"]
+[ext_resource type="PackedScene" uid="uid://bcutnekjd3did" path="res://data/buildings/basic_blue_house/BasicBlueHouse.tscn" id="3_ra1wj"]
+[ext_resource type="Script" uid="uid://cufdrg7f1eeo" path="res://data/buildings/src/BuildingResource.cs" id="4_bn6no"]
+
+[resource]
+script = ExtResource("4_bn6no")
+Name = "BasicBlueHouse"
+Type = 2
+Icon = ExtResource("1_eft2q")
+scene = ExtResource("3_ra1wj")
+MyType = 1
+ConflictsWith = 11
+InstallationRule = ExtResource("2_omqa4")
+metadata/_custom_type_script = "uid://cufdrg7f1eeo"

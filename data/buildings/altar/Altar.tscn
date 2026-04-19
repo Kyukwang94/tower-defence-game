@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdglgnatxr3vw" path="res://data/buildings/src/BuildingNode.cs" id="1_h6te7"]
 [ext_resource type="Resource" uid="uid://81d2xw1e8vd3" path="res://systems/demolition/r_no_demolition.tres" id="2_7ecl4"]
-[ext_resource type="PackedScene" uid="uid://d1hwnpgko3lt" path="res://data/buildings/AltarVisual.tscn" id="3_ovyfy"]
+[ext_resource type="PackedScene" uid="uid://d1hwnpgko3lt" path="res://data/buildings/altar/AltarVisual.tscn" id="3_ovyfy"]
 
 [node name="Altar" type="Node2D" unique_id=1181967295 groups=["Initializables"]]
 script = ExtResource("1_h6te7")

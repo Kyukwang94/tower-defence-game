@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="BuildingSection" format=3 uid="uid://c3htqvytq3ib5"]
 
 [ext_resource type="Script" uid="uid://5cy5gwp1r743" path="res://systems/shared/infrastructure/libraries/section/BuildingSection.cs" id="1_g7m8j"]
-[ext_resource type="Resource" uid="uid://ltnwecag70pi" path="res://data/buildings/basic_red_house.tres" id="1_p78mf"]
-[ext_resource type="Resource" uid="uid://ycy1j1at3yjc" path="res://data/buildings/basic_blue_house.tres" id="2_ffr43"]
-[ext_resource type="Resource" uid="uid://dbnfp8y7n0qlm" path="res://data/buildings/horizontalShape.tres" id="3_7c1cw"]
-[ext_resource type="Resource" uid="uid://cfa1qglgwrgi4" path="res://data/buildings/l_Shape.tres" id="4_j7u8e"]
+[ext_resource type="Resource" uid="uid://ltnwecag70pi" path="res://data/buildings/basic_red_house/basic_red_house.tres" id="1_p78mf"]
+[ext_resource type="Resource" uid="uid://ycy1j1at3yjc" path="res://data/buildings/basic_blue_house/basic_blue_house.tres" id="2_ffr43"]
+[ext_resource type="Resource" uid="uid://dbnfp8y7n0qlm" path="res://data/buildings/horizontal_shape/horizontalShape.tres" id="3_7c1cw"]
+[ext_resource type="Resource" uid="uid://cfa1qglgwrgi4" path="res://data/buildings/l_shape/l_Shape.tres" id="4_j7u8e"]
 
 [resource]
 script = ExtResource("1_g7m8j")
